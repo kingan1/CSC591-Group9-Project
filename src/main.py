@@ -51,38 +51,41 @@ def main(saved=None, fails=None):
     else:
         
         results = {"all": {}, "sway": {}, "xpln": {}, "top": {}}
-        for _ in range(20):
+        n_iter = 20
+        count=0
+        while count < n_iter:
             data=Data()
             data.read(options['file'])
-            set_seed(options['seed'])
             best,rest,evals = data.sway()
             x = Explain(best, rest)
             rule,most= x.xpln(data,best,rest)
-            data1= Data()
-            data1.read(data,selects(rule,data.rows))
-            for k,v in data.stats().items():
-                results['all'][k] = results['all'].get(k, 0) + v
+            if rule != -1:
+                data1= Data()
+                data1.read(data,selects(rule,data.rows))
+                for k,v in data.stats().items():
+                    results['all'][k] = results['all'].get(k, 0) + v
 
-            for k,v in best.stats().items():
-                results['sway'][k] = results['sway'].get(k, 0) + v
+                for k,v in best.stats().items():
+                    results['sway'][k] = results['sway'].get(k, 0) + v
 
-            for k,v in data1.stats().items():
-                results['xpln'][k] = results['xpln'].get(k, 0) + v
+                for k,v in data1.stats().items():
+                    results['xpln'][k] = results['xpln'].get(k, 0) + v
+                    
+
+                top2,_ = data.betters(len(best.rows))
+                top = Data()
+                top.read(data,top2)
                 
+                for k,v in top.stats().items():
+                    results['top'][k] = results['top'].get(k, 0) + v
 
-            top2,_ = data.betters(len(best.rows))
-            top = Data()
-            top.read(data,top2)
-            
-            for k,v in top.stats().items():
-                results['top'][k] = results['top'].get(k, 0) + v
-
-            top2,_ = data.betters(len(best.rows))
-            top = Data()
-            top.read(data,top2)
-            
+                top2,_ = data.betters(len(best.rows))
+                top = Data()
+                top.read(data,top2)
+                count += 1
+        
         for k,v in results.items():
             for k2,_ in results[k].items():
-                results[k][k2] /= 20
+                results[k][k2] /= n_iter
             print(k, v)
 main()
