@@ -1,0 +1,9 @@
+sanity check
+all {'CityMPG+': 21.0, 'Class-': 17.699999999999996, 'HighwayMPG+': 28.0, 'Weight-': 3040.0, 'N': 93.0}
+sway {'CityMPG+': 30.2, 'Class-': 8.745000000000001, 'HighwayMPG+': 35.0, 'Weight-': 2112.0, 'N': 5.75}
+xpln {'CityMPG+': 29.5, 'Class-': 9.795000000000002, 'HighwayMPG+': 33.6, 'Weight-': 2281.75, 'N': 13.65}
+top {'CityMPG+': 33.0, 'Class-': 8.9, 'HighwayMPG+': 40.0, 'Weight-': 2052.5, 'N': 4.75}
+all to all=
+all to sway!=
+sway to xpln!=
+sway to top!=

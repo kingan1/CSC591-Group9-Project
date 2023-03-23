@@ -97,6 +97,7 @@ class Data:
 
             l, r, A, B, c, evals = self.half(rows, cols, above)
 
+            # replace
             if self.better(B, A):
                 l, r, A, B = r, l, B, A
 
@@ -109,6 +110,7 @@ class Data:
 
         return Data.clone(self, best), Data.clone(self, rest), evals
 
+    # zitzler predicate
     def better(self, row1, row2, s1=0, s2=0, ys=None, x=0, y=0):
         if not ys:
             ys = self.cols.y

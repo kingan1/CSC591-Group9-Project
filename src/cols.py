@@ -19,6 +19,7 @@ class Cols:
         self.names, self.all, self.x, self.y, self.klass = t, [], [], [], None
 
         for n, s in enumerate(t):
+            s = s.strip()
             # Generate Nums and Syms from column names
             col = Num(n, s) if re.findall("^[A-Z]+", s) else Sym(n, s)
             self.all.append(col)

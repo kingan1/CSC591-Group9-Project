@@ -1,0 +1,19 @@
+                   CityMPG+    Class-    HighwayMPG+    Weight-
+all                   21         17.7      28             3080
+sway1                 31         12.6      33             2055
+xpln1                 25         15.1      30             2270
+sway2                 33         10.1      37             2090
+xpln2                 30         12.1      33             2370
+top                   39         8.6       43             2045
+
+                    CityMPG+    Class-    HighwayMPG+    Weight-
+all   to all          =          =         =              =
+all   to sway1        ≠          ≠         ≠              ≠
+all   to sway2        ≠          ≠         ≠              ≠
+sway1 to sway2        ≠          ≠         ≠              ≠
+sway1  to xpln1       ≠          ≠         ≠              ≠
+sway2 to xpln2        ≠          ≠         ≠              ≠
+sway1   to top        ≠          ≠         ≠              ≠
+
+
+# based on the onProject.md, our format should be similar

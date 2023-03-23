@@ -9,7 +9,7 @@ class Num:
     Summarizes a stream of numbers.
     """
 
-    def __init__(self, at: int = 0, txt: str = ""):
+    def __init__(self, at: int = 0, txt: str = "", t=None):
         self.at = at
         self.txt = txt
 
@@ -21,6 +21,14 @@ class Num:
         self.has_ = {}
 
         self.w = -1 if self.txt.endswith("-") else 1
+        self.n = 0
+        self.mu = 0
+        self.m2 = 0
+        self.sd = 0
+
+        if t:
+            for x in t:
+                self.add(x)
 
     def add(self, x, n: float = 1) -> None:
         """
@@ -41,6 +49,13 @@ class Num:
             if pos:
                 self.has_[pos] = x
                 self.ok = False
+
+            # for stats
+            d = x - self.mu
+            self.mu = self.mu + d/self.n
+            self.m2 = self.m2 + d*(x-self.mu)
+            self.sd = 0 if self.n<2 else (self.m2/(self.n - 1))**.5
+
 
     def mid(self) -> float:
         """
