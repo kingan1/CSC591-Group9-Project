@@ -12,9 +12,11 @@ from utils import any, csv, many, norm, rnd
 
 class Data:
 
-    def __init__(self):
+    def __init__(self, src=None, rows=None):
         self.rows = list()
         self.cols = None
+        if src or rows:
+            self.read(src, rows)
 
     def read(self, src: Union[str, List], rows=None) -> None:
         def f(t):

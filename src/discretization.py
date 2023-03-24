@@ -1,9 +1,8 @@
 from math import inf, floor
-from typing import Union, Optional, List, Dict
+from typing import Union, Optional, List
 
 from num import Num
 from options import options
-from row import Row
 from sym import Sym
 from utils import copy
 

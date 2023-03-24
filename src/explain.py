@@ -2,7 +2,7 @@ from typing import List, Dict, Tuple
 
 from data import Data
 from discretization import value, bins, Range
-from utils import rnd, kap
+from utils import kap
 
 
 class Explain:

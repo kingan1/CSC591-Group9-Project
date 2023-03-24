@@ -3,6 +3,7 @@ from explain import Explain, selects
 from data import Data
 from options import options
 from stats import cliffsDelta, bootstrap
+from tabulate import tabulate
 data_file = "../data/auto2.csv"
 
 help = """
@@ -45,18 +46,6 @@ def get_stats(data_array):
         res[k] /= n_iter
     return res
 
-def get_equals(k, k2, results):
-    # for each iteration, must equal
-    for i in range(n_iter):
-        k_data = results[k][i]
-        k2_data = results[k2][i]
-        # for each y column
-        for k_y, k2_y in zip(k_data.cols.y, k2_data.cols.y):
-            equals = bootstrap(k_y.has(), k2_y.has()) and cliffsDelta(k_y.has(), k2_y.has())
-            if not equals:
-                return False
-    return True
-
 def main():
     """
     `main` fills in the settings, updates them from the command line, runs
@@ -76,43 +65,57 @@ def main():
     else:
 
         results = {"all": [], "sway": [], "xpln": [], "top": []}
-        
-        count=0
+        y_cols = Data(data_file)
+        headers = [y.txt for y in y_cols.cols.y]
+        comparisons = [[["all", "all"],None], [["all", "sway"],None], [["sway", "xpln"],None], [["sway", "top"],None]]
+        count = 0
         while count < n_iter:
-            data=Data()
-            data.read(data_file)
+            data=Data(data_file)
             best,rest,evals = data.sway()
             x = Explain(best, rest)
             rule,most= x.xpln(data,best,rest)
             if rule != -1:
-                data1= Data()
-                data1.read(data,selects(rule,data.rows))
+                data1= Data(data,selects(rule,data.rows))
+
                 results['all'].append(data)
-
                 results['sway'].append(best)
-
                 results['xpln'].append(data1)
                     
                 top2,_ = data.betters(len(best.rows))
-                top = Data()
-                top.read(data,top2)
+                top = Data(data,top2)
                 
                 results['top'].append(top)
-
+                # update comparisons
+                for i in range(len(comparisons)):
+                    [base, diff], result = comparisons[i]
+                    # if they haven't been initialized, mark with true until we can prove false
+                    if result == None:
+                        comparisons[i][1] = [True for _ in range(len(data.cols.y))]
+                    # for each column
+                    for k in range(len(data.cols.y)):
+                        # if not already marked as false
+                        if comparisons[i][1][k]:
+                            # check if it is false
+                            base_y, diff_y = results[base][count].cols.y[k],results[diff][count].cols.y[k]
+                            equals = bootstrap(base_y.has(), diff_y.has()) and cliffsDelta(base_y.has(), diff_y.has())
+                            if not equals:
+                                comparisons[i][1][k] = False
                 count += 1
 
-        print("sanity check")
+        table = []
         for k,v in results.items():
-            # results is an array of data, have to combine the stats
             stats = get_stats(v)
-            print(f"{k} {stats}")
+            stats_list = [k] + [stats[y] for y in headers]
+            
+            table.append(stats_list)
+        print(tabulate(table, headers=headers,numalign="right"))
+        print()
 
-        comparisons = [["all", "all"], ["all", "sway"], ["sway", "xpln"], ["sway", "top"]]
-        # for each pair of keys, do equals as bootstrap and cliffsdelta
-        for k, k2 in comparisons:
-            printable = f"{k} to {k2}"
-            valid = True
-            valid = get_equals(k,k2, results)
-            printable += "=" if valid else "!="
-            print(printable)
+
+        table=[]
+        for [base, diff], result in comparisons:
+            table.append([f"{base} to {diff}"] + result)
+        print(tabulate(table, headers=headers,numalign="right"))
+
+
 main()
