@@ -4,33 +4,31 @@ from data import Data
 from options import options
 from stats import cliffsDelta, bootstrap
 from tabulate import tabulate
-data_file = "../data/auto2.csv"
 
 help = """
 
-xpln: multi-goal semi-supervised explanation
+project: multi-goal semi-supervised algorithms
 (c) Group 9
   
 USAGE: python3 main.py [OPTIONS] [-g ACTIONS]
   
 OPTIONS:
-  -b  --bins    initial number of bins       = 16
-  -c  --cliff  cliff's delta threshold      = .147
-  -d  --d       different is over sd*d       = .35
-  -F  --Far     distance to distant          = .95
-  -h  --help    show help                    = false
-  -H  --Halves  search space for clustering  = 512
-  -m  --min     size of smallest cluster     = .5
-  -M  --Max     numbers                      = 512
-  -p  --p       dist coefficient             = 2
-  -r  --rest    how many of rest to sample   = 4
-  -R  --Reuse   child splits reuse a parent pole = true
-  -s  --seed    random number seed           = 937162211
+  -b  --bins        initial number of bins           = 16
+  -c  --cliff       cliff's delta threshold          = .147
+  -d  --d           different is over sd*d           = .35
+  -F  --Far         distance to distant              = .95
+  -h  --help        show help                        = false
+  -H  --Halves      search space for clustering      = 512
+  -m  --min         size of smallest cluster         = .5
+  -M  --Max         numbers                          = 512
+  -p  --p           dist coefficient                 = 2
+  -r  --rest        how many of rest to sample       = 4
+  -R  --Reuse       child splits reuse a parent pole = true
   -x  --bootstrap   number of samples to bootstrap   = 512    
-  -o  --conf   confidence interval                   = 0.05
-  -h  --cohen   cohen's D value                      = 0.35
+  -o  --conf        confidence interval              = 0.05
+  -f  --file        file to generate table of        = ../data/auto2.csv
+  -n  --niter       number of iterations to run      = 20
 """
-n_iter = 20
 
 def get_stats(data_array):
     res = {}
@@ -43,7 +41,7 @@ def get_stats(data_array):
 
         
     for k,v in res.items():
-        res[k] /= n_iter
+        res[k] /= options["niter"]
     return res
 
 def main():
@@ -60,17 +58,17 @@ def main():
     options.parse_cli_settings(help)
 
 
-    if options['help']:
+    if options["help"]:
         print(help)
     else:
 
         results = {"all": [], "sway": [], "xpln": [], "top": []}
-        y_cols = Data(data_file)
+        y_cols = Data(options["file"])
         headers = [y.txt for y in y_cols.cols.y]
         comparisons = [[["all", "all"],None], [["all", "sway"],None], [["sway", "xpln"],None], [["sway", "top"],None]]
         count = 0
-        while count < n_iter:
-            data=Data(data_file)
+        while count < options["niter"]:
+            data=Data(options["file"])
             best,rest,evals = data.sway()
             x = Explain(best, rest)
             rule,most= x.xpln(data,best,rest)
