@@ -139,6 +139,8 @@ class Data:
             return self.dist(r1, r2, cols)
 
         def cos(a, b, c):
+            if c == 0:
+                return 0
             return (a ** 2 + c ** 2 - b ** 2) / (2 * c)
 
         def proj(r):
