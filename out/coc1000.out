@@ -1,0 +1,13 @@
+         LOC+    AEXP-    PLEX-    RISK-    EFFORT-
+----  -------  -------  -------  -------  ---------
+all      1064        3        3     5.15      19788
+sway   1101.1      2.9        3      3.4    19460.4
+xpln  1070.75        3        3      4.7    21442.5
+top      1529        2        1        3      29972
+
+              LOC+    AEXP-    PLEX-    RISK-    EFFORT-
+------------  ------  -------  -------  -------  ---------
+all to all    False   False    False    True     False
+all to sway   False   False    False    False    False
+sway to xpln  False   False    False    False    False
+sway to top   False   False    False    False    False

@@ -1,0 +1,13 @@
+        Loc+    Risk-    Effort-
+----  ------  -------  ---------
+all   1016.3     5.05    19448.2
+sway  1009.1     3.35    15196.4
+xpln  1054.6     5.25    20680.2
+top     1959        0      17752
+
+              Loc+    Risk-    Effort-
+------------  ------  -------  ---------
+all to all    False   False    True
+all to sway   False   False    False
+sway to xpln  False   False    False
+sway to top   False   False    False

@@ -1,0 +1,13 @@
+        Cost-    Completion+    Idle-
+----  -------  -------------  -------
+all   325.254         0.8965   0.2345
+sway  263.605         0.9025   0.1845
+xpln  329.385         0.8985    0.227
+top    138.75              1        0
+
+              Cost-    Completion+    Idle-
+------------  -------  -------------  -------
+all to all    False    False          False
+all to sway   False    False          False
+sway to xpln  False    False          False
+sway to top   False    False          False

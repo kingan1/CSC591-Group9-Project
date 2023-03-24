@@ -1,0 +1,13 @@
+         MRE-    ACC+    PRED40+
+----  -------  ------  ---------
+all    75.064   7.125         25
+sway  73.8445   7.518         25
+xpln  73.7585   7.543         25
+top     64.91   11.33         25
+
+              MRE-    ACC+    PRED40+
+------------  ------  ------  ---------
+all to all    False   False   False
+all to sway   False   False   False
+sway to xpln  False   False   False
+sway to top   False   False   False

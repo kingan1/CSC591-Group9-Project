@@ -1,0 +1,13 @@
+         Lbs-    Acc+    Mpg+
+----  -------  ------  ------
+all      2800    15.5      20
+sway  2095.95   16.47    32.5
+xpln     2193  15.905    29.5
+top      1985   18.77      40
+
+              Lbs-    Acc+    Mpg+
+------------  ------  ------  ------
+all to all    True    False   True
+all to sway   False   False   False
+sway to xpln  False   False   False
+sway to top   False   False   False
