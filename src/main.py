@@ -88,16 +88,16 @@ def main():
                     [base, diff], result = comparisons[i]
                     # if they haven't been initialized, mark with true until we can prove false
                     if result == None:
-                        comparisons[i][1] = [True for _ in range(len(data.cols.y))]
+                        comparisons[i][1] = ["=" for _ in range(len(data.cols.y))]
                     # for each column
                     for k in range(len(data.cols.y)):
                         # if not already marked as false
-                        if comparisons[i][1][k]:
+                        if comparisons[i][1][k] == "=":
                             # check if it is false
                             base_y, diff_y = results[base][count].cols.y[k],results[diff][count].cols.y[k]
                             equals = bootstrap(base_y.has(), diff_y.has()) and cliffsDelta(base_y.has(), diff_y.has())
                             if not equals:
-                                comparisons[i][1][k] = False
+                                comparisons[i][1][k] = "≠"
                 count += 1
 
         table = []
