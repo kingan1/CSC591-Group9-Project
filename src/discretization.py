@@ -104,7 +104,7 @@ def bins(cols,rowss):
         if   type(col) == Sym:
             return ranges 
         else:
-            return merges(ranges, n/options['bins'], options['d']*col.div())
+            return merges(ranges, n/options["bins"], options["d"]*col.div())
     def withAllRows(col):
         def xy(x,y):
             nonlocal n
@@ -129,7 +129,7 @@ def bins(cols,rowss):
 def bin(col,x):
     if x=="?" or type(col) == Sym:
         return x
-    tmp = (col.hi - col.lo)/(options['bins'] - 1)
+    tmp = (col.hi - col.lo)/(options["bins"] - 1)
     return col.hi == col.lo and 1 or floor(x/tmp + .5)*tmp
 
 

@@ -1,6 +1,5 @@
 import collections
 import math
-from typing import Union
 
 
 class Sym:

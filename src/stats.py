@@ -1,29 +1,8 @@
-import functools
 import math
 import random
-import string
 from options import options
 from num import Num
 
-
-def erf(x):
-    a1 =  0.254829592
-    a2 = -0.284496736
-    a3 =  1.421413741
-    a4 = -1.453152027
-    a5 =  1.061405429
-    p  =  0.3275911
-
-    sign = 1
-
-    if x < 0:
-        sign = -1
-
-    x = abs(x)
-    t = 1 / (1 + (p * x))
-    y = 1.0 - (((((a5 * t + a4) * t) + a3) * t + a2) * t + a1) * t * math.exp(-x * x)
-    
-    return sign * y
 
 def RX(t,s) :
     t = sorted(t)
@@ -145,12 +124,12 @@ def bootstrap(y0, z0):
     tobs = delta(y, z)
     n = 0
 
-    for _ in range(options['bootstrap']):
+    for _ in range(options["bootstrap"]):
 
         if delta(Num(t=samples(yhat)), Num(t=samples(zhat))) > tobs:
             n += 1
 
-    return n / options['bootstrap'] >= options['conf']
+    return n / options["bootstrap"] >= options["conf"]
 
 
 
@@ -167,4 +146,4 @@ def cliffsDelta(ns1, ns2):
                 gt = gt + 1
             if x < y : 
                 lt = lt + 1
-    return abs(lt - gt)/n <= options['cliff']
+    return abs(lt - gt)/n <= options["cliff"]

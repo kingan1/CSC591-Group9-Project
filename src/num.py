@@ -44,7 +44,7 @@ class Num:
 
             all = len(self.has_)
 
-            pos = all + 1 if all < options['Max'] else rint(1, all) if rand() < options['Max'] / self.n else 0
+            pos = all + 1 if all < options["Max"] else rint(1, all) if rand() < options["Max"] / self.n else 0
 
             if pos:
                 self.has_[pos] = x
