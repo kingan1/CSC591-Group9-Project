@@ -28,57 +28,60 @@ OPTIONS:
   -o  --Conf        confidence interval              = 0.05
   -f  --file        file to generate table of        = ../data/auto2.csv
   -n  --Niter       number of iterations to run      = 20
+  -s  --sway2       refresh the sway2 parameters     = false
 """
 
 from itertools import product
 
 def explore_parameters():
-    steps = {"1000": 100,"100":10, '10': 1}
-    params = { 
-        "Bins": [i for i in range(8,32,4)], # 16
-        "Cliff":  [i/10 for i in range(3,10,steps["10"])], #.147
-        "D":  [i/10 for i in range(0,7,steps["10"])],#.35,
-        "Far":  [i/10 for i in range(4,10,steps["10"])],#.95,
+    if options['sway2']:
+        print("refreshing sway")
+        steps = {"1000": 100,"100":10, '10': 1}
+        params = { 
+            "Far":  [i/100 for i in range(70,100,steps["10"]*5)],#.95,
+            "Halves":  [i for i in range(100, 600, steps["1000"])],#512,
+            "Min":  [i/10 for i in range(0,8,steps['10']*2)],#.5,
+            "Max": [i for i in range(1, 150, 25)],#512,
+            "P":  [1+(i/10) for i in range(10)],#2,
+            "Rest":  [i for i in range(1,5)],#4,
+            "reuse":  [True,False], #false
+        }
 
-        # "Halves":  [i for i in range(300, 900, steps["1000"])],#512,
-        # "Min":  [i/10 for i in range(0,8,steps['10']*2)],#.5,
+        types = { 
+            "Far":  float,
+            "Halves":  int,
+            "Min":  float,
+            "Max": int,
+            "P":  int,
+            "Rest":  int,
+            "reuse":  bool
+        }
+        print(params)
+        permutations_dicts = [dict(zip(params.keys(), v)) for v in product(*params.values())]
+        print(f"{len(permutations_dicts)} items")
+        test_params = {}
+        for k,v in params.items():
+            test_params[k] = v[0]
 
-        # "Max": [i for i in range(1, 1000, 200)],#512,
-        # "p":  [i for i in range(5)],#2,
-
-        # "rest":  [i for i in range(1,10,2)],#4,
-        # "Reuse":  [True,False], #false
-        # "bootstrap": [i for i in range(300, 700, steps["1000"])],#512,
-        # "conf":  [i/10 for i in range(3,7,steps["10"])],#.05,
-    }
-    print(params)
-    permutations_dicts = [dict(zip(params.keys(), v)) for v in product(*params.values())]
-    print(f"{len(permutations_dicts)} items")
-    test_params = {}
-    for k,v in params.items():
-        test_params[k] = v[0]
-
-    with open("gridsearch_params.csv", "w") as fp:
-        fp.write(",".join(test_params.keys()) + "\n")
-        fp.write(",".join([str(c) for c in test_params.values()]))
-    
-    test_data = Data("gridsearch_params.csv")
-    del test_params
-    
-    data=Data(src=test_data,rows=[list(v.values()) for v in permutations_dicts],start=True)
-    
-    del permutations_dicts
-    print("starting sway")
-    best,rest,evals = data.sway(method="gs")
-    print(f"{evals} evals")
-    res = best.stats(best.cols.x)
-    print("original: ", options.t)
-    print()
-    print("new: ", res)
-    print()
-    res.pop("N")
-    # print(res)
-    return get_options(res)
+        with open("gridsearch_params.csv", "w") as fp:
+            fp.write(",".join(test_params.keys()) + "\n")
+            fp.write(",".join([str(c) for c in test_params.values()]))
+        
+        test_data = Data("gridsearch_params.csv")
+        data=Data(src=test_data,rows=[list(v.values()) for v in permutations_dicts])
+        
+        best,_,evals = data.sway(method="gs")
+        print(f"{evals} evals")
+        res = best.stats(best.cols.x)
+        res.pop("N")
+        res = {k: types[k](v) for k,v in res.items()}
+        print("new: ", res)
+        print()
+        
+        return get_options(res)
+    print("not refreshing sway")
+    finalized = {'Far': 0.8, 'Halves': 700, 'Max': 1, 'Min': 0.0, 'P': 1, 'Rest': 4, 'reuse': False}
+    return get_options(finalized)
 
 def get_stats(data_array):
     res = {}
@@ -100,7 +103,8 @@ def get_options(new_options):
     
     for k,v in new_options.items():
         options2[k] = v
-    print(options2)
+    print("using options", options2)
+    assert len(options2) == 16
     return options2
 
 def main():
@@ -133,20 +137,18 @@ def main():
                        [["sway", "top"],None]]
         count = 0
         sway2_options = explore_parameters()
-    return 
-"""
         while count < options["Niter"]:
             data=Data(options["file"])
-            best,rest,evals = data.sway()
+            best,rest,_ = data.sway()
             x = Explain(best, rest)
-            rule,most= x.xpln(data,best,rest)
+            rule,_= x.xpln(data,best,rest)
             if rule != -1:
                 data1= Data(data,selects(rule,data.rows))
 
                 results['all'].append(data)
                 results['sway'].append(best)
                 results['xpln'].append(data1)
-                best2,rest2,evals2 = data.sway(options_new=sway2_options)
+                best2,_,_ = data.sway(options_new=sway2_options)
                 results['sway2'].append(best2)
                 top2,_ = data.betters(len(best.rows))
                 top = Data(data,top2)
@@ -178,11 +180,26 @@ def main():
         print(tabulate(table, headers=headers,numalign="right"))
         print()
 
-
+        maxes = []
+        h = [v[0] for v in table]
+        
+        for i in range(len(headers)):
+            header_vals = [v[i+1] for v in table]
+            
+            fun = max if headers[i][-1] == "+" else min
+            vals = [table[h.index("sway")][i+1],table[h.index("sway2")][i+1]]
+            maxes.append([headers[i],
+                          table[header_vals.index(fun(header_vals))][0],
+                           vals.index(fun(vals)) == 1])
+            
+        m_headers = ["Best", "Beat Sway?"]
+        print(tabulate(maxes, headers=m_headers,numalign="right"))
+        print()
+        
         table=[]
         for [base, diff], result in comparisons:
             table.append([f"{base} to {diff}"] + result)
         print(tabulate(table, headers=headers,numalign="right"))
-"""
+
 
 main()

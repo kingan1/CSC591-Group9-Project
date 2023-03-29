@@ -1,2 +1,2 @@
-Bins,Cliff,D,Far
-8,0.3,0.0,0.4
+Far,Halves,Min,Max,P,Rest,reuse
+0.7,100,0.0,1,1.0,1,True

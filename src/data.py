@@ -12,10 +12,9 @@ from utils import any, csv, many, norm, rnd
 
 class Data:
 
-    def __init__(self, src=None, rows=None,start=False):
+    def __init__(self, src=None, rows=None):
         self.rows = list()
         self.cols = None
-        self.start = start
         if src or rows:
             self.read(src, rows)
         self.options = options
@@ -28,16 +27,8 @@ class Data:
         else:
             self.cols = Cols(src.cols.names)
             
-            divided = len(rows) /10
-            if self.start:
-                ct = 0
             for row in rows:
                 self.add(row)
-                if self.start:
-                    ct += 1
-                    # if ct % divided == 0:
-                    #     print(ct/divided)
-                del row
 
     def add(self, t: Union[List, Row]):
         """
@@ -114,7 +105,7 @@ class Data:
             # replace
             if better(B, A):
                 l, r, A, B = r, l, B, A
-
+            evals += 0 if method=="sway" else self.gs_evals
             for x in r:
                 worse.append(x)
 
@@ -145,14 +136,12 @@ class Data:
         best,rest,evals = data.sway(options_new = get_options(row1))
         
 
-        # row_best = Row(list(best.stats().values()))
         row_best = [0 for _ in data.cols.names]
         # for each y column
         for key, val in best.stats().items():
             for ys in data.cols.y:
                 if ys.txt == key:
                     row_best[ys.at] = val
-        # row_best = Row(row_best)
         
         best2,rest2,evals2 = data.sway(options_new = get_options(row2))
         row_best2 = [0 for _ in data.cols.names]
@@ -161,12 +150,9 @@ class Data:
             for ys in data.cols.y:
                 if ys.txt == key:
                     row_best2[ys.at] = val
-        # row_best2 = Row(row_best2)
-        # print("is {} better than {}".format(best.stats(), best2.stats()))
-        # print(f"{get_options(row1)} {get_options(row2)}")
-        # print()
+
         res = data.better(row_best,row_best2)
-        # print(res)
+        self.gs_evals = evals+evals2
         return res
     
 
