@@ -1,13 +1,13 @@
         CityMPG+    HighwayMPG+    Weight-    Class-
 ----  ----------  -------------  ---------  --------
 all           21             28       3040      17.7
-sway        30.2             35       2112     8.745
-xpln        29.5           33.6    2281.75     9.795
-top           33             40     2052.5       8.9
+sway        29.9           34.3       2169      9.26
+xpln       29.75           33.9    2235.75      9.62
+top           33           40.2       2053      8.92
 
               CityMPG+    HighwayMPG+    Weight-    Class-
 ------------  ----------  -------------  ---------  --------
-all to all    True        True           True       True
-all to sway   False       False          False      False
-sway to xpln  False       False          False      False
-sway to top   False       False          False      False
+all to all    =           =              =          =
+all to sway   ≠           ≠              ≠          ≠
+sway to xpln  ≠           ≠              ≠          ≠
+sway to top   ≠           ≠              ≠          ≠

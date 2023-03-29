@@ -13,21 +13,21 @@ project: multi-goal semi-supervised algorithms
 USAGE: python3 main.py [OPTIONS] [-g ACTIONS]
   
 OPTIONS:
-  -b  --bins        initial number of bins           = 16
-  -c  --cliff       cliff's delta threshold          = .147
-  -d  --d           different is over sd*d           = .35
+  -b  --Bins        initial number of bins           = 16
+  -c  --Cliff       cliff's delta threshold          = .147
+  -d  --D           different is over sd*d           = .35
   -F  --Far         distance to distant              = .95
   -h  --help        show help                        = false
   -H  --Halves      search space for clustering      = 512
-  -m  --min         size of smallest cluster         = .5
+  -m  --Min         size of smallest cluster         = .5
   -M  --Max         numbers                          = 512
-  -p  --p           dist coefficient                 = 2
-  -r  --rest        how many of rest to sample       = 4
-  -R  --Reuse       child splits reuse a parent pole = true
-  -x  --bootstrap   number of samples to bootstrap   = 512    
-  -o  --conf        confidence interval              = 0.05
+  -p  --P           dist coefficient                 = 2
+  -R  --Rest        how many of rest to sample       = 4
+  -r  --reuse       child splits reuse a parent pole = false
+  -x  --Bootstrap   number of samples to bootstrap   = 512    
+  -o  --Conf        confidence interval              = 0.05
   -f  --file        file to generate table of        = ../data/auto2.csv
-  -n  --niter       number of iterations to run      = 20
+  -n  --Niter       number of iterations to run      = 20
 """
 
 def get_stats(data_array):
@@ -41,7 +41,7 @@ def get_stats(data_array):
 
         
     for k,v in res.items():
-        res[k] /= options["niter"]
+        res[k] /= options["Niter"]
     return res
 
 def main():
@@ -67,7 +67,7 @@ def main():
         headers = [y.txt for y in y_cols.cols.y]
         comparisons = [[["all", "all"],None], [["all", "sway"],None], [["sway", "xpln"],None], [["sway", "top"],None]]
         count = 0
-        while count < options["niter"]:
+        while count < options["Niter"]:
             data=Data(options["file"])
             best,rest,evals = data.sway()
             x = Explain(best, rest)
@@ -78,7 +78,7 @@ def main():
                 results['all'].append(data)
                 results['sway'].append(best)
                 results['xpln'].append(data1)
-                    
+
                 top2,_ = data.betters(len(best.rows))
                 top = Data(data,top2)
                 

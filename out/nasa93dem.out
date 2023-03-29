@@ -1,13 +1,13 @@
         Kloc+    Effort-    Defects-    Months-
 ----  -------  ---------  ----------  ---------
 all      47.5        252        2007       21.4
-sway   22.025      76.88      888.05      13.93
-xpln     23.8     104.25      978.75     15.145
-top       4.6      14.76      143.65      8.515
+sway   25.515     114.28       885.7      15.65
+xpln   22.135      109.6       799.1      15.08
+top       5.3      17.28       165.7       8.97
 
               Kloc+    Effort-    Defects-    Months-
 ------------  -------  ---------  ----------  ---------
-all to all    True     True       True        True
-all to sway   False    False      False       False
-sway to xpln  False    False      False       False
-sway to top   False    False      False       False
+all to all    =        =          =           =
+all to sway   ≠        ≠          ≠           ≠
+sway to xpln  ≠        ≠          ≠           ≠
+sway to top   ≠        ≠          ≠           ≠

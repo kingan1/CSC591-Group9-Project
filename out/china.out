@@ -1,13 +1,13 @@
         N_effort-
 ----  -----------
 all          2098
-sway        698.1
-xpln      1177.45
-top         148.5
+sway        521.6
+xpln        887.8
+top           148
 
               N_effort-
 ------------  -----------
-all to all    True
-all to sway   False
-sway to xpln  False
-sway to top   False
+all to all    ≠
+all to sway   ≠
+sway to xpln  ≠
+sway to top   ≠

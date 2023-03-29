@@ -124,12 +124,12 @@ def bootstrap(y0, z0):
     tobs = delta(y, z)
     n = 0
 
-    for _ in range(options["bootstrap"]):
+    for _ in range(options["Bootstrap"]):
 
         if delta(Num(t=samples(yhat)), Num(t=samples(zhat))) > tobs:
             n += 1
 
-    return n / options["bootstrap"] >= options["conf"]
+    return n / options["Bootstrap"] >= options["Conf"]
 
 
 
@@ -146,4 +146,4 @@ def cliffsDelta(ns1, ns2):
                 gt = gt + 1
             if x < y : 
                 lt = lt + 1
-    return abs(lt - gt)/n <= options["cliff"]
+    return abs(lt - gt)/n <= options["Cliff"]

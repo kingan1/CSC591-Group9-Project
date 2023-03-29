@@ -1,13 +1,13 @@
         PSNR-    Energy-
 ----  -------  ---------
-all    45.743    1247.76
-sway   44.377    1095.29
-xpln  45.1295    1113.84
-top     26.71    466.172
+all   45.8765    1242.58
+sway    43.16    1146.29
+xpln  44.5805    1273.82
+top   26.7325    466.694
 
               PSNR-    Energy-
 ------------  -------  ---------
-all to all    True     True
-all to sway   False    False
-sway to xpln  False    False
-sway to top   False    False
+all to all    =        ≠
+all to sway   ≠        ≠
+sway to xpln  ≠        ≠
+sway to top   ≠        ≠

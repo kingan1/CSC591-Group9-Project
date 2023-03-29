@@ -1,13 +1,13 @@
         NUMBERITERATIONS-    TIMETOSOLUTION-
 ----  -------------------  -----------------
-all                   6.9            134.094
-sway                 5.75            111.689
-xpln                 5.45            118.444
-top                     4             59.982
+all                   6.9             134.03
+sway                 4.95            117.778
+xpln                 5.25            122.399
+top                     4             59.986
 
               NUMBERITERATIONS-    TIMETOSOLUTION-
 ------------  -------------------  -----------------
-all to all    False                True
-all to sway   False                False
-sway to xpln  False                False
-sway to top   False                False
+all to all    =                    ≠
+all to sway   ≠                    ≠
+sway to xpln  ≠                    ≠
+sway to top   ≠                    ≠

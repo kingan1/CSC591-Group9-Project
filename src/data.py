@@ -94,8 +94,8 @@ class Data:
 
     def sway(self, cols=None):
         def worker(rows, worse, evals0=None, above=None):
-            if len(rows) <= len(self.rows) ** options["min"]:
-                return rows, many(worse, options["rest"] * len(rows)), evals0
+            if len(rows) <= len(self.rows) ** options["Min"]:
+                return rows, many(worse, options["Rest"] * len(rows)), evals0
 
             l, r, A, B, c, evals = self.half(rows, cols, above)
 
@@ -147,9 +147,9 @@ class Data:
             return {'row': r, 'x': cos(gap(r, A), gap(r, B), c)}
 
         rows = rows or self.rows
-        some = many(rows, options["Halves"])
+        some = many(rows, int(options["Halves"]))
 
-        A = above if above and options["Reuse"] else any(some)
+        A = above if above and options["reuse"] else any(some)
 
         tmp = sorted([{"row": r, "d": gap(r, A)} for r in some], key=lambda x: x["d"])
         far = tmp[int((len(tmp) - 1) * options["Far"])]
@@ -165,7 +165,7 @@ class Data:
             else:
                 right.append(two["row"])
 
-        evals = 1 if options["Reuse"] and above else 2
+        evals = 1 if options["reuse"] and above else 2
 
         return left, right, A, B, c, evals
 
@@ -174,7 +174,7 @@ class Data:
 
         here = {"data": Data.clone(self, rows)}
 
-        if (len(rows)) >= 2 * ((len(self.rows)) ** options["min"]):
+        if (len(rows)) >= 2 * ((len(self.rows)) ** options["Min"]):
             left, right, A, B, _, _ = self.half(rows, cols, above)
             here["left"] = self.tree(left, cols, A)
             here["right"] = self.tree(right, cols, B)
@@ -197,6 +197,6 @@ class Data:
         cols = cols or self.cols.x
 
         for col in cols:
-            d = d + dist1(col, t1.cells[col.at], t2.cells[col.at]) ** options["p"]
+            d = d + dist1(col, t1.cells[col.at], t2.cells[col.at]) ** options["P"]
 
-        return (d / len(cols)) ** (1 / options["p"])
+        return (d / len(cols)) ** (1 / options["P"])

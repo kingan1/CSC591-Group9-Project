@@ -1,0 +1,16 @@
+name: Test project
+on: [push]
+jobs:
+  testProj:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Install Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.8'  
+    - name: Ensure project runs
+      run: |
+        cd ./src; (python main.py)
+    - run: echo "🍏 This job's status is ${{ job.status }}."
+  
