@@ -30,6 +30,56 @@ OPTIONS:
   -n  --Niter       number of iterations to run      = 20
 """
 
+from itertools import product
+
+def explore_parameters():
+    steps = {"1000": 100,"100":10, '10': 1}
+    params = { 
+        "Bins": [i for i in range(8,32,4)], # 16
+        "Cliff":  [i/10 for i in range(3,10,steps["10"])], #.147
+        "D":  [i/10 for i in range(0,7,steps["10"])],#.35,
+        "Far":  [i/10 for i in range(4,10,steps["10"])],#.95,
+
+        # "Halves":  [i for i in range(300, 900, steps["1000"])],#512,
+        # "Min":  [i/10 for i in range(0,8,steps['10']*2)],#.5,
+
+        # "Max": [i for i in range(1, 1000, 200)],#512,
+        # "p":  [i for i in range(5)],#2,
+
+        # "rest":  [i for i in range(1,10,2)],#4,
+        # "Reuse":  [True,False], #false
+        # "bootstrap": [i for i in range(300, 700, steps["1000"])],#512,
+        # "conf":  [i/10 for i in range(3,7,steps["10"])],#.05,
+    }
+    print(params)
+    permutations_dicts = [dict(zip(params.keys(), v)) for v in product(*params.values())]
+    print(f"{len(permutations_dicts)} items")
+    test_params = {}
+    for k,v in params.items():
+        test_params[k] = v[0]
+
+    with open("gridsearch_params.csv", "w") as fp:
+        fp.write(",".join(test_params.keys()) + "\n")
+        fp.write(",".join([str(c) for c in test_params.values()]))
+    
+    test_data = Data("gridsearch_params.csv")
+    del test_params
+    
+    data=Data(src=test_data,rows=[list(v.values()) for v in permutations_dicts],start=True)
+    
+    del permutations_dicts
+    print("starting sway")
+    best,rest,evals = data.sway(method="gs")
+    print(f"{evals} evals")
+    res = best.stats(best.cols.x)
+    print("original: ", options.t)
+    print()
+    print("new: ", res)
+    print()
+    res.pop("N")
+    # print(res)
+    return get_options(res)
+
 def get_stats(data_array):
     res = {}
     # accumulate the stats
@@ -43,6 +93,15 @@ def get_stats(data_array):
     for k,v in res.items():
         res[k] /= options["Niter"]
     return res
+
+def get_options(new_options):
+    global options
+    options2 = options.t.copy()
+    
+    for k,v in new_options.items():
+        options2[k] = v
+    print(options2)
+    return options2
 
 def main():
     """
@@ -62,11 +121,20 @@ def main():
         print(help)
     else:
 
-        results = {"all": [], "sway": [], "xpln": [], "top": []}
+        results = {"all": [], "sway": [], "sway2": [], "xpln": [], "top": []}
         y_cols = Data(options["file"])
         headers = [y.txt for y in y_cols.cols.y]
-        comparisons = [[["all", "all"],None], [["all", "sway"],None], [["sway", "xpln"],None], [["sway", "top"],None]]
+        comparisons = [[["all", "all"],None], 
+                       [["all", "sway"],None], 
+                       [["all", "sway2"],None],
+                       [["sway", "sway2"],None],  
+                       [["sway", "xpln"],None],   
+                       [["sway2", "xpln"],None], 
+                       [["sway", "top"],None]]
         count = 0
+        sway2_options = explore_parameters()
+    return 
+"""
         while count < options["Niter"]:
             data=Data(options["file"])
             best,rest,evals = data.sway()
@@ -78,7 +146,8 @@ def main():
                 results['all'].append(data)
                 results['sway'].append(best)
                 results['xpln'].append(data1)
-
+                best2,rest2,evals2 = data.sway(options_new=sway2_options)
+                results['sway2'].append(best2)
                 top2,_ = data.betters(len(best.rows))
                 top = Data(data,top2)
                 
@@ -114,6 +183,6 @@ def main():
         for [base, diff], result in comparisons:
             table.append([f"{base} to {diff}"] + result)
         print(tabulate(table, headers=headers,numalign="right"))
-
+"""
 
 main()

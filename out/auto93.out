@@ -1,13 +1,26 @@
-        Lbs-    Acc+    Mpg+
-----  ------  ------  ------
-all     2800    15.5      20
-sway  2118.6  16.285    32.5
-xpln  2277.1   15.64      29
-top     1985   18.75      40
+{'Bins': [8, 12, 16, 20, 24, 28], 'Cliff': [0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9], 'D': [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6], 'Far': [0.4, 0.5, 0.6, 0.7, 0.8, 0.9], 'Halves': [300, 400, 500, 600, 700, 800], 'Min': [0.0, 0.2, 0.4, 0.6], 'Max': [1, 201, 401, 601, 801], 'p': [0, 1, 2, 3, 4]}
+1058400 items
+starting sway
+22 evals
+original:  {'Bins': 16, 'Cliff': 0.147, 'D': 0.35, 'Far': 0.95, 'help': False, 'Halves': 512, 'Min': 0.5, 'Max': 512, 'P': 2, 'Rest': 4, 'reuse': False, 'Bootstrap': 512, 'Conf': 0.05, 'file': '../data/auto93.csv', 'Niter': 20}
 
-              Lbs-    Acc+    Mpg+
-------------  ------  ------  ------
-all to all    ≠       ≠       =
-all to sway   ≠       ≠       ≠
-sway to xpln  ≠       ≠       ≠
-sway to top   ≠       ≠       ≠
+new:  {'Bins': 20.0, 'Cliff': 0.4, 'D': 0.0, 'Far': 0.9, 'Halves': 300.0, 'Max': 401.0, 'Min': 0.0, 'p': 3.0, 'N': 516}
+
+{'Bins': 20.0, 'Cliff': 0.4, 'D': 0.0, 'Far': 0.9, 'help': False, 'Halves': 300.0, 'Min': 0.0, 'Max': 401.0, 'P': 2, 'Rest': 4, 'reuse': False, 'Bootstrap': 512, 'Conf': 0.05, 'file': '../data/auto93.csv', 'Niter': 20, 'p': 3.0}
+         Lbs-    Acc+    Mpg+
+-----  ------  ------  ------
+all      2800    15.5      20
+sway   2150.7  16.585    31.5
+sway2    1985  19.285    35.5
+xpln   2270.6   15.96      29
+top      1985   18.76      40
+
+               Lbs-    Acc+    Mpg+
+-------------  ------  ------  ------
+all to all     =       ≠       =
+all to sway    ≠       ≠       ≠
+all to sway2   ≠       ≠       ≠
+sway to sway2  ≠       ≠       ≠
+sway to xpln   ≠       ≠       ≠
+sway2 to xpln  ≠       ≠       ≠
+sway to top    ≠       ≠       ≠

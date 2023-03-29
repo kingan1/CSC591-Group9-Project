@@ -38,4 +38,4 @@ class Cols:
         """
         for _, t in enumerate([self.x, self.y]):
             for _, col in enumerate(t):
-                col.add(row.cells[col.at])
+                col.add(row[col.at])

@@ -12,11 +12,13 @@ from utils import any, csv, many, norm, rnd
 
 class Data:
 
-    def __init__(self, src=None, rows=None):
+    def __init__(self, src=None, rows=None,start=False):
         self.rows = list()
         self.cols = None
+        self.start = start
         if src or rows:
             self.read(src, rows)
+        self.options = options
 
     def read(self, src: Union[str, List], rows=None) -> None:
         def f(t):
@@ -26,8 +28,16 @@ class Data:
         else:
             self.cols = Cols(src.cols.names)
             
+            divided = len(rows) /10
+            if self.start:
+                ct = 0
             for row in rows:
                 self.add(row)
+                if self.start:
+                    ct += 1
+                    # if ct % divided == 0:
+                    #     print(ct/divided)
+                del row
 
     def add(self, t: Union[List, Row]):
         """
@@ -36,7 +46,7 @@ class Data:
         :param t: Row to be added
         """
         if self.cols:
-            t = t if isinstance(t, Row) else Row(t)
+            t = t #if isinstance(t, Row) else Row(t)
 
             self.rows.append(t)
             self.cols.add(t)
@@ -92,19 +102,25 @@ class Data:
 
         return node
 
-    def sway(self, cols=None):
+    def sway(self, cols=None, options_new=None,method="sway"):
+        better = self.better if method == "sway" else self.gridsearch_better
+        self.options = self.options if not options_new else options_new
         def worker(rows, worse, evals0=None, above=None):
-            if len(rows) <= len(self.rows) ** options["Min"]:
-                return rows, many(worse, options["Rest"] * len(rows)), evals0
+            if len(rows) <= len(self.rows) ** self.options["Min"]:
+                return rows, many(worse, self.options["Rest"] * len(rows)), evals0
 
             l, r, A, B, c, evals = self.half(rows, cols, above)
 
             # replace
-            if self.better(B, A):
+            if better(B, A):
                 l, r, A, B = r, l, B, A
 
             for x in r:
                 worse.append(x)
+
+            del r
+            # if method != "sway":
+            #     print(evals0)
 
             return worker(l, worse, evals + evals0, A)
 
@@ -112,14 +128,56 @@ class Data:
 
         return Data.clone(self, best), Data.clone(self, rest), evals
 
+    def gridsearch_better(self, row1, row2, s1=0, s2=0, ys=None, x=0, y=0):
+
+        if not ys:
+            ys = self.cols.y
+        def get_options(row):
+
+            options = self.options.t.copy()
+            
+            for item,col in zip(row,self.cols.names):
+                
+                options[col] = item
+            return options
+        
+        data=Data(self.options["file"])
+        best,rest,evals = data.sway(options_new = get_options(row1))
+        
+
+        # row_best = Row(list(best.stats().values()))
+        row_best = [0 for _ in data.cols.names]
+        # for each y column
+        for key, val in best.stats().items():
+            for ys in data.cols.y:
+                if ys.txt == key:
+                    row_best[ys.at] = val
+        # row_best = Row(row_best)
+        
+        best2,rest2,evals2 = data.sway(options_new = get_options(row2))
+        row_best2 = [0 for _ in data.cols.names]
+        # for each y column
+        for key, val in best2.stats().items():
+            for ys in data.cols.y:
+                if ys.txt == key:
+                    row_best2[ys.at] = val
+        # row_best2 = Row(row_best2)
+        # print("is {} better than {}".format(best.stats(), best2.stats()))
+        # print(f"{get_options(row1)} {get_options(row2)}")
+        # print()
+        res = data.better(row_best,row_best2)
+        # print(res)
+        return res
+    
+
     # zitzler predicate
     def better(self, row1, row2, s1=0, s2=0, ys=None, x=0, y=0):
         if not ys:
             ys = self.cols.y
 
         for col in ys:
-            x = norm(col, row1.cells[col.at])
-            y = norm(col, row2.cells[col.at])
+            x = norm(col, row1[col.at])
+            y = norm(col, row2[col.at])
 
             s1 = s1 - math.exp(col.w * (x - y) / len(ys))
             s2 = s2 - math.exp(col.w * (y - x) / len(ys))
@@ -147,12 +205,12 @@ class Data:
             return {'row': r, 'x': cos(gap(r, A), gap(r, B), c)}
 
         rows = rows or self.rows
-        some = many(rows, int(options["Halves"]))
+        some = many(rows, int(self.options["Halves"]))
 
-        A = above if above and options["reuse"] else any(some)
+        A = above if above and self.options["reuse"] else any(some)
 
         tmp = sorted([{"row": r, "d": gap(r, A)} for r in some], key=lambda x: x["d"])
-        far = tmp[int((len(tmp) - 1) * options["Far"])]
+        far = tmp[int((len(tmp) - 1) * self.options["Far"])]
 
         B, c = far["row"], far["d"]
 
@@ -165,7 +223,7 @@ class Data:
             else:
                 right.append(two["row"])
 
-        evals = 1 if options["reuse"] and above else 2
+        evals = 1 if self.options["reuse"] and above else 2
 
         return left, right, A, B, c, evals
 
@@ -174,7 +232,7 @@ class Data:
 
         here = {"data": Data.clone(self, rows)}
 
-        if (len(rows)) >= 2 * ((len(self.rows)) ** options["Min"]):
+        if (len(rows)) >= 2 * ((len(self.rows)) ** self.options["Min"]):
             left, right, A, B, _, _ = self.half(rows, cols, above)
             here["left"] = self.tree(left, cols, A)
             here["right"] = self.tree(right, cols, B)
@@ -197,6 +255,6 @@ class Data:
         cols = cols or self.cols.x
 
         for col in cols:
-            d = d + dist1(col, t1.cells[col.at], t2.cells[col.at]) ** options["P"]
+            d = d + dist1(col, t1[col.at], t2[col.at]) ** self.options["P"]
 
-        return (d / len(cols)) ** (1 / options["P"])
+        return (d / len(cols)) ** (1 / self.options["P"])

@@ -100,7 +100,7 @@ def selects(rule, rows):
     def disjunction(ranges, row):
         for rang in ranges:
             at = rang['at']
-            x = row.cells[at]
+            x = row[at]
             lo = rang['lo']
             hi = rang['hi']  
             if x == '?' or (lo == hi and lo == x) or (lo <= x and x< hi):

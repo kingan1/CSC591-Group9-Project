@@ -1,13 +1,26 @@
-         LOC+    AEXP-    PLEX-    RISK-    EFFORT-
-----  -------  -------  -------  -------  ---------
-all    1066.3        3        3        5    19827.6
-sway  1109.75     2.95      2.9      4.7    22105.2
-xpln    946.4     2.85     3.05     5.25    19296.2
-top    1540.4        2        1      3.3      29972
+{'Bins': [8, 12, 16, 20, 24, 28], 'Cliff': [0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9], 'D': [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6], 'Far': [0.4, 0.5, 0.6, 0.7, 0.8, 0.9], 'Halves': [300, 400, 500, 600, 700, 800], 'Min': [0.0, 0.2, 0.4, 0.6], 'Max': [1, 201, 401, 601, 801], 'p': [0, 1, 2, 3, 4]}
+1058400 items
+starting sway
+22 evals
+original:  {'Bins': 16, 'Cliff': 0.147, 'D': 0.35, 'Far': 0.95, 'help': False, 'Halves': 512, 'Min': 0.5, 'Max': 512, 'P': 2, 'Rest': 4, 'reuse': False, 'Bootstrap': 512, 'Conf': 0.05, 'file': '../data/coc1000.csv', 'Niter': 20}
 
-              LOC+    AEXP-    PLEX-    RISK-    EFFORT-
-------------  ------  -------  -------  -------  ---------
-all to all    =       ≠        =        =        =
-all to sway   ≠       ≠        ≠        ≠        ≠
-sway to xpln  ≠       ≠        ≠        ≠        ≠
-sway to top   ≠       ≠        ≠        ≠        ≠
+new:  {'Bins': 20.0, 'Cliff': 0.6, 'D': 0.5, 'Far': 0.4, 'Halves': 300.0, 'Max': 801.0, 'Min': 0.2, 'p': 4.0, 'N': 516}
+
+{'Bins': 20.0, 'Cliff': 0.6, 'D': 0.5, 'Far': 0.4, 'help': False, 'Halves': 300.0, 'Min': 0.2, 'Max': 801.0, 'P': 2, 'Rest': 4, 'reuse': False, 'Bootstrap': 512, 'Conf': 0.05, 'file': '../data/coc1000.csv', 'Niter': 20, 'p': 4.0}
+          LOC+    AEXP-    PLEX-    RISK-    EFFORT-
+-----  -------  -------  -------  -------  ---------
+all    1049.35        3        3        5    19433.5
+sway   1048.75      2.9     3.15     3.75    17444.9
+sway2   878.65      2.2        2     2.45    11199.6
+xpln   1053.35        3        3      4.9    19986.6
+top     1534.7        2        1     3.15      29972
+
+               LOC+    AEXP-    PLEX-    RISK-    EFFORT-
+-------------  ------  -------  -------  -------  ---------
+all to all     =       ≠        ≠        ≠        =
+all to sway    ≠       ≠        ≠        ≠        ≠
+all to sway2   ≠       ≠        ≠        ≠        ≠
+sway to sway2  ≠       ≠        ≠        ≠        ≠
+sway to xpln   ≠       ≠        ≠        ≠        ≠
+sway2 to xpln  ≠       ≠        ≠        ≠        ≠
+sway to top    ≠       ≠        ≠        ≠        ≠

@@ -106,7 +106,7 @@ def bins(cols,rowss):
         n,ranges = 0,{}
         for y,rows in rowss.items():
             for _,row in enumerate(rows):
-                xy(row.cells[col.at],y)
+                xy(row[col.at],y)
         return n, ranges 
     # end --------------
     ret = list(map(with1Col, cols))

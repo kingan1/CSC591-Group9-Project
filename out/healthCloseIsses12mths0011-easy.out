@@ -1,13 +1,26 @@
-         MRE-     ACC+    PRED40+
-----  -------  -------  ---------
-all   119.294   -12.23          0
-sway  10.0515  -0.0505     74.997
-xpln        0        0      83.33
-top         0        0      83.33
+{'Bins': [8, 12, 16, 20, 24, 28], 'Cliff': [0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9], 'D': [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6], 'Far': [0.4, 0.5, 0.6, 0.7, 0.8, 0.9], 'Halves': [300, 400, 500, 600, 700, 800], 'Min': [0.0, 0.2, 0.4, 0.6], 'Max': [1, 201, 401, 601, 801], 'p': [0, 1, 2, 3, 4]}
+1058400 items
+starting sway
+22 evals
+original:  {'Bins': 16, 'Cliff': 0.147, 'D': 0.35, 'Far': 0.95, 'help': False, 'Halves': 512, 'Min': 0.5, 'Max': 512, 'P': 2, 'Rest': 4, 'reuse': False, 'Bootstrap': 512, 'Conf': 0.05, 'file': '../data/healthCloseIsses12mths0011-easy.csv', 'Niter': 20}
 
-              MRE-    ACC+    PRED40+
-------------  ------  ------  ---------
-all to all    ≠       ≠       ≠
-all to sway   ≠       ≠       ≠
-sway to xpln  ≠       ≠       ≠
-sway to top   ≠       ≠       ≠
+new:  {'Bins': 24.0, 'Cliff': 0.7, 'D': 0.6, 'Far': 0.6, 'Halves': 500.0, 'Max': 1.0, 'Min': 0.0, 'p': 3.0, 'N': 516}
+
+{'Bins': 24.0, 'Cliff': 0.7, 'D': 0.6, 'Far': 0.6, 'help': False, 'Halves': 500.0, 'Min': 0.0, 'Max': 1.0, 'P': 2, 'Rest': 4, 'reuse': False, 'Bootstrap': 512, 'Conf': 0.05, 'file': '../data/healthCloseIsses12mths0011-easy.csv', 'Niter': 20, 'p': 3.0}
+          MRE-     ACC+    PRED40+
+-----  -------  -------  ---------
+all    119.328  -12.218          0
+sway   10.0545   -0.081    70.8305
+sway2        0        0      83.33
+xpln         0        0      83.33
+top          0        0      83.33
+
+               MRE-    ACC+    PRED40+
+-------------  ------  ------  ---------
+all to all     =       ≠       =
+all to sway    ≠       ≠       ≠
+all to sway2   ≠       ≠       ≠
+sway to sway2  ≠       ≠       ≠
+sway to xpln   ≠       ≠       ≠
+sway2 to xpln  ≠       ≠       ≠
+sway to top    ≠       ≠       ≠
