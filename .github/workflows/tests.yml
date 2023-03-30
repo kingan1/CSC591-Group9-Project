@@ -11,6 +11,6 @@ jobs:
         python-version: '3.8'  
     - name: Ensure project runs
       run: |
-        cd ./src; (python main.py)
+        pip install -r requirements.txt; cd ./src; (python main.py)
     - run: echo "🍏 This job's status is ${{ job.status }}."
   
