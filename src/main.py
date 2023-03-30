@@ -36,17 +36,19 @@ from itertools import product
 def explore_parameters():
     if options['sway2']:
         print("refreshing sway")
+        # use steps to specify steps for each range of values
         steps = {"1000": 100,"100":10, '10': 1}
+        # list of parameters used by sway, as well as example values to sample
         params = { 
-            "Far":  [i/100 for i in range(70,100,steps["10"]*5)],#.95,
-            "Halves":  [i for i in range(100, 600, steps["1000"])],#512,
-            "Min":  [i/10 for i in range(0,8,steps['10']*2)],#.5,
-            "Max": [i for i in range(1, 150, 25)],#512,
-            "P":  [1+(i/10) for i in range(10)],#2,
-            "Rest":  [i for i in range(1,5)],#4,
-            "reuse":  [True,False], #false
+            "Far":  [i/100 for i in range(70,100,steps["10"]*5)],
+            "Halves":  [i for i in range(100, 600, steps["1000"])],
+            "Min":  [i/10 for i in range(0,8,steps['10']*2)],
+            "Max": [i for i in range(1, 150, 25)],
+            "P":  [1+(i/10) for i in range(10)],
+            "Rest":  [i for i in range(1,5)],
+            "reuse":  [True,False], 
         }
-
+        # types of each parameter
         types = { 
             "Far":  float,
             "Halves":  int,
@@ -56,9 +58,12 @@ def explore_parameters():
             "Rest":  int,
             "reuse":  bool
         }
+
         print(params)
+        # get each combination of parameters
         permutations_dicts = [dict(zip(params.keys(), v)) for v in product(*params.values())]
         print(f"{len(permutations_dicts)} items")
+        # this is used to create a sample CSV for our parameters
         test_params = {}
         for k,v in params.items():
             test_params[k] = v[0]
@@ -67,11 +72,15 @@ def explore_parameters():
             fp.write(",".join(test_params.keys()) + "\n")
             fp.write(",".join([str(c) for c in test_params.values()]))
         
+        # create a data object of all combinations of hyperparameters
         test_data = Data("gridsearch_params.csv")
         data=Data(src=test_data,rows=[list(v.values()) for v in permutations_dicts])
-        
+
+        # get the best combination of hyperparameters
         best,_,evals = data.sway(method="gs")
         print(f"{evals} evals")
+
+        # set the hyperparameters as the "average" of the hyperparameters in best
         res = best.stats(best.cols.x)
         res.pop("N")
         res = {k: types[k](v) for k,v in res.items()}
@@ -79,6 +88,8 @@ def explore_parameters():
         print()
         
         return get_options(res)
+    
+    # these are optimized for auto2.csv
     print("not refreshing sway")
     finalized = {'Far': 0.8, 'Halves': 700, 'Max': 1, 'Min': 0.0, 'P': 1, 'Rest': 4, 'reuse': False}
     return get_options(finalized)
@@ -170,9 +181,12 @@ def main():
                                 comparisons[i][1][k] = "≠"
                 count += 1
 
+        # generate the stats table
         headers = [y.txt for y in data.cols.y]
         table = []
+        # for each algorithm's results
         for k,v in results.items():
+            # set the row equal to the average stats
             stats = get_stats(v)
             stats_list = [k] + [stats[y] for y in headers]
             
@@ -180,14 +194,21 @@ def main():
         print(tabulate(table, headers=headers,numalign="right"))
         print()
 
+        # generates the best algorithm/beat sway table
         maxes = []
+        # each algorithm
         h = [v[0] for v in table]
-        
         for i in range(len(headers)):
+            # get the value of the 'y[i]' column for each algorithm
             header_vals = [v[i+1] for v in table]
-            
+            # if the 'y' value is minimizing, use min else use max
             fun = max if headers[i][-1] == "+" else min
+            # vals is sway's result for y[i] and sway2's result for y[i]
+            # used to say if our sway2 algorithm is better than sway
             vals = [table[h.index("sway")][i+1],table[h.index("sway2")][i+1]]
+            # appends [y column name, 
+            #          what algorithm is the best for that y, 
+            #          if sway2 better than sway2]
             maxes.append([headers[i],
                           table[header_vals.index(fun(header_vals))][0],
                            vals.index(fun(vals)) == 1])
@@ -196,7 +217,10 @@ def main():
         print(tabulate(maxes, headers=m_headers,numalign="right"))
         print()
         
+        # generates the =/!= table
         table=[]
+        # for each comparison of the algorithms
+        #    append the = / !=
         for [base, diff], result in comparisons:
             table.append([f"{base} to {diff}"] + result)
         print(tabulate(table, headers=headers,numalign="right"))

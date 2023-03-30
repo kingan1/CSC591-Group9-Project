@@ -120,35 +120,44 @@ class Data:
 
         if not ys:
             ys = self.cols.y
-        def get_options(row):
 
+
+        def get_options(row):
+            # gets a fresh options dictionary, with the given
+            #  hyperparameters changed
             options = self.options.t.copy()
             
             for item,col in zip(row,self.cols.names):
-                
                 options[col] = item
             return options
         
+        # performs sway on the data file with the first set of hyperparameters
         data=Data(self.options["file"])
         best,rest,evals = data.sway(options_new = get_options(row1))
         
-
+        # records the best.stats()
         row_best = [0 for _ in data.cols.names]
         # for each y column
         for key, val in best.stats().items():
             for ys in data.cols.y:
                 if ys.txt == key:
+                    # set the row[y column.at] = stats for that column
                     row_best[ys.at] = val
-        
+
+        # performs sway on the data file with the second set of hyperparameters
         best2,rest2,evals2 = data.sway(options_new = get_options(row2))
         row_best2 = [0 for _ in data.cols.names]
         # for each y column
         for key, val in best2.stats().items():
             for ys in data.cols.y:
                 if ys.txt == key:
+                    # set the row[y column.at] = stats for that column
                     row_best2[ys.at] = val
 
+        # return if the results of better(sway(first hyperparameters), sway(second))
         res = data.better(row_best,row_best2)
+        # the number of gridsearch evals should take into account the number of evals
+        #  each individual sway took
         self.gs_evals = evals+evals2
         return res
     
