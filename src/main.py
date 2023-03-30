@@ -126,8 +126,6 @@ def main():
     else:
 
         results = {"all": [], "sway": [], "sway2": [], "xpln": [], "top": []}
-        y_cols = Data(options["file"])
-        headers = [y.txt for y in y_cols.cols.y]
         comparisons = [[["all", "all"],None], 
                        [["all", "sway"],None], 
                        [["all", "sway2"],None],
@@ -137,6 +135,7 @@ def main():
                        [["sway", "top"],None]]
         count = 0
         sway2_options = explore_parameters()
+        data=None
         while count < options["Niter"]:
             data=Data(options["file"])
             best,rest,_ = data.sway()
@@ -171,6 +170,7 @@ def main():
                                 comparisons[i][1][k] = "≠"
                 count += 1
 
+        headers = [y.txt for y in data.cols.y]
         table = []
         for k,v in results.items():
             stats = get_stats(v)

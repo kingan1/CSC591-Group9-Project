@@ -1,13 +1,28 @@
-        PSNR-    Energy-
-----  -------  ---------
-all   45.8765    1242.58
-sway    43.16    1146.29
-xpln  44.5805    1273.82
-top   26.7325    466.694
+not refreshing sway
+using options {'Bins': 16, 'Cliff': 0.147, 'D': 0.35, 'Far': 0.8, 'help': False, 'Halves': 700, 'Min': 0.0, 'Max': 1, 'P': 1, 'Rest': 4, 'reuse': False, 'Bootstrap': 512, 'Conf': 0.05, 'file': '../data/SSN.csv', 'Niter': 20, 'sway2': False}
+         PSNR-    Energy-
+-----  -------  ---------
+all      45.88    1269.89
+sway    44.776    886.923
+sway2  39.4935    695.645
+xpln    45.586    903.084
+top    26.7325    466.694
 
-              PSNR-    Energy-
-------------  -------  ---------
-all to all    =        ≠
-all to sway   ≠        ≠
-sway to xpln  ≠        ≠
-sway to top   ≠        ≠
+         Best    Beat Sway?
+-------  ------  ------------
+PSNR-    top     True
+Energy-  top     True
+
+               PSNR-    Energy-
+-------------  -------  ---------
+all to all     ≠        =
+all to sway    ≠        ≠
+all to sway2   ≠        ≠
+sway to sway2  ≠        ≠
+sway to xpln   ≠        ≠
+sway2 to xpln  ≠        ≠
+sway to top    ≠        ≠
+
+real	14m34.784s
+user	0m0.015s
+sys	0m0.000s

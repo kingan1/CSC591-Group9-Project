@@ -1,9 +1,29 @@
-{'Bins': [8, 12, 16, 20, 24, 28], 'Cliff': [0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9], 'D': [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6], 'Far': [0.4, 0.5, 0.6, 0.7, 0.8, 0.9], 'Halves': [300, 400, 500, 600, 700, 800], 'Min': [0.0, 0.2, 0.4, 0.6], 'Max': [1, 201, 401, 601, 801], 'p': [0, 1, 2, 3, 4]}
-1058400 items
-starting sway
-22 evals
-original:  {'Bins': 16, 'Cliff': 0.147, 'D': 0.35, 'Far': 0.95, 'help': False, 'Halves': 512, 'Min': 0.5, 'Max': 512, 'P': 2, 'Rest': 4, 'reuse': False, 'Bootstrap': 512, 'Conf': 0.05, 'file': '../data/pom.csv', 'Niter': 20}
+not refreshing sway
+using options {'Bins': 16, 'Cliff': 0.147, 'D': 0.35, 'Far': 0.8, 'help': False, 'Halves': 700, 'Min': 0.0, 'Max': 1, 'P': 1, 'Rest': 4, 'reuse': False, 'Bootstrap': 512, 'Conf': 0.05, 'file': '../data/pom.csv', 'Niter': 20, 'sway2': False}
+         Cost-    Completion+    Idle-
+-----  -------  -------------  -------
+all    329.288          0.899     0.24
+sway   289.629         0.9085    0.207
+sway2  237.777          0.865    0.092
+xpln   318.632          0.898   0.2345
+top     138.75              1        0
 
-new:  {'Bins': 28.0, 'Cliff': 0.5, 'D': 0.5, 'Far': 0.9, 'Halves': 300.0, 'Max': 601.0, 'Min': 0.0, 'p': 0.0, 'N': 517}
+             Best    Beat Sway?
+-----------  ------  ------------
+Cost-        top     True
+Completion+  top     False
+Idle-        top     True
 
-{'Bins': 28.0, 'Cliff': 0.5, 'D': 0.5, 'Far': 0.9, 'help': False, 'Halves': 300.0, 'Min': 0.0, 'Max': 601.0, 'P': 2, 'Rest': 4, 'reuse': False, 'Bootstrap': 512, 'Conf': 0.05, 'file': '../data/pom.csv', 'Niter': 20, 'p': 0.0}
+               Cost-    Completion+    Idle-
+-------------  -------  -------------  -------
+all to all     =        =              =
+all to sway    ≠        ≠              ≠
+all to sway2   ≠        ≠              ≠
+sway to sway2  ≠        ≠              ≠
+sway to xpln   ≠        ≠              ≠
+sway2 to xpln  ≠        ≠              ≠
+sway to top    ≠        ≠              ≠
+
+real	8m34.875s
+user	0m0.000s
+sys	0m0.000s

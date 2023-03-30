@@ -1,19 +1,19 @@
-{'Bins': [8, 12, 16, 20, 24, 28], 'Cliff': [0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9], 'D': [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6], 'Far': [0.4, 0.5, 0.6, 0.7, 0.8, 0.9], 'Halves': [300, 400, 500, 600, 700, 800], 'Min': [0.0, 0.2, 0.4, 0.6], 'Max': [1, 201, 401, 601, 801], 'p': [0, 1, 2, 3, 4]}
-1058400 items
-starting sway
-22 evals
-original:  {'Bins': 16, 'Cliff': 0.147, 'D': 0.35, 'Far': 0.95, 'help': False, 'Halves': 512, 'Min': 0.5, 'Max': 512, 'P': 2, 'Rest': 4, 'reuse': False, 'Bootstrap': 512, 'Conf': 0.05, 'file': '../data/nasa93dem.csv', 'Niter': 20}
-
-new:  {'Bins': 16.0, 'Cliff': 0.5, 'D': 0.3, 'Far': 0.4, 'Halves': 700.0, 'Max': 401.0, 'Min': 0.6, 'p': 3.0, 'N': 517}
-
-{'Bins': 16.0, 'Cliff': 0.5, 'D': 0.3, 'Far': 0.4, 'help': False, 'Halves': 700.0, 'Min': 0.6, 'Max': 401.0, 'P': 2, 'Rest': 4, 'reuse': False, 'Bootstrap': 512, 'Conf': 0.05, 'file': '../data/nasa93dem.csv', 'Niter': 20, 'p': 3.0}
+not refreshing sway
+using options {'Bins': 16, 'Cliff': 0.147, 'D': 0.35, 'Far': 0.8, 'help': False, 'Halves': 700, 'Min': 0.0, 'Max': 1, 'P': 1, 'Rest': 4, 'reuse': False, 'Bootstrap': 512, 'Conf': 0.05, 'file': '../data/nasa93dem.csv', 'Niter': 20, 'sway2': False}
          Kloc+    Effort-    Defects-    Months-
 -----  -------  ---------  ----------  ---------
 all       47.5        252        2007       21.4
-sway    17.975      82.11      700.85     14.505
-sway2   19.385      92.69      715.25     14.245
-xpln     23.21      89.83       936.3      15.02
-top        4.9      15.84       153.1       8.71
+sway     20.69      76.26      738.85     14.825
+sway2    15.99      128.2       634.7     13.215
+xpln    18.285         76       678.6     14.425
+top        4.8      15.48      149.95      8.645
+
+          Best    Beat Sway?
+--------  ------  ------------
+Kloc+     all     False
+Effort-   top     False
+Defects-  top     True
+Months-   top     True
 
                Kloc+    Effort-    Defects-    Months-
 -------------  -------  ---------  ----------  ---------
@@ -24,3 +24,7 @@ sway to sway2  ≠        ≠          ≠           ≠
 sway to xpln   ≠        ≠          ≠           ≠
 sway2 to xpln  ≠        ≠          ≠           ≠
 sway to top    ≠        ≠          ≠           ≠
+
+real	1m38.127s
+user	0m0.030s
+sys	0m0.000s

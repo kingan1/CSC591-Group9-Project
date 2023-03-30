@@ -1,26 +1,29 @@
-{'Bins': [8, 12, 16, 20, 24, 28], 'Cliff': [0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9], 'D': [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6], 'Far': [0.4, 0.5, 0.6, 0.7, 0.8, 0.9], 'Halves': [300, 400, 500, 600, 700, 800], 'Min': [0.0, 0.2, 0.4, 0.6], 'Max': [1, 201, 401, 601, 801], 'p': [0, 1, 2, 3, 4]}
-1058400 items
-starting sway
-22 evals
-original:  {'Bins': 16, 'Cliff': 0.147, 'D': 0.35, 'Far': 0.95, 'help': False, 'Halves': 512, 'Min': 0.5, 'Max': 512, 'P': 2, 'Rest': 4, 'reuse': False, 'Bootstrap': 512, 'Conf': 0.05, 'file': '../data/healthCloseIsses12mths0001-hard.csv', 'Niter': 20}
+not refreshing sway
+using options {'Bins': 16, 'Cliff': 0.147, 'D': 0.35, 'Far': 0.8, 'help': False, 'Halves': 700, 'Min': 0.0, 'Max': 1, 'P': 1, 'Rest': 4, 'reuse': False, 'Bootstrap': 512, 'Conf': 0.05, 'file': '../data/healthCloseIsses12mths0001-hard.csv', 'Niter': 20, 'sway2': False}
+         MRE-    ACC+    PRED40+
+-----  ------  ------  ---------
+all    75.039  7.1475         25
+sway    73.76  7.5295         25
+sway2  74.623   7.795      26.25
+xpln     73.8  7.5335         25
+top     64.91   11.33         25
 
-new:  {'Bins': 12.0, 'Cliff': 0.4, 'D': 0.4, 'Far': 0.7, 'Halves': 300.0, 'Max': 401.0, 'Min': 0.0, 'p': 3.0, 'N': 517}
-
-{'Bins': 12.0, 'Cliff': 0.4, 'D': 0.4, 'Far': 0.7, 'help': False, 'Halves': 300.0, 'Min': 0.0, 'Max': 401.0, 'P': 2, 'Rest': 4, 'reuse': False, 'Bootstrap': 512, 'Conf': 0.05, 'file': '../data/healthCloseIsses12mths0001-hard.csv', 'Niter': 20, 'p': 3.0}
-          MRE-    ACC+    PRED40+
------  -------  ------  ---------
-all     75.047  7.1385         25
-sway   73.9075  7.4775         25
-sway2  73.3275  8.0705      23.75
-xpln     73.91  7.5305         25
-top      64.91   11.33         25
+         Best    Beat Sway?
+-------  ------  ------------
+MRE-     top     False
+ACC+     top     True
+PRED40+  sway2   True
 
                MRE-    ACC+    PRED40+
 -------------  ------  ------  ---------
-all to all     =       ≠       =
+all to all     ≠       =       =
 all to sway    ≠       ≠       ≠
 all to sway2   ≠       ≠       ≠
 sway to sway2  ≠       ≠       ≠
 sway to xpln   ≠       ≠       ≠
 sway2 to xpln  ≠       ≠       ≠
 sway to top    ≠       ≠       ≠
+
+real	6m24.867s
+user	0m0.000s
+sys	0m0.015s
