@@ -37,7 +37,7 @@ class Data:
         :param t: Row to be added
         """
         if self.cols:
-            t = t #if isinstance(t, Row) else Row(t)
+            t = t if isinstance(t, Row) else Row(t)
 
             self.rows.append(t)
             self.cols.add(t)
@@ -109,9 +109,6 @@ class Data:
             for x in r:
                 worse.append(x)
 
-            del r
-            # if method != "sway":
-            #     print(evals0)
 
             return worker(l, worse, evals + evals0, A)
 
@@ -162,8 +159,8 @@ class Data:
             ys = self.cols.y
 
         for col in ys:
-            x = norm(col, row1[col.at])
-            y = norm(col, row2[col.at])
+            x = norm(col, row1.cells[col.at])
+            y = norm(col, row2.cells[col.at])
 
             s1 = s1 - math.exp(col.w * (x - y) / len(ys))
             s2 = s2 - math.exp(col.w * (y - x) / len(ys))
@@ -241,6 +238,6 @@ class Data:
         cols = cols or self.cols.x
 
         for col in cols:
-            d = d + dist1(col, t1[col.at], t2[col.at]) ** self.options["P"]
+            d = d + dist1(col, t1.cells[col.at], t2.cells[col.at]) ** self.options["P"]
 
         return (d / len(cols)) ** (1 / self.options["P"])
