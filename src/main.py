@@ -23,7 +23,7 @@ OPTIONS:
   -M  --Max         numbers                          = 512
   -p  --P           dist coefficient                 = 2
   -R  --Rest        how many of rest to sample       = 4
-  -r  --reuse       child splits reuse a parent pole = false
+  -r  --reuse       child splits reuse a parent pole = true
   -x  --Bootstrap   number of samples to bootstrap   = 512    
   -o  --Conf        confidence interval              = 0.05
   -f  --file        file to generate table of        = ../data/auto2.csv
@@ -31,28 +31,30 @@ OPTIONS:
 """
 
 def get_stats(data_array):
+    # gets the average stats, given the data array objects
     res = {}
     # accumulate the stats
     for item in data_array:
         stats = item.stats()
-        
+        # update the stats
         for k,v in stats.items():
             res[k] = res.get(k,0) + v
 
-        
+    # right now, the stats are summed. change it to average
     for k,v in res.items():
         res[k] /= options["Niter"]
     return res
 
 def main():
     """
-    `main` fills in the settings, updates them from the command line, runs
-    the start up actions (and before each run, it resets the random number seed and settongs);
-    and, finally, returns the number of test crashed to the operating system.
+    `main` runs each algorithm for 20 iterations, on the given file dataset.
 
-    :param funs: list of actions to run
-    :param saved: dictionary to store options
-    :param fails: number of failed functions
+    It accumulates the results per each iteration, and compares the algorithms
+    using cliffsDelta and bootstrap
+
+    It then produces summatory stats, including a mean table (for each algorithm,
+    summarize each y column and number of iterations)
+    And a table comparing each algorithm to each other using cliffsDelta and bootstrap
     """
 
     options.parse_cli_settings(help)
@@ -63,26 +65,46 @@ def main():
     else:
 
         results = {"all": [], "sway": [], "xpln": [], "top": []}
-        y_cols = Data(options["file"])
-        headers = [y.txt for y in y_cols.cols.y]
-        comparisons = [[["all", "all"],None], [["all", "sway"],None], [["sway", "xpln"],None], [["sway", "top"],None]]
+        comparisons = [[["all", "all"],None], 
+                       [["all", "sway"],None],  
+                       [["sway", "xpln"],None],  
+                       [["sway", "top"],None]]
+        n_evals = {"all": 0, "sway": 0, "xpln": 0, "top": 0}
+
         count = 0
+        data=None
+        # do a while loop because sometimes explain can return -1
         while count < options["Niter"]:
+            # read in the data
             data=Data(options["file"])
-            best,rest,evals = data.sway()
+            # get the "all" and "sway" results
+            best,rest,evals_sway = data.sway()
+            # get the "xpln" results
             x = Explain(best, rest)
-            rule,most= x.xpln(data,best,rest)
+            rule,_= x.xpln(data,best,rest)
+            # if it was able to find a rule
             if rule != -1:
+                # get the best rows of that rule
                 data1= Data(data,selects(rule,data.rows))
 
                 results['all'].append(data)
                 results['sway'].append(best)
                 results['xpln'].append(data1)
 
+                # get the "top" results by running the betters algorithm
                 top2,_ = data.betters(len(best.rows))
                 top = Data(data,top2)
-                
                 results['top'].append(top)
+
+                # accumulate the number of evals
+                # for all: 0 evaluations 
+                n_evals["all"] += 0
+                n_evals["sway"] += evals_sway
+                # xpln uses the same number of evals since it just uses the data from
+                # sway to generate rules, no extra evals needed
+                n_evals["xpln"] += evals_sway
+                n_evals["top"] += len(data.rows)
+
                 # update comparisons
                 for i in range(len(comparisons)):
                     [base, diff], result = comparisons[i]
@@ -100,17 +122,35 @@ def main():
                                 comparisons[i][1][k] = "≠"
                 count += 1
 
+        # generate the stats table
+        headers = [y.txt for y in data.cols.y]
         table = []
+        # for each algorithm's results
         for k,v in results.items():
+            # set the row equal to the average stats
             stats = get_stats(v)
             stats_list = [k] + [stats[y] for y in headers]
+            # adds on the average number of evals
+            stats_list += [n_evals[k]/options["Niter"]]
             
             table.append(stats_list)
-        print(tabulate(table, headers=headers,numalign="right"))
+        
+        # updates stats table to have the best result per column highlighted
+        for i in range(len(headers)):
+            # get the value of the 'y[i]' column for each algorithm
+            header_vals = [v[i+1] for v in table]
+            # if the 'y' value is minimizing, use min else use max
+            fun = max if headers[i][-1] == "+" else min
+            # change the table to have green text if it is the "best" for that column
+            table[header_vals.index(fun(header_vals))][i+1] = '\033[0;32m' + str(table[header_vals.index(fun(header_vals))][i+1]) + '\033[0m'
+        print(tabulate(table, headers=headers+["Avg evals"],numalign="right"))
         print()
 
-
+        
+        # generates the =/!= table
         table=[]
+        # for each comparison of the algorithms
+        #    append the = / !=
         for [base, diff], result in comparisons:
             table.append([f"{base} to {diff}"] + result)
         print(tabulate(table, headers=headers,numalign="right"))

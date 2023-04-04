@@ -17,6 +17,7 @@ class Explain:
         rule = self.rule(ranges, self.max_sizes)
 
         if rule:
+            # print(rule)
 
             bestr = selects(rule, self.best.rows)
             restr = selects(rule, self.rest.rows)
