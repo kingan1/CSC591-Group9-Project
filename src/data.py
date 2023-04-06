@@ -94,7 +94,7 @@ class Data:
 
     def sway(self, cols=None):
         def worker(rows, worse, evals0=None, above=None):
-            if len(rows) <= len(self.rows) ** options["Min"]:
+            if len(rows) <= len(self.rows) ** options["IMin"]:
                 return rows, many(worse, options["Rest"] * len(rows)), evals0
 
             l, r, A, B, c, evals = self.half(rows, cols, above)
@@ -174,7 +174,7 @@ class Data:
 
         here = {"data": Data.clone(self, rows)}
 
-        if (len(rows)) >= 2 * ((len(self.rows)) ** options["Min"]):
+        if (len(rows)) >= 2 * ((len(self.rows)) ** options["IMin"]):
             left, right, A, B, _, _ = self.half(rows, cols, above)
             here["left"] = self.tree(left, cols, A)
             here["right"] = self.tree(right, cols, B)

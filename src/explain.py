@@ -65,13 +65,16 @@ class Explain:
 
     def prune(self, rule, maxSize):
         n=0
+        new_rule = {}
         for txt,ranges in rule.items():
             n = n+1
             if len(ranges) == maxSize[txt]:
                 n=n-1
                 rule[txt] = None
-            if n > 0: 
-                return rule
+            else:
+                new_rule[txt] = ranges
+        if n > 0: 
+            return new_rule
         return None
 
 def show_rule(rule):
