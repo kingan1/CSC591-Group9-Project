@@ -1,13 +1,17 @@
-         Loc+    Risk-    Effort-
-----  -------  -------  ---------
-all   1009.65     5.25    19372.7
-sway    993.7      3.3      15794
-xpln    936.2     4.65    18463.5
-top    1956.6        0      17752
+        Loc+    Risk-    Effort-    Avg evals
+----  ------  -------  ---------  -----------
+all   1005.2     5.05      19226            0
+sway    1026     4.15      17724            8
+xpln  1041.5      4.8    19897.4            8
+top     1959        0      17752        10000
 
               Loc+    Risk-    Effort-
 ------------  ------  -------  ---------
-all to all    =       ≠        =
+all to all    =       =        =
 all to sway   ≠       ≠        ≠
 sway to xpln  ≠       ≠        ≠
 sway to top   ≠       ≠        ≠
+
+real	2m2.483s
+user	0m0.000s
+sys	0m0.000s
