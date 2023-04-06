@@ -13,21 +13,22 @@ project: multi-goal semi-supervised algorithms
 USAGE: python3 main.py [OPTIONS] [-g ACTIONS]
   
 OPTIONS:
-  -b  --Bins        initial number of bins           = 16
-  -c  --Cliff       cliff's delta threshold          = .147
+  -b  --bins        initial number of bins           = 16
+  -c  --cliff       cliff's delta threshold          = .147
   -d  --D           different is over sd*d           = .35
   -F  --Far         distance to distant              = .95
   -h  --help        show help                        = false
   -H  --Halves      search space for clustering      = 512
-  -m  --Min         size of smallest cluster         = .5
+  -I  --IMin        size of smallest cluster         = .5
   -M  --Max         numbers                          = 512
   -p  --P           dist coefficient                 = 2
-  -R  --Rest        how many of rest to sample       = 4
+  -R  --Rest        how many of rest to sample       = 10
   -r  --reuse       child splits reuse a parent pole = true
   -x  --Bootstrap   number of samples to bootstrap   = 512    
   -o  --Conf        confidence interval              = 0.05
   -f  --file        file to generate table of        = ../data/auto2.csv
   -n  --Niter       number of iterations to run      = 20
+  -w  --wColor      output with color                = true
 """
 
 def get_stats(data_array):
@@ -119,6 +120,10 @@ def main():
                             base_y, diff_y = results[base][count].cols.y[k],results[diff][count].cols.y[k]
                             equals = bootstrap(base_y.has(), diff_y.has()) and cliffsDelta(base_y.has(), diff_y.has())
                             if not equals:
+                                if i == 0:
+                                    # should never fail for all to all, unless sample size is large
+                                    print("WARNING: all to all {} {} {}".format(i, k, "false"))
+                                    print(f"all to all comparison failed for {results[base][count].cols.y[k].txt}")
                                 comparisons[i][1][k] = "≠"
                 count += 1
 
@@ -135,14 +140,15 @@ def main():
             
             table.append(stats_list)
         
-        # updates stats table to have the best result per column highlighted
-        for i in range(len(headers)):
-            # get the value of the 'y[i]' column for each algorithm
-            header_vals = [v[i+1] for v in table]
-            # if the 'y' value is minimizing, use min else use max
-            fun = max if headers[i][-1] == "+" else min
-            # change the table to have green text if it is the "best" for that column
-            table[header_vals.index(fun(header_vals))][i+1] = '\033[0;32m' + str(table[header_vals.index(fun(header_vals))][i+1]) + '\033[0m'
+        if options["wColor"]:
+            # updates stats table to have the best result per column highlighted
+            for i in range(len(headers)):
+                # get the value of the 'y[i]' column for each algorithm
+                header_vals = [v[i+1] for v in table]
+                # if the 'y' value is minimizing, use min else use max
+                fun = max if headers[i][-1] == "+" else min
+                # change the table to have green text if it is the "best" for that column
+                table[header_vals.index(fun(header_vals))][i+1] = '\033[92m' + str(table[header_vals.index(fun(header_vals))][i+1]) + '\033[0m'
         print(tabulate(table, headers=headers+["Avg evals"],numalign="right"))
         print()
 

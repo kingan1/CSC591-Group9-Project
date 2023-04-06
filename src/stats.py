@@ -2,7 +2,9 @@ import math
 import random
 from options import options
 from num import Num
+from utils import many
 
+random.seed(0)
 
 def RX(t,s) :
     t = sorted(t)
@@ -38,7 +40,6 @@ def merge(rx1,rx2) :
 def samples(t,n=0):
     u= []
     n = n or len(t)
-    # print(n)
     for i in range(n): 
         u.append(t[random.randrange(len(t))]) 
     return u
@@ -49,58 +50,6 @@ def gaussian(mu,sd): #  #--> n; return a sample from a Gaussian with mean `mu` a
     return  mu + sd * sq(-2*log(r())) * cos(2*pi*r())
 
 
-class ScottKnott:
-    def __init__(self, rxs):
-        self.rxs = rxs
-
-        self.cohen = None
-
-    def run(self):
-        self.rxs = sorted(self.rxs, key=lambda x: mid(x))
-        self.cohen = div(self.merges(0, len(self.rxs)-1)) * options["cohen"]
-
-        self.recurse(0, len(self.rxs) - 1, 1)
-
-        return self.rxs
-    
-    def merges(self, i, j):
-        out = RX([], self.rxs[i]['name'])
-
-        for k in range(i, j + 1):
-            out = merge(out, self.rxs[j])
-
-        return out
-
-    def same(self, lo, cut, hi):
-        l = self.merges(lo, cut)
-        r = self.merges(cut + 1, hi)
-
-        return cliffsDelta(l["has"], r["has"]) and bootstrap(l["has"], r["has"])
-
-    def recurse(self, lo, hi, rank):
-        cut = None
-        b4 = self.merges(lo, hi)
-        best = 0
-
-        for j in range(lo, hi + 1):
-            if j < hi:
-                l = self.merges(lo, j)
-                r = self.merges(j + 1, hi)
-
-                now = (l["n"] * (mid(l) - mid(b4)) ** 2 + r["n"] * (mid(r) - mid(b4)) ** 2) / (l["n"] + r["n"])
-
-                if now > best:
-                    if abs(mid(l) - mid(r)) >= self.cohen:
-                        cut, best = j, now
-
-        if cut and not self.same(lo, cut, hi):
-            rank = self.recurse(lo, cut, rank) + 1
-            rank = self.recurse(cut + 1, hi, rank)
-        else:
-            for i in range(lo, hi + 1):
-                self.rxs[i]["rank"] = rank
-
-        return rank
 
 def bootstrap(y0, z0):
     x, y, z, yhat, zhat = Num(), Num(), Num(), [], []
@@ -131,19 +80,25 @@ def bootstrap(y0, z0):
 
     return n / options["Bootstrap"] >= options["Conf"]
 
-
-
 def cliffsDelta(ns1, ns2):
-    n,gt,lt = 0,0,0
-    if len(ns1)> 128 : 
-        ns1 = samples(ns1,128) 
-    if len(ns2)> 128 : 
-        ns2 = samples(ns2,128)
+    if len(ns1) > 256:
+        ns1 = many(ns1, 256)
+    if len(ns2) > 256:
+        ns2 = many(ns2, 256)
+    if len(ns1) > 10 * len(ns2):
+        ns2 = many(ns1, 10 * len(ns2))
+    if len(ns2) > 10 * len(ns1):
+        ns2 = many(ns2, 10 * len(ns1))
+
+    n, gt, lt = 0, 0, 0
     for x in ns1:
         for y in ns2:
             n = n + 1
-            if x > y : 
+            if x > y:
                 gt = gt + 1
-            if x < y : 
+
+            elif x < y:
                 lt = lt + 1
-    return abs(lt - gt)/n <= options["Cliff"]
+
+    return abs(lt - gt) / n <= options["cliff"]
+
