@@ -11,6 +11,7 @@ class Options:
 
     def __init__(self):
         self.t = {}
+        self.conversions = {}
 
     def __repr__(self):
         print(self.t)
@@ -25,6 +26,8 @@ class Options:
         # parse help string to extract a table of options
         # sets the inner dictionary values
         s = re.findall("\n[\s]+[-][\S]+[\s]+[-][-]([\S]+)[^\n]+= ([\S]+)", help_string)
+        self.conversions = {k: v for v, k in re.findall("\n[\s]+[-]([\S]+)[\s]+[-][-]([\S]+)[^\n]+= [\S]+", help_string)}
+        
 
         for k, v in s:
             self.t[k] = coerce(v)
@@ -32,7 +35,7 @@ class Options:
         for k, v in self.items():  # for each possible option / CLI
             v = str(v)  # get the default value
             for n, x in enumerate(sys.argv):  # for each CLI passed in by the user
-                if x == "-" + k[0] or x == "--" + k:  # if it matches one of the CLI
+                if x == "-" + k[0] or x == "--" + k or x == '-' + self.conversions[k]:  # if it matches one of the CLI
                     v = (sys.argv[n + 1] if n + 1 < len(
                         sys.argv) else False) or v == "False" and "true" or v == "True" and "false"
                     # set the value
