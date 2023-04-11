@@ -5,7 +5,6 @@ import re
 import sys
 
 
-
 class Random:
     def __init__(self):
         self.seed = 937162211
