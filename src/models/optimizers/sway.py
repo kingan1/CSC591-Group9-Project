@@ -35,7 +35,7 @@ class SwayOptimizer:
         """
         some = many(rows, int(options["Halves"]))
 
-        a = any(some) if above is not None and options["reuse"] else any(some)
+        a = above if above is not None and options["reuse"] else any(some)
 
         tmp = sorted([{"row": r, "d": self._distance_class.dist(cols, r, a)} for r in some], key=lambda x: x["d"])
         far = tmp[int((len(tmp) - 1) * options["Far"])]
