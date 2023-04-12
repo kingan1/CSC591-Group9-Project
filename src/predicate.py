@@ -27,22 +27,22 @@ class HyperparameterPredicate:
             global options
             # gets a fresh options dictionary, with the given
             #  hyperparameters changed
-            options = options.t.copy()
-            
-            for item,col in zip(row,[c.name for c in cols]):
-                options[col] = item
-            return options
+            options2 = options.t.copy()
+
+            for item,col in zip(row.cells,cols.names):
+                options2[col] = item
+            return options2
         
         # performs sway on the data file with the first set of hyperparameters
         # data=Data(options["file"])
         # best,rest,evals = data.sway(options_new = get_options(row1))
-        options = get_options(row1)
+        options2 = get_options(row1)
         best, rest, evals = opt(
-                reuse=options["reuse"],
-                far=options["Far"],
-                halves=options["Halves"],
-                rest=options["Rest"],
-                i_min=options["IMin"]
+                reuse=options2["reuse"],
+                far=options2["Far"],
+                halves=options2["Halves"],
+                rest=options2["Rest"],
+                i_min=options2["IMin"]
         ).run(data)
         
         # records the best.stats()
@@ -55,7 +55,15 @@ class HyperparameterPredicate:
                     row_best[ys.at] = val
 
         # performs sway on the data file with the second set of hyperparameters
-        best2,rest2,evals2 = data.sway(options_new = get_options(row2))
+        # best2,rest2,evals2 = data.sway(options_new = get_options(row2))
+        options2 = get_options(row2)
+        best2, rest2, evals2 = opt(
+                reuse=options2["reuse"],
+                far=options2["Far"],
+                halves=options2["Halves"],
+                rest=options2["Rest"],
+                i_min=options2["IMin"]
+        ).run(data)
         row_best2 = [0 for _ in data.cols.names]
         # for each y column
         for key, val in best2.stats().items():
@@ -65,7 +73,7 @@ class HyperparameterPredicate:
                     row_best2[ys.at] = val
 
         # return if the results of better(sway(first hyperparameters), sway(second))
-        res = data.better(row_best,row_best2)
+        res = ZitzlerPredicate.better(data.cols.y, Row(row_best),Row(row_best2))
         # the number of gridsearch evals should take into account the number of evals
         #  each individual sway took
         gs_evals = evals+evals2

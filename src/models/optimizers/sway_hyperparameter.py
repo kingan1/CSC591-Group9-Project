@@ -73,7 +73,7 @@ class SwayHyperparameterOptimizer(BaseOptimizer):
             l, r, a, b, c, evals_ = self._half(cols, rows, above)
             new_data = Data(self._file)
             
-            [better, gs_evals_] = HyperparameterPredicate.better(self._data.cols.y, b, a, new_data, SwayOptimizer)
+            [better, gs_evals_] = HyperparameterPredicate.better(self._data.cols, b, a, new_data, SwayOptimizer)
             evals_ += gs_evals_
             if better:
                 l, r, a, b = r, l, b, a

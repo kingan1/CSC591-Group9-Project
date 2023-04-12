@@ -61,10 +61,9 @@ def explore_parameters():
             "reuse":  bool
         }
 
-        print(params)
         # get each combination of parameters
         permutations_dicts = [dict(zip(params.keys(), v)) for v in product(*params.values())]
-        print(f"{len(permutations_dicts)} items")
+        
         # this is used to create a sample CSV for our parameters
         test_params = {}
         for k,v in params.items():
@@ -85,9 +84,10 @@ def explore_parameters():
                 far=options["Far"],
                 halves=options["Halves"],
                 rest=options["Rest"],
-                i_min=options["IMin"]
+                i_min=options["IMin"],
+                file=options["file"]
             ).run(data)
-        print(f"{evals} evals")
+        
 
         # set the hyperparameters as the "average" of the hyperparameters in best
         res = best.stats(best.cols.x)
@@ -100,7 +100,7 @@ def explore_parameters():
     
     # these are optimized for auto2.csv
     print("not refreshing sway")
-    finalized = {'Far': 0.8, 'Halves': 700, 'Max': 1, 'IMin': 0.0, 'P': 1, 'Rest': 4, 'reuse': False}
+    finalized = {'Far': 0.85, 'Halves': 500, 'Max': 1, 'IMin': 0.0, 'P': 1, 'Rest': 2, 'reuse': True}
     return get_options(finalized)
 
 def get_stats(data_array):
