@@ -27,7 +27,6 @@ class Options:
         # sets the inner dictionary values
         s = re.findall("\n[\s]+[-][\S]+[\s]+[-][-]([\S]+)[^\n]+= ([\S]+)", help_string)
         self.conversions = {k: v for v, k in re.findall("\n[\s]+[-]([\S]+)[\s]+[-][-]([\S]+)[^\n]+= [\S]+", help_string)}
-        
 
         for k, v in s:
             self.t[k] = coerce(v)

@@ -1,8 +1,8 @@
 import re
+from typing import List
 
-from num import Num
-from row import Row
-from sym import Sym
+from .col import Col, Sym, Num
+from .row import Row
 
 
 class Cols:
@@ -10,13 +10,20 @@ class Cols:
     Factory for managing a set of NUMs or SYMs
     """
 
-    def __init__(self, t):
+    def __init__(self, t: List):
         """
         Initializes a new Cols object, contains many columns
 
         :param t: Row to convert to NUMs or SYMs
         """
-        self.names, self.all, self.x, self.y, self.klass = t, [], [], [], None
+        self.names: List = t
+
+        self.all: List[Col] = []
+
+        self.x: List[Col] = []
+        self.y: List[Col] = []
+
+        self.klass = None
 
         for n, s in enumerate(t):
             s = s.strip()
