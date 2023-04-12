@@ -1,0 +1,28 @@
+refreshing sway
+new:  {'Far': 0.85, 'Halves': 500, 'IMin': 0.0, 'Max': 1, 'P': 1, 'Rest': 2, 'reuse': True}
+
+using options {'bins': 16, 'cliff': 0.147, 'D': 0.35, 'Far': 0.85, 'help': False, 'Halves': 500, 'IMin': 0.0, 'Max': 1, 'P': 1, 'Rest': 2, 'reuse': True, 'Bootstrap': 512, 'Conf': 0.05, 'file': '../data/auto2.csv', 'Niter': 20, 'wColor': False, 'sway2': True}
+         CityMPG+    HighwayMPG+    Weight-    Class-    Avg evals
+-----  ----------  -------------  ---------  --------  -----------
+all            21             28       3040      17.7            0
+sway         29.4          34.15       2171     9.265            5
+sway2       37.15             42       1983      8.64         7.05
+xpln         29.1           34.1    2307.75    10.015            5
+top            33           39.6     2051.5      8.86           93
+
+             Best    Beat Sway?
+-----------  ------  ------------
+CityMPG+     sway2   True
+HighwayMPG+  sway2   True
+Weight-      sway2   True
+Class-       sway2   True
+
+               CityMPG+    HighwayMPG+    Weight-    Class-
+-------------  ----------  -------------  ---------  --------
+all to all     =           =              =          =
+all to sway    ≠           ≠              ≠          ≠
+all to sway2   ≠           ≠              ≠          ≠
+sway to sway2  ≠           ≠              ≠          ≠
+sway to xpln   ≠           ≠              ≠          ≠
+sway2 to xpln  ≠           ≠              ≠          ≠
+sway to top    ≠           ≠              ≠          ≠
