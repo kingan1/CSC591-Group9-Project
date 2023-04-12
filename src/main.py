@@ -88,7 +88,13 @@ def main():
             data = Data(options["file"])
 
             # get the "all" and "sway" results
-            best, rest, evals_sway = SwayOptimizer().run(data)
+            best, rest, evals_sway = SwayOptimizer(
+                reuse=options["reuse"],
+                far=options["Far"],
+                halves=options["Halves"],
+                rest=options["Rest"],
+                i_min=options["IMin"]
+            ).run(data)
 
             # get the "xpln" results
             x = Explain(best, rest)

@@ -4,15 +4,23 @@ from data import Data
 from data.col import Col
 from data.row import Row
 from distance import Distance, PDist, cosine_similarity
-from options import options
 from predicate import ZitzlerPredicate
 from utils import many, any
+from .base import BaseOptimizer
 
 
-class SwayOptimizer:
-    def __init__(self, distance_class: Distance = None):
+class SwayOptimizer(BaseOptimizer):
+    def __init__(self, distance_class: Distance = None, reuse: bool = True, far: float = 0.95, halves: int = 512,
+                 rest: int = 10, i_min: float = 0.5):
         self._data: Optional[Data] = None
+
         self._distance_class = distance_class or PDist(p=2)
+
+        self._reuse = reuse
+        self._far = far
+        self._halves = halves
+        self._rest = rest
+        self._i_min = i_min
 
     def run(self, data: Data):
         self._data: Data = data
@@ -33,12 +41,12 @@ class SwayOptimizer:
         """
         divides data using 2 far points
         """
-        some = many(rows, int(options["Halves"]))
+        some = many(rows, self._halves)
 
-        a = above if above is not None and options["reuse"] else any(some)
+        a = above if above is not None and self._reuse else any(some)
 
         tmp = sorted([{"row": r, "d": self._distance_class.dist(cols, r, a)} for r in some], key=lambda x: x["d"])
-        far = tmp[int((len(tmp) - 1) * options["Far"])]
+        far = tmp[int((len(tmp) - 1) * self._far)]
 
         b, c = far["row"], far["d"]
 
@@ -51,14 +59,14 @@ class SwayOptimizer:
             else:
                 right.append(two["row"])
 
-        evals = 1 if above is not None and options["reuse"] else 2
+        evals = 1 if above is not None and self._reuse else 2
 
         return left, right, a, b, c, evals
 
     def _sway(self, cols: List[Col]):
         def worker(rows: List[Row], worse, evals0=None, above=None):
-            if len(rows) <= len(self._data.rows) ** options["IMin"]:
-                return rows, many(worse, options["Rest"] * len(rows)), evals0
+            if len(rows) <= len(self._data.rows) ** self._i_min:
+                return rows, many(worse, self._rest * len(rows)), evals0
 
             l, r, a, b, c, evals_ = self._half(cols, rows, above)
 
