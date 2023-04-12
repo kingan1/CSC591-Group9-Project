@@ -1,17 +1,29 @@
-        NUMBERITERATIONS-    TIMETOSOLUTION-    Avg evals
-----  -------------------  -----------------  -----------
-all                   6.9            134.487            0
-sway                  5.1            112.643           10
-xpln                 5.05            125.556           10
-top                     4             59.982       239360
+not refreshing sway
+using options {'Bins': 16, 'Cliff': 0.147, 'D': 0.35, 'Far': 0.8, 'help': False, 'Halves': 700, 'Min': 0.0, 'Max': 1, 'P': 1, 'Rest': 4, 'reuse': False, 'Bootstrap': 512, 'Conf': 0.05, 'file': '../data/SSM.csv', 'Niter': 20, 'sway2': False}
 
-              NUMBERITERATIONS-    TIMETOSOLUTION-
-------------  -------------------  -----------------
-all to all    =                    =
-all to sway   ≠                    ≠
-sway to xpln  ≠                    ≠
-sway to top   ≠                    ≠
+         NUMBERITERATIONS-    TIMETOSOLUTION-
+-----  -------------------  -----------------
+all                   6.85            134.536
+sway                   5.2            112.335
+sway2                 4.15             91.196
+xpln                   5.5            117.344
+top                      4             60.018
 
-real	13m18.698s
+                   Best    Beat Sway?
+-----------------  ------  ------------
+NUMBERITERATIONS-  top     True
+TIMETOSOLUTION-    top     True
+
+               NUMBERITERATIONS-    TIMETOSOLUTION-
+-------------  -------------------  -----------------
+all to all     =                    ≠
+all to sway    ≠                    ≠
+all to sway2   ≠                    ≠
+sway to sway2  ≠                    ≠
+sway to xpln   ≠                    ≠
+sway2 to xpln  ≠                    ≠
+sway to top    ≠                    ≠
+
+real	18m42.209s
 user	0m0.000s
-sys	0m0.016s
+sys	0m0.015s

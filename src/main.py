@@ -2,7 +2,7 @@ from tabulate import tabulate
 
 from data import Data
 from explain import Explain, selects
-from models.optimizers import SwayOptimizer
+from models.optimizers import SwayOptimizer, SwayHyperparameterOptimizer
 from options import options
 from stats import cliffs_delta, bootstrap
 
@@ -30,8 +30,78 @@ OPTIONS:
   -f  --file        file to generate table of        = ../data/auto2.csv
   -n  --Niter       number of iterations to run      = 20
   -w  --wColor      output with color                = true
+  -s  --sway2       refresh the sway2 parameters     = false
 """
 
+from itertools import product
+
+def explore_parameters():
+    if options['sway2']:
+        print("refreshing sway")
+        # use steps to specify steps for each range of values
+        steps = {"1000": 100,"100":10, '10': 1}
+        # list of parameters used by sway, as well as example values to sample
+        params = { 
+            "Far":  [i/100 for i in range(70,100,steps["10"]*5)],
+            "Halves":  [i for i in range(100, 600, steps["1000"])],
+            "IMin":  [i/10 for i in range(0,8,steps['10']*2)],
+            "Max": [i for i in range(1, 150, 25)],
+            "P":  [1+(i/10) for i in range(10)],
+            "Rest":  [i for i in range(1,5)],
+            "reuse":  [True,False], 
+        }
+        # types of each parameter
+        types = { 
+            "Far":  float,
+            "Halves":  int,
+            "IMin":  float,
+            "Max": int,
+            "P":  int,
+            "Rest":  int,
+            "reuse":  bool
+        }
+
+        print(params)
+        # get each combination of parameters
+        permutations_dicts = [dict(zip(params.keys(), v)) for v in product(*params.values())]
+        print(f"{len(permutations_dicts)} items")
+        # this is used to create a sample CSV for our parameters
+        test_params = {}
+        for k,v in params.items():
+            test_params[k] = v[0]
+
+        with open("gridsearch_params.csv", "w") as fp:
+            fp.write(",".join(test_params.keys()) + "\n")
+            fp.write(",".join([str(c) for c in test_params.values()]))
+        
+        # create a data object of all combinations of hyperparameters
+        test_data = Data("gridsearch_params.csv")
+        data=Data(src=test_data,rows=[list(v.values()) for v in permutations_dicts])
+
+        # get the best combination of hyperparameters
+        # best,_,evals = data.sway(method="gs")
+        best, rest, evals = SwayHyperparameterOptimizer(
+                reuse=options["reuse"],
+                far=options["Far"],
+                halves=options["Halves"],
+                rest=options["Rest"],
+                i_min=options["IMin"]
+            ).run(data)
+        print(f"{evals} evals")
+
+        # set the hyperparameters as the "average" of the hyperparameters in best
+        res = best.stats(best.cols.x)
+        res.pop("N")
+        res = {k: types[k](v) for k,v in res.items()}
+        print("new: ", res)
+        print()
+        
+        return get_options(res)
+    
+    # these are optimized for auto2.csv
+    print("not refreshing sway")
+    finalized = {'Far': 0.8, 'Halves': 700, 'Max': 1, 'IMin': 0.0, 'P': 1, 'Rest': 4, 'reuse': False}
+    return get_options(finalized)
 
 def get_stats(data_array):
     # gets the average stats, given the data array objects
@@ -51,6 +121,15 @@ def get_stats(data_array):
 
     return res
 
+def get_options(new_options):
+    global options
+    options2 = options.t.copy()
+    
+    for k,v in new_options.items():
+        options2[k] = v
+    print("using options", options2)
+    assert len(options2) == 17
+    return options2
 
 def main():
     """
@@ -69,17 +148,20 @@ def main():
     if options["help"]:
         print(help_)
     else:
-        results = {"all": [], "sway": [], "xpln": [], "top": []}
-        n_evals = {"all": 0, "sway": 0, "xpln": 0, "top": 0}
+        results = {"all": [], "sway": [], "sway2": [], "xpln": [], "top": []}
+        n_evals = {"all": 0, "sway": 0, "sway2": 0, "xpln": 0, "top": 0}
 
-        comparisons = [
-            [["all", "all"], None],
-            [["all", "sway"], None],
-            [["sway", "xpln"], None],
-            [["sway", "top"], None]
-        ]
+        
+        comparisons = [[["all", "all"],None], 
+                       [["all", "sway"],None], 
+                       [["all", "sway2"],None],
+                       [["sway", "sway2"],None],  
+                       [["sway", "xpln"],None],   
+                       [["sway2", "xpln"],None], 
+                       [["sway", "top"],None]]
 
         count = 0
+        sway2_options = explore_parameters()
         data = None
 
         # do a while loop because sometimes explain can return -1
@@ -112,12 +194,24 @@ def main():
                 # get the "top" results by running the betters algorithm
                 top2, _ = data.betters(len(best.rows))
                 top = Data.clone(data, top2)
+                best2, rest2, evals_sway2 = SwayOptimizer(
+                    reuse=sway2_options["reuse"],
+                    far=sway2_options["Far"],
+                    halves=sway2_options["Halves"],
+                    rest=sway2_options["Rest"],
+                    i_min=sway2_options["IMin"]
+                ).run(data)
+                results['sway2'].append(best2)
+                
+                
+                
                 results['top'].append(top)
 
                 # accumulate the number of evals
                 # for all: 0 evaluations 
                 n_evals["all"] += 0
                 n_evals["sway"] += evals_sway
+                n_evals["sway2"] += evals_sway2
 
                 # xpln uses the same number of evals since it just uses the data from
                 # sway to generate rules, no extra evals needed
@@ -165,6 +259,26 @@ def main():
 
             table.append(stats_list)
 
+        
+        # generates the best algorithm/beat sway table
+        maxes = []
+        # each algorithm
+        h = [v[0] for v in table]
+        for i in range(len(headers)):
+            # get the value of the 'y[i]' column for each algorithm
+            header_vals = [v[i+1] for v in table]
+            # if the 'y' value is minimizing, use min else use max
+            fun = max if headers[i][-1] == "+" else min
+            # vals is sway's result for y[i] and sway2's result for y[i]
+            # used to say if our sway2 algorithm is better than sway
+            vals = [table[h.index("sway")][i+1],table[h.index("sway2")][i+1]]
+            # appends [y column name, 
+            #          what algorithm is the best for that y, 
+            #          if sway2 better than sway2]
+            maxes.append([headers[i],
+                          table[header_vals.index(fun(header_vals))][0],
+                           vals.index(fun(vals)) == 1])
+
         if options["wColor"]:
             # updates stats table to have the best result per column highlighted
             for i in range(len(headers)):
@@ -181,9 +295,13 @@ def main():
         print(tabulate(table, headers=headers + ["Avg evals"], numalign="right"))
         print()
 
+            
+        m_headers = ["Best", "Beat Sway?"]
+        print(tabulate(maxes, headers=m_headers,numalign="right"))
+        print()
+        
         # generates the =/!= table
-        table = []
-
+        table=[]
         # for each comparison of the algorithms
         #    append the = / !=
         for [base, diff], result in comparisons:

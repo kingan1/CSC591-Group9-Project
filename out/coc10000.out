@@ -1,17 +1,29 @@
-        Loc+    Risk-    Effort-    Avg evals
-----  ------  -------  ---------  -----------
-all   1005.2     5.05      19226            0
-sway    1026     4.15      17724            8
-xpln  1041.5      4.8    19897.4            8
-top     1959        0      17752        10000
+not refreshing sway
+using options {'Bins': 16, 'Cliff': 0.147, 'D': 0.35, 'Far': 0.8, 'help': False, 'Halves': 700, 'Min': 0.0, 'Max': 1, 'P': 1, 'Rest': 4, 'reuse': False, 'Bootstrap': 512, 'Conf': 0.05, 'file': '../data/coc10000.csv', 'Niter': 20, 'sway2': False}
+          Loc+    Risk-    Effort-
+-----  -------  -------  ---------
+all     1020.2     5.15    19895.9
+sway   1056.45      2.7    17194.5
+sway2  1515.25     2.35    28588.7
+xpln     986.9      4.6    19180.5
+top     1957.2        0      17752
 
-              Loc+    Risk-    Effort-
-------------  ------  -------  ---------
-all to all    =       =        =
-all to sway   ≠       ≠        ≠
-sway to xpln  ≠       ≠        ≠
-sway to top   ≠       ≠        ≠
+         Best    Beat Sway?
+-------  ------  ------------
+Loc+     top     True
+Risk-    top     True
+Effort-  sway    False
 
-real	2m2.483s
+               Loc+    Risk-    Effort-
+-------------  ------  -------  ---------
+all to all     ≠       =        =
+all to sway    ≠       ≠        ≠
+all to sway2   ≠       ≠        ≠
+sway to sway2  ≠       ≠        ≠
+sway to xpln   ≠       ≠        ≠
+sway2 to xpln  ≠       ≠        ≠
+sway to top    ≠       ≠        ≠
+
+real	8m44.596s
 user	0m0.000s
-sys	0m0.000s
+sys	0m0.031s

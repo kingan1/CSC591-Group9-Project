@@ -1,5 +1,6 @@
 testing_files
 src/notes.txt
+*.dat
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

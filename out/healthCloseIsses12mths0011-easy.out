@@ -1,17 +1,29 @@
-         MRE-     ACC+    PRED40+    Avg evals
-----  -------  -------  ---------  -----------
-all   119.341  -12.246          0            0
-sway  10.0515  -0.0765    70.8305            8
-xpln        0        0      83.33            8
-top         0        0      83.33        10000
+not refreshing sway
+using options {'Bins': 16, 'Cliff': 0.147, 'D': 0.35, 'Far': 0.8, 'help': False, 'Halves': 700, 'Min': 0.0, 'Max': 1, 'P': 1, 'Rest': 4, 'reuse': False, 'Bootstrap': 512, 'Conf': 0.05, 'file': '../data/healthCloseIsses12mths0011-easy.csv', 'Niter': 20, 'sway2': False}
+          MRE-     ACC+    PRED40+
+-----  -------  -------  ---------
+all    119.315  -12.213          0
+sway         0  -0.0245    79.1635
+sway2   5.9555  -0.6075    79.1635
+xpln         0        0      83.33
+top          0        0      83.33
 
-              MRE-    ACC+    PRED40+
-------------  ------  ------  ---------
-all to all    =       =       =
-all to sway   ≠       ≠       ≠
-sway to xpln  ≠       ≠       ≠
-sway to top   ≠       ≠       ≠
+         Best    Beat Sway?
+-------  ------  ------------
+MRE-     sway    False
+ACC+     xpln    False
+PRED40+  xpln    False
 
-real	1m16.535s
-user	0m0.015s
-sys	0m0.000s
+               MRE-    ACC+    PRED40+
+-------------  ------  ------  ---------
+all to all     ≠       ≠       ≠
+all to sway    ≠       ≠       ≠
+all to sway2   ≠       ≠       ≠
+sway to sway2  ≠       ≠       ≠
+sway to xpln   ≠       ≠       ≠
+sway2 to xpln  ≠       ≠       ≠
+sway to top    ≠       ≠       ≠
+
+real	4m47.159s
+user	0m0.000s
+sys	0m0.015s

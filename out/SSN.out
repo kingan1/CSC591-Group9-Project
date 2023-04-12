@@ -1,19 +1,28 @@
-WARNING: all to all 0 1 false
-all to all comparison failed for Energy-
-        PSNR-    Energy-    Avg evals
-----  -------  ---------  -----------
-all    45.737    1240.66            0
-sway  44.3325    1010.56            9
-xpln  45.6665    1139.99            9
-top   26.7075    466.114        53662
+not refreshing sway
+using options {'Bins': 16, 'Cliff': 0.147, 'D': 0.35, 'Far': 0.8, 'help': False, 'Halves': 700, 'Min': 0.0, 'Max': 1, 'P': 1, 'Rest': 4, 'reuse': False, 'Bootstrap': 512, 'Conf': 0.05, 'file': '../data/SSN.csv', 'Niter': 20, 'sway2': False}
+         PSNR-    Energy-
+-----  -------  ---------
+all      45.88    1269.89
+sway    44.776    886.923
+sway2  39.4935    695.645
+xpln    45.586    903.084
+top    26.7325    466.694
 
-              PSNR-    Energy-
-------------  -------  ---------
-all to all    =        ≠
-all to sway   ≠        ≠
-sway to xpln  ≠        ≠
-sway to top   ≠        ≠
+         Best    Beat Sway?
+-------  ------  ------------
+PSNR-    top     True
+Energy-  top     True
 
-real	5m13.151s
-user	0m0.000s
-sys	0m0.015s
+               PSNR-    Energy-
+-------------  -------  ---------
+all to all     ≠        =
+all to sway    ≠        ≠
+all to sway2   ≠        ≠
+sway to sway2  ≠        ≠
+sway to xpln   ≠        ≠
+sway2 to xpln  ≠        ≠
+sway to top    ≠        ≠
+
+real	14m34.784s
+user	0m0.015s
+sys	0m0.000s

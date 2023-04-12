@@ -1,17 +1,31 @@
-         LOC+    AEXP-    PLEX-    RISK-    EFFORT-    Avg evals
-----  -------  -------  -------  -------  ---------  -----------
-all   1062.85        3        3        5      19675            0
-sway    975.6     2.95     3.05     3.85      17319            6
-xpln   988.45     2.95        3     5.05    20113.7            6
-top      1529        2        1        3      29972         1000
+not refreshing sway
+using options {'Bins': 16, 'Cliff': 0.147, 'D': 0.35, 'Far': 0.8, 'help': False, 'Halves': 700, 'Min': 0.0, 'Max': 1, 'P': 1, 'Rest': 4, 'reuse': False, 'Bootstrap': 512, 'Conf': 0.05, 'file': '../data/coc1000.csv', 'Niter': 20, 'sway2': False}
+         LOC+    AEXP-    PLEX-    RISK-    EFFORT-
+-----  ------  -------  -------  -------  ---------
+all    1053.3        3        3        5    19303.7
+sway     1006     2.95     2.85     3.85    18105.3
+sway2    1328      2.2      2.3      4.9    33407.8
+xpln    992.3      2.8     2.85        5    19633.4
+top    1536.6        2        1      3.2      29972
 
-              LOC+    AEXP-    PLEX-    RISK-    EFFORT-
-------------  ------  -------  -------  -------  ---------
-all to all    =       =        =        =        =
-all to sway   ≠       ≠        ≠        ≠        ≠
-sway to xpln  ≠       ≠        ≠        ≠        ≠
-sway to top   ≠       ≠        ≠        ≠        ≠
+         Best    Beat Sway?
+-------  ------  ------------
+LOC+     top     True
+AEXP-    top     True
+PLEX-    top     True
+RISK-    top     False
+EFFORT-  sway    False
 
-real	2m4.925s
-user	0m0.000s
-sys	0m0.015s
+               LOC+    AEXP-    PLEX-    RISK-    EFFORT-
+-------------  ------  -------  -------  -------  ---------
+all to all     ≠       ≠        ≠        =        =
+all to sway    ≠       ≠        ≠        ≠        ≠
+all to sway2   ≠       ≠        ≠        ≠        ≠
+sway to sway2  ≠       ≠        ≠        ≠        ≠
+sway to xpln   ≠       ≠        ≠        ≠        ≠
+sway2 to xpln  ≠       ≠        ≠        ≠        ≠
+sway to top    ≠       ≠        ≠        ≠        ≠
+
+real	7m5.521s
+user	0m0.015s
+sys	0m0.031s

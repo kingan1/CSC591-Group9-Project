@@ -1,17 +1,27 @@
-        N_effort-    Avg evals
-----  -----------  -----------
-all          2098            0
-sway        679.7            6
-xpln        828.7            6
-top           150          499
+not refreshing sway
+using options {'Bins': 16, 'Cliff': 0.147, 'D': 0.35, 'Far': 0.8, 'help': False, 'Halves': 700, 'Min': 0.0, 'Max': 1, 'P': 1, 'Rest': 4, 'reuse': False, 'Bootstrap': 512, 'Conf': 0.05, 'file': '../data/china.csv', 'Niter': 20, 'sway2': False}
+         N_effort-
+-----  -----------
+all           2098
+sway        432.05
+sway2        192.3
+xpln         863.9
+top          148.5
 
-              N_effort-
-------------  -----------
-all to all    =
-all to sway   ≠
-sway to xpln  ≠
-sway to top   ≠
+           Best    Beat Sway?
+---------  ------  ------------
+N_effort-  top     True
 
-real	0m19.321s
+               N_effort-
+-------------  -----------
+all to all     ≠
+all to sway    ≠
+all to sway2   ≠
+sway to sway2  ≠
+sway to xpln   ≠
+sway2 to xpln  ≠
+sway to top    ≠
+
+real	2m3.537s
 user	0m0.000s
-sys	0m0.015s
+sys	0m0.047s

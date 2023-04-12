@@ -1,17 +1,30 @@
-        Kloc+    Effort-    Defects-    Months-    Avg evals
-----  -------  ---------  ----------  ---------  -----------
-all      47.5        252        2007       21.4            0
-sway   19.125      92.64       827.8      14.63            5
-xpln   24.285      133.3      1062.2      15.76            5
-top       4.9      15.84       153.1       8.71           93
+not refreshing sway
+using options {'Bins': 16, 'Cliff': 0.147, 'D': 0.35, 'Far': 0.8, 'help': False, 'Halves': 700, 'Min': 0.0, 'Max': 1, 'P': 1, 'Rest': 4, 'reuse': False, 'Bootstrap': 512, 'Conf': 0.05, 'file': '../data/nasa93dem.csv', 'Niter': 20, 'sway2': False}
+         Kloc+    Effort-    Defects-    Months-
+-----  -------  ---------  ----------  ---------
+all       47.5        252        2007       21.4
+sway     20.69      76.26      738.85     14.825
+sway2    15.99      128.2       634.7     13.215
+xpln    18.285         76       678.6     14.425
+top        4.8      15.48      149.95      8.645
 
-              Kloc+    Effort-    Defects-    Months-
-------------  -------  ---------  ----------  ---------
-all to all    =        =          =           =
-all to sway   ≠        ≠          ≠           ≠
-sway to xpln  ≠        ≠          ≠           ≠
-sway to top   ≠        ≠          ≠           ≠
+          Best    Beat Sway?
+--------  ------  ------------
+Kloc+     all     False
+Effort-   top     False
+Defects-  top     True
+Months-   top     True
 
-real	0m14.181s
-user	0m0.000s
-sys	0m0.015s
+               Kloc+    Effort-    Defects-    Months-
+-------------  -------  ---------  ----------  ---------
+all to all     =        =          =           =
+all to sway    ≠        ≠          ≠           ≠
+all to sway2   ≠        ≠          ≠           ≠
+sway to sway2  ≠        ≠          ≠           ≠
+sway to xpln   ≠        ≠          ≠           ≠
+sway2 to xpln  ≠        ≠          ≠           ≠
+sway to top    ≠        ≠          ≠           ≠
+
+real	1m38.127s
+user	0m0.030s
+sys	0m0.000s
