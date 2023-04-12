@@ -77,48 +77,55 @@ def merge_any(ranges0: List[Range]) -> List[Range]:
         j += 1
     return no_gaps(ranges0) if len(ranges0) == len(ranges1) else merge_any(ranges1)
 
-def extend(range, n, s):
-    range.lo = min(n, range.lo)
-    range.hi = max(n, range.hi)
-    range.y.add(s)
+
+def extend(range_, n, s):
+    range_.lo = min(n, range_.lo)
+    range_.hi = max(n, range_.hi)
+    range_.y.add(s)
 
 
-def bins(cols,rowss):
-    def with1Col(col):
+def bins(cols, rowss):
+    def with_one_col(col):
         def itself(x):
             return x
-        n,ranges = withAllRows(col)
-        ranges   = sorted(list(map(itself, ranges.values())),key = lambda x: x.lo) #-- keyArray to numArray, sorted
-        if   type(col) == Sym:
-            return ranges 
+
+        n, ranges = with_all_rows(col)
+        ranges = sorted(list(map(itself, ranges.values())), key=lambda x: x.lo)  # -- keyArray to numArray, sorted
+
+        if type(col) == Sym:
+            return ranges
         else:
-            return merges(ranges, n/options["bins"], options["D"]*col.div())
-    def withAllRows(col):
-        def xy(x,y):
+            return merges(ranges, n / options["bins"], options["D"] * col.div())
+
+    def with_all_rows(col):
+        def xy(x, y):
             nonlocal n
             if x != "?":
                 n = n + 1
-                k = bin(col,x)
-                ranges[k] = ranges.get(k, Range(col.at,col.txt,x))
+                k = bin_(col, x)
+                ranges[k] = ranges.get(k, Range(col.at, col.txt, x))
                 extend(ranges[k], x, y)
-        #-----------
-        n,ranges = 0,{}
-        for y,rows in rowss.items():
-            for _,row in enumerate(rows):
-                xy(row.cells[col.at],y)
-        return n, ranges 
-    # end --------------
-    ret = list(map(with1Col, cols))
+
+        n, ranges = 0, {}
+
+        for y, rows in rowss.items():
+            for _, row in enumerate(rows):
+                xy(row.cells[col.at], y)
+        return n, ranges
+        # end --------------
+
+    ret = list(map(with_one_col, cols))
     return ret
+
 
 # -- Map `x` into a small number of bins. `SYM`s just get mapped
 # -- to themselves but `NUM`s get mapped to one of `is.bins` values.
 # -- Called by function `bins`.
-def bin(col,x):
-    if x=="?" or type(col) == Sym:
+def bin_(col, x):
+    if x == "?" or type(col) == Sym:
         return x
-    tmp = (col.hi - col.lo)/(options["bins"] - 1)
-    return col.hi == col.lo and 1 or floor(x/tmp + .5)*tmp
+    tmp = (col.hi - col.lo) / (options["bins"] - 1)
+    return col.hi == col.lo and 1 or floor(x / tmp + .5) * tmp
 
 
 def value(has, n_b: int = 1, n_r: int = 1, s_goal: str = None) -> float:
@@ -134,52 +141,53 @@ def value(has, n_b: int = 1, n_r: int = 1, s_goal: str = None) -> float:
     return b ** 2 / (b + r)
 
 
-def merges(ranges0,nSmall,nFar):
-    def noGaps(t):
+def merges(ranges0, n_small, n_far):
+    def no_gaps(t):
         if not t:
             return t
-        for j in range(1,len(t)):
-            t[j].lo = t[j-1].hi
-        t[0].lo  = -inf
-        t[len(t)-1].hi =  inf
+
+        for j in range(1, len(t)):
+            t[j].lo = t[j - 1].hi
+
+        t[0].lo = -inf
+        t[len(t) - 1].hi = inf
+
         return t
-    def try2Merge(left,right,j):
-        y = merged(left.y, right.y, nSmall, nFar)
-        if y: 
-            j = j+1 #-- next round, skip over right.
-            left.hi, left.y = right.hi, y #end 
-        return j , left 
-    # end -------------
-    ranges1,j,here = [],0, None
+
+    def try2_merge(left, right, j):
+        y = merged(left.y, right.y, n_small, n_far)
+
+        if y:
+            j = j + 1
+            left.hi, left.y = right.hi, y
+
+        return j, left
+
+    ranges1, j, here = [], 0, None
+
     while j < len(ranges0):
         here = ranges0[j]
-        if j < len(ranges0)-1:
-            j,here = try2Merge(here, ranges0[j+1], j)
-        j=j+1
+
+        if j < len(ranges0) - 1:
+            j, here = try2_merge(here, ranges0[j + 1], j)
+
+        j = j + 1
         ranges1.append(here)
-    return noGaps(ranges0) if len(ranges0)==len(ranges1) else merges(ranges1,nSmall,nFar)
+
+    return no_gaps(ranges0) if len(ranges0) == len(ranges1) else merges(ranges1, n_small, n_far)
+
 
 #   -- If (1) the parts are too small or
 # -- (2) the whole is as good (or simpler) than the parts,
 # -- then return the merge.
-def merged(col1,col2,nSmall, nFar):
-    new = merge(col1,col2)
-    if nSmall and col1.n < nSmall or col2.n < nSmall:
-        return new
-    if nFar   and not type(col1) == Sym and abs(col1.div() - col2.div()) < nFar:
-        return new
-    if new.div() <= (col1.div()*col1.n + col2.div()*col2.n)/new.n:
+def merged(col1, col2, n_small, n_far):
+    new = merge(col1, col2)
+
+    if n_small and col1.n < n_small or col2.n < n_small:
         return new
 
-# -- Merge two `cols`. Called by def `merged`.
-def merge(col1,col2):
-    new = copy(col1)
-    if   type(col1) == Sym:
-        for x,n in col2.has.items():
-            new.add(x,n)
-    else:
-        for _,n in enumerate(col2.has):
-            new.add(n)
-        new.lo = min(col1.lo, col2.lo)
-        new.hi = max(col1.hi, col2.hi)
-    return new
+    if n_far and not type(col1) == Sym and abs(col1.div() - col2.div()) < n_far:
+        return new
+
+    if new.div() <= (col1.div() * col1.n + col2.div() * col2.n) / new.n:
+        return new

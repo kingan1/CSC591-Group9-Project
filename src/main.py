@@ -4,7 +4,7 @@ from data import Data
 from explain import Explain, selects
 from models.optimizers import SwayOptimizer
 from options import options
-from stats import cliffsDelta, bootstrap
+from stats import cliffs_delta, bootstrap
 
 help_ = """
 
@@ -139,7 +139,7 @@ def main():
                         if comparisons[i][1][k] == "=":
                             # check if it is false
                             base_y, diff_y = results[base][count].cols.y[k], results[diff][count].cols.y[k]
-                            equals = bootstrap(base_y.has(), diff_y.has()) and cliffsDelta(base_y.has(), diff_y.has())
+                            equals = bootstrap(base_y.has(), diff_y.has()) and cliffs_delta(base_y.has(), diff_y.has())
 
                             if not equals:
                                 if i == 0:

@@ -32,57 +32,66 @@ class Explain:
             return value(has, len(best.rows), len(rest.rows), "best")
 
         tmp, self.max_sizes = [], {}
+
         for _, ranges in enumerate(bins(data.cols.x, {"best": best.rows, "rest": rest.rows})):
             self.max_sizes[ranges[0].txt] = len(ranges)
+
             for _, range in enumerate(ranges):
                 tmp.append({"range": range, "max": len(ranges), "val": v(range.y.has)})
+
         rule, most = self.first_n(sorted(tmp, key=lambda x: x["val"], reverse=True), self.score)
+
         return rule, most
 
-    def first_n(self, sorted_ranges: List[Tuple[Range, int, float]], scoreFun):
+    def first_n(self, sorted_ranges: List[Tuple[Range, int, float]], score_fun):
         first = sorted_ranges[0]['val']
 
-        def useful(range):
-            if range['val'] > 0.05 and range['val'] > first / 10:
-                return range
+        def useful(range_):
+            if range_['val'] > 0.05 and range_['val'] > first / 10:
+                return range_
 
         sorted_ranges = [s for s in sorted_ranges if useful(s)]
         most: int = -1
         out: int = -1
 
         for n in range(len(sorted_ranges)):
-            tmp, rule = scoreFun([r['range'] for r in sorted_ranges[:n + 1]])
+            tmp, rule = score_fun([r['range'] for r in sorted_ranges[:n + 1]])
 
             if tmp is not None and tmp > most:
                 out, most = rule, tmp
 
         return out, most
 
-    def rule(self, ranges, maxSize):
+    def rule(self, ranges, max_size):
         t = {}
-        for _, range in enumerate(ranges):
-            t[range.txt] = t.get(range.txt, [])
-            t[range.txt].append({"lo": range.lo, "hi": range.hi, "at": range.at})
-        return self.prune(t, maxSize)
+        for _, range_ in enumerate(ranges):
+            t[range_.txt] = t.get(range_.txt, [])
+            t[range_.txt].append({"lo": range_.lo, "hi": range_.hi, "at": range_.at})
+            
+        return self.prune(t, max_size)
 
-    def prune(self, rule, maxSize):
+    def prune(self, rule, max_size):
         n = 0
         new_rule = {}
+
         for txt, ranges in rule.items():
             n = n + 1
-            if len(ranges) == maxSize[txt]:
+
+            if len(ranges) == max_size[txt]:
                 n = n - 1
                 rule[txt] = None
             else:
                 new_rule[txt] = ranges
+
         if n > 0:
             return new_rule
+
         return None
 
 
 def show_rule(rule):
-    def pretty(range):
-        return range["lo"] if range["lo"] == range["hi"] else [range["lo"], range["hi"]]
+    def pretty(range_):
+        return range_["lo"] if range_["lo"] == range_["hi"] else [range_["lo"], range_["hi"]]
 
     def merges(attr, ranges):
         return list(map(pretty, merge(sorted(ranges, key=lambda x: x["lo"])))), attr
@@ -93,9 +102,11 @@ def show_rule(rule):
         while j < len(t0):
             left = t0[j]
             right = None if j + 1 >= len(t0) else t0[j + 1]
+
             if right and left["hi"] == right["lo"]:
                 left["hi"] = right["hi"]
                 j = j + 1
+
             t.append({"lo": left["lo"], "hi": left["hi"]})
             j = j + 1
 
@@ -111,8 +122,10 @@ def selects(rule, rows):
             x = row.cells[at]
             lo = rang['lo']
             hi = rang['hi']
-            if x == '?' or (lo == hi and lo == x) or (lo <= x and x < hi):
+
+            if x == '?' or (lo == hi and lo == x) or (lo <= x < hi):
                 return True
+
         return False
 
     def conjunction(row):
@@ -121,11 +134,13 @@ def selects(rule, rows):
                 return False
         return True
 
-    def function(r):
-        return r if conjunction(r) else None
+    def function(row):
+        return row if conjunction(row) else None
 
     r = []
+
     for item in list(map(function, rows)):
         if item:
             r.append(item)
+
     return r
