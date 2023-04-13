@@ -2,7 +2,7 @@ from tabulate import tabulate
 
 from data import Data
 from explain import Explain, selects
-from models.optimizers import SwayOptimizer
+from models.optimizers import SwayOptimizer, SwayWithPCAOptimizer
 from options import options
 from stats import cliffs_delta, bootstrap
 
@@ -69,13 +69,16 @@ def main():
     if options["help"]:
         print(help_)
     else:
-        results = {"all": [], "sway": [], "xpln": [], "top": []}
-        n_evals = {"all": 0, "sway": 0, "xpln": 0, "top": 0}
+        results = {"all": [], "sway": [], "sway2": [], "xpln": [], "xpln2": [], "top": []}
+        n_evals = {"all": 0, "sway": 0, "sway2": 0, "xpln": 0, "xpln2": 0, "top": 0}
 
         comparisons = [
             [["all", "all"], None],
             [["all", "sway"], None],
+            [["all", "sway2"], None],
+            [["sway", "sway2"], None],
             [["sway", "xpln"], None],
+            [["sway2", "xpln"], None],
             [["sway", "top"], None]
         ]
 
@@ -96,18 +99,34 @@ def main():
                 i_min=options["IMin"]
             ).run(data)
 
+            # get "sway2" results
+            best2, rest2, evals_sway2 = SwayWithPCAOptimizer(
+                reuse=options["reuse"],
+                far=options["Far"],
+                halves=options["Halves"],
+                rest=options["Rest"],
+                i_min=options["IMin"]
+            ).run(data)
+
             # get the "xpln" results
             x = Explain(best, rest)
             rule, _ = x.xpln(data, best, rest)
 
+            # get the "xpln2" results
+            x2 = Explain(best2, rest2)
+            rule2, _ = x2.xpln(data, best2, rest2)
+
             # if it was able to find a rule
-            if rule != -1:
+            if rule != -1 and rule2 != -1:
                 # get the best rows of that rule
                 data1 = Data.clone(data, selects(rule, data.rows))
+                data2 = Data.clone(data, selects(rule2, data.rows))
 
                 results['all'].append(data)
                 results['sway'].append(best)
+                results['sway2'].append(best2)
                 results['xpln'].append(data1)
+                results['xpln2'].append(data2)
 
                 # get the "top" results by running the betters algorithm
                 top2, _ = data.betters(len(best.rows))
@@ -118,10 +137,12 @@ def main():
                 # for all: 0 evaluations 
                 n_evals["all"] += 0
                 n_evals["sway"] += evals_sway
+                n_evals["sway2"] += evals_sway2
 
                 # xpln uses the same number of evals since it just uses the data from
                 # sway to generate rules, no extra evals needed
                 n_evals["xpln"] += evals_sway
+                n_evals["xpln2"] += evals_sway2
                 n_evals["top"] += len(data.rows)
 
                 # update comparisons

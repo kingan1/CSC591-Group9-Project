@@ -3,7 +3,7 @@ from typing import List, Optional
 from sklearn.decomposition import PCA
 
 from data import Data
-from data.col import Col, Num
+from data.col import Col, Num, Sym
 from distance import cosine_similarity, PDist, Distance
 from predicate import ZitzlerPredicate
 from utils import many, any
@@ -37,6 +37,13 @@ class SwayWithPCAOptimizer:
             ]
             for row in self._data.rows
         ]
+
+        for i in range(len(self._data.rows)):
+            for col in cols:
+                if isinstance(col, Sym):
+                    value = self._data.rows[i].cells[col.at]
+
+                    input_[i] += [0.5 if value == "?" else (1 if key == value else 0) for key in col.has.keys()]
 
         pca = PCA(n_components=2)
         self._pca_rows = pca.fit_transform(input_)

@@ -87,4 +87,7 @@ class Num(Col):
         return abs(data1 - data2)
 
     def normalize(self, value: float):
-        return (value - self.lo) / (self.hi - self.lo)
+        try:
+            return (value - self.lo) / (self.hi - self.lo)
+        except ZeroDivisionError as e:
+            return 1
