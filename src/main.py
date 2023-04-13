@@ -99,7 +99,6 @@ def explore_parameters():
         return get_options(res)
     
     # these are optimized for auto2.csv
-    print("not refreshing sway")
     finalized = {'Far': 0.85, 'Halves': 500, 'Max': 1, 'IMin': 0.0, 'P': 1, 'Rest': 2, 'reuse': True}
     return get_options(finalized)
 
@@ -127,7 +126,7 @@ def get_options(new_options):
     
     for k,v in new_options.items():
         options2[k] = v
-    print("using options", options2)
+
     assert len(options2) == 17
     return options2
 

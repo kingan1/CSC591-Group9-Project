@@ -1,17 +1,15 @@
-not refreshing sway
-using options {'Bins': 16, 'Cliff': 0.147, 'D': 0.35, 'Far': 0.8, 'help': False, 'Halves': 700, 'Min': 0.0, 'Max': 1, 'P': 1, 'Rest': 4, 'reuse': False, 'Bootstrap': 512, 'Conf': 0.05, 'file': '../data/pom.csv', 'Niter': 20, 'sway2': False}
-         Cost-    Completion+    Idle-
------  -------  -------------  -------
-all    329.288          0.899     0.24
-sway   289.629         0.9085    0.207
-sway2  237.777          0.865    0.092
-xpln   318.632          0.898   0.2345
-top     138.75              1        0
+         Cost-    Completion+    Idle-    Avg evals
+-----  -------  -------------  -------  -----------
+all    327.044          0.899    0.242            0
+sway    242.85          0.907   0.2085            8
+sway2  166.876         0.9085    0.051           14
+xpln   309.063         0.8945    0.226            8
+top     138.75              1        0        10000
 
              Best    Beat Sway?
 -----------  ------  ------------
 Cost-        top     True
-Completion+  top     False
+Completion+  top     True
 Idle-        top     True
 
                Cost-    Completion+    Idle-
@@ -24,6 +22,6 @@ sway to xpln   ≠        ≠              ≠
 sway2 to xpln  ≠        ≠              ≠
 sway to top    ≠        ≠              ≠
 
-real	8m34.875s
+real	3m3.007s
 user	0m0.000s
-sys	0m0.000s
+sys	0m0.030s

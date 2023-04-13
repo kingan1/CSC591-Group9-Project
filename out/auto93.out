@@ -1,12 +1,10 @@
-not refreshing sway
-using options {'Bins': 16, 'Cliff': 0.147, 'D': 0.35, 'Far': 0.8, 'help': False, 'Halves': 700, 'Min': 0.0, 'Max': 1, 'P': 1, 'Rest': 4, 'reuse': False, 'Bootstrap': 512, 'Conf': 0.05, 'file': '../data/auto93.csv', 'Niter': 20, 'sway2': False}
-          Lbs-    Acc+    Mpg+
------  -------  ------  ------
-all       2800    15.5      20
-sway   2173.95  16.185    29.5
-sway2   1960.5   18.08    38.5
-xpln   2217.45  15.535    27.5
-top       1985   18.74      40
+          Lbs-    Acc+    Mpg+    Avg evals
+-----  -------  ------  ------  -----------
+all       2800    15.5      20            0
+sway    2098.3   16.37      32            6
+sway2  1976.95  18.045      34         9.15
+xpln   2168.45  16.035    29.5            6
+top       1985   18.79      40          398
 
       Best    Beat Sway?
 ----  ------  ------------
@@ -16,7 +14,7 @@ Mpg+  top     True
 
                Lbs-    Acc+    Mpg+
 -------------  ------  ------  ------
-all to all     =       =       ≠
+all to all     =       =       =
 all to sway    ≠       ≠       ≠
 all to sway2   ≠       ≠       ≠
 sway to sway2  ≠       ≠       ≠
@@ -24,6 +22,6 @@ sway to xpln   ≠       ≠       ≠
 sway2 to xpln  ≠       ≠       ≠
 sway to top    ≠       ≠       ≠
 
-real	2m25.418s
+real	0m45.343s
 user	0m0.000s
-sys	0m0.047s
+sys	0m0.031s
