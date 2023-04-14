@@ -4,7 +4,6 @@ from data import Data
 from data.col.sym import Sym
 from .base import BaseOptimizer
 from sklearn import preprocessing, tree
-import matplotlib.pyplot as plt
 
 
 class DtreeOptimizer(BaseOptimizer):
@@ -47,8 +46,6 @@ class DtreeOptimizer(BaseOptimizer):
         y = [x[-1] for x in X]
         
         clf = tree.DecisionTreeClassifier().fit(X_data, y)
-        tree.plot_tree(clf)
-        plt.show()
         return clf
     
     def _remove_missing(self, X):
