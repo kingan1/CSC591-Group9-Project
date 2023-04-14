@@ -1,29 +1,30 @@
           LOC+    AEXP-    PLEX-    RISK-    EFFORT-    Avg evals
 -----  -------  -------  -------  -------  ---------  -----------
-all       1055        3        3     5.05      19584            0
-sway   1076.55      2.8     2.95      3.9    20024.7         6.05
-sway2   1264.5     1.85     2.25        4    28338.6         10.4
-xpln    1000.7      2.9      2.9     4.85    19185.7         6.05
-top     1530.9        2        1     3.05      29972         1000
+all     1050.4        3        3        5    19474.9            0
+sway1  1065.15      2.9      3.1      3.3    18238.2            6
+sway2     1565     2.15     2.45      3.7    34690.2         10.4
+xpln1   1015.9     2.95      2.9      4.6    19273.2            6
+xpln2   1009.7     2.95     3.05     4.35    18420.7            6
+top       1529        2        1        3      29972         1000
 
-         Best    Beat Sway?
--------  ------  ------------
-LOC+     top     True
-AEXP-    sway2   True
-PLEX-    top     True
-RISK-    top     False
-EFFORT-  xpln    False
+         Best    Beat Sway?    Beat Xpln?
+-------  ------  ------------  ------------
+LOC+     sway2   True          False
+AEXP-    top     True          False
+PLEX-    top     True          False
+RISK-    top     False         True
+EFFORT-  sway1   False         True
 
-               LOC+    AEXP-    PLEX-    RISK-    EFFORT-
--------------  ------  -------  -------  -------  ---------
-all to all     =       =        =        =        =
-all to sway    ≠       ≠        ≠        ≠        ≠
-all to sway2   ≠       ≠        ≠        ≠        ≠
-sway to sway2  ≠       ≠        ≠        ≠        ≠
-sway to xpln   ≠       ≠        ≠        ≠        ≠
-sway2 to xpln  ≠       ≠        ≠        ≠        ≠
-sway to top    ≠       ≠        ≠        ≠        ≠
+                LOC+    AEXP-    PLEX-    RISK-    EFFORT-
+--------------  ------  -------  -------  -------  ---------
+all to all      =       =        =        =        =
+all to sway1    ≠       ≠        ≠        ≠        ≠
+all to sway2    ≠       ≠        ≠        ≠        ≠
+sway1 to sway2  ≠       ≠        ≠        ≠        ≠
+sway1 to xpln1  ≠       ≠        ≠        ≠        ≠
+sway2 to xpln2  ≠       ≠        ≠        ≠        ≠
+sway1 to top    ≠       ≠        ≠        ≠        ≠
 
-real	1m53.209s
+real	2m31.660s
 user	0m0.000s
 sys	0m0.015s

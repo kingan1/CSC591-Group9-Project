@@ -1,27 +1,28 @@
          Cost-    Completion+    Idle-    Avg evals
 -----  -------  -------------  -------  -----------
-all    327.044          0.899    0.242            0
-sway    242.85          0.907   0.2085            8
-sway2  166.876         0.9085    0.051           14
-xpln   309.063         0.8945    0.226            8
+all    324.411          0.898    0.239            0
+sway1  240.999         0.8945    0.193            8
+sway2  207.387          0.913     0.08           14
+xpln1  325.876          0.897   0.2355            8
+xpln2  273.348          0.903    0.229            8
 top     138.75              1        0        10000
 
-             Best    Beat Sway?
------------  ------  ------------
-Cost-        top     True
-Completion+  top     True
-Idle-        top     True
+             Best    Beat Sway?    Beat Xpln?
+-----------  ------  ------------  ------------
+Cost-        top     True          True
+Completion+  top     True          True
+Idle-        top     True          True
 
-               Cost-    Completion+    Idle-
--------------  -------  -------------  -------
-all to all     =        =              =
-all to sway    ≠        ≠              ≠
-all to sway2   ≠        ≠              ≠
-sway to sway2  ≠        ≠              ≠
-sway to xpln   ≠        ≠              ≠
-sway2 to xpln  ≠        ≠              ≠
-sway to top    ≠        ≠              ≠
+                Cost-    Completion+    Idle-
+--------------  -------  -------------  -------
+all to all      =        =              =
+all to sway1    ≠        ≠              ≠
+all to sway2    ≠        ≠              ≠
+sway1 to sway2  ≠        ≠              ≠
+sway1 to xpln1  ≠        ≠              ≠
+sway2 to xpln2  ≠        ≠              ≠
+sway1 to top    ≠        ≠              ≠
 
-real	3m3.007s
+real	2m41.602s
 user	0m0.000s
-sys	0m0.030s
+sys	0m0.015s

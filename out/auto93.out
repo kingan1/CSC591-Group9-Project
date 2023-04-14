@@ -1,27 +1,28 @@
           Lbs-    Acc+    Mpg+    Avg evals
 -----  -------  ------  ------  -----------
 all       2800    15.5      20            0
-sway    2098.3   16.37      32            6
-sway2  1976.95  18.045      34         9.15
-xpln   2168.45  16.035    29.5            6
-top       1985   18.79      40          398
+sway1   2210.4   16.18      31            6
+sway2  2005.45  17.585    38.5         9.25
+xpln1  2212.35  16.075      30            6
+xpln2  2195.75  16.385    31.5            6
+top       1985   18.78      40          398
 
-      Best    Beat Sway?
-----  ------  ------------
-Lbs-  sway2   True
-Acc+  top     True
-Mpg+  top     True
+      Best    Beat Sway?    Beat Xpln?
+----  ------  ------------  ------------
+Lbs-  top     True          True
+Acc+  top     True          True
+Mpg+  top     True          True
 
-               Lbs-    Acc+    Mpg+
--------------  ------  ------  ------
-all to all     =       =       =
-all to sway    ≠       ≠       ≠
-all to sway2   ≠       ≠       ≠
-sway to sway2  ≠       ≠       ≠
-sway to xpln   ≠       ≠       ≠
-sway2 to xpln  ≠       ≠       ≠
-sway to top    ≠       ≠       ≠
+                Lbs-    Acc+    Mpg+
+--------------  ------  ------  ------
+all to all      =       =       =
+all to sway1    ≠       ≠       ≠
+all to sway2    ≠       ≠       ≠
+sway1 to sway2  ≠       ≠       ≠
+sway1 to xpln1  ≠       ≠       ≠
+sway2 to xpln2  ≠       ≠       ≠
+sway1 to top    ≠       ≠       ≠
 
-real	0m45.343s
+real	0m48.043s
 user	0m0.000s
-sys	0m0.031s
+sys	0m0.000s

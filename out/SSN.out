@@ -1,26 +1,29 @@
+WARNING: all to all 0 0 false
+all to all comparison failed for PSNR-
          PSNR-    Energy-    Avg evals
 -----  -------  ---------  -----------
-all    45.6335    1256.98            0
-sway    44.841    1187.33            9
-sway2   39.016    756.476         16.1
-xpln    45.897    1358.39            9
-top    26.7025    465.998        53662
+all    45.7885    1266.74            0
+sway1  44.2985    1027.62            9
+sway2  38.4125     866.66        16.05
+xpln1   45.248    1086.21            9
+xpln2  45.0685    1043.84            9
+top     26.705    466.056        53662
 
-         Best    Beat Sway?
--------  ------  ------------
-PSNR-    top     True
-Energy-  top     True
+         Best    Beat Sway?    Beat Xpln?
+-------  ------  ------------  ------------
+PSNR-    top     True          True
+Energy-  top     True          True
 
-               PSNR-    Energy-
--------------  -------  ---------
-all to all     =        =
-all to sway    ≠        ≠
-all to sway2   ≠        ≠
-sway to sway2  ≠        ≠
-sway to xpln   ≠        ≠
-sway2 to xpln  ≠        ≠
-sway to top    ≠        ≠
+                PSNR-    Energy-
+--------------  -------  ---------
+all to all      ≠        =
+all to sway1    ≠        ≠
+all to sway2    ≠        ≠
+sway1 to sway2  ≠        ≠
+sway1 to xpln1  ≠        ≠
+sway2 to xpln2  ≠        ≠
+sway1 to top    ≠        ≠
 
-real    5m28.809s
-user    0m0.000s 
-sys     0m0.015s 
+real	5m38.655s
+user	0m0.015s
+sys	0m0.000s

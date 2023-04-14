@@ -1,28 +1,29 @@
          Kloc+    Effort-    Defects-    Months-    Avg evals
 -----  -------  ---------  ----------  ---------  -----------
 all       47.5        252        2007       21.4            0
-sway      36.3     182.58     1518.15      17.87            5
+sway1     36.3     182.58     1518.15      17.87            5
 sway2    16.82      70.81       614.4     12.855          7.2
-xpln     46.04     190.58     1863.25     19.475            5
+xpln1    46.04     190.58     1863.25     19.475            5
+xpln2   47.185     226.62     1996.85      20.07            5
 top        4.4      14.04      137.35      8.385           93
 
-          Best    Beat Sway?
---------  ------  ------------
-Kloc+     all     False
-Effort-   top     True
-Defects-  top     True
-Months-   top     True
+          Best    Beat Sway?    Beat Xpln?
+--------  ------  ------------  ------------
+Kloc+     all     False         True
+Effort-   top     True          False
+Defects-  top     True          False
+Months-   top     True          False
 
-               Kloc+    Effort-    Defects-    Months-
--------------  -------  ---------  ----------  ---------
-all to all     =        =          =           =
-all to sway    ≠        ≠          ≠           ≠
-all to sway2   ≠        ≠          ≠           ≠
-sway to sway2  ≠        ≠          ≠           ≠
-sway to xpln   ≠        ≠          ≠           ≠
-sway2 to xpln  ≠        ≠          ≠           ≠
-sway to top    ≠        ≠          ≠           ≠
+                Kloc+    Effort-    Defects-    Months-
+--------------  -------  ---------  ----------  ---------
+all to all      =        =          =           =
+all to sway1    ≠        ≠          ≠           ≠
+all to sway2    ≠        ≠          ≠           ≠
+sway1 to sway2  ≠        ≠          ≠           ≠
+sway1 to xpln1  ≠        ≠          ≠           ≠
+sway2 to xpln2  ≠        ≠          ≠           ≠
+sway1 to top    ≠        ≠          ≠           ≠
 
-real	0m15.951s
-user	0m0.015s
-sys	0m0.000s
+real	0m19.050s
+user	0m0.000s
+sys	0m0.015s

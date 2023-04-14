@@ -1,25 +1,26 @@
          N_effort-    Avg evals
 -----  -----------  -----------
 all           2098            0
-sway         429.5            6
-sway2        275.3         9.65
-xpln         874.9            6
-top            149          499
+sway1        485.4            6
+sway2       409.75          9.7
+xpln1        925.7            6
+xpln2        606.4            6
+top          146.5          499
 
-           Best    Beat Sway?
----------  ------  ------------
-N_effort-  top     True
+           Best    Beat Sway?    Beat Xpln?
+---------  ------  ------------  ------------
+N_effort-  top     True          True
 
-               N_effort-
--------------  -----------
-all to all     =
-all to sway    ≠
-all to sway2   ≠
-sway to sway2  ≠
-sway to xpln   ≠
-sway2 to xpln  ≠
-sway to top    ≠
+                N_effort-
+--------------  -----------
+all to all      =
+all to sway1    ≠
+all to sway2    ≠
+sway1 to sway2  ≠
+sway1 to xpln1  ≠
+sway2 to xpln2  ≠
+sway1 to top    ≠
 
-real	0m23.145s
-user	0m0.000s
-sys	0m0.015s
+real	0m28.997s
+user	0m0.015s
+sys	0m0.000s
