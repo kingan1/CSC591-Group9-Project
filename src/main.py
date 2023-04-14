@@ -3,6 +3,7 @@ from tabulate import tabulate
 from data import Data
 from explain import Explain, selects
 from models.optimizers import SwayOptimizer, SwayHyperparameterOptimizer
+from models.optimizers.dtree import DtreeOptimizer
 from options import options
 from stats import cliffs_delta, bootstrap
 
@@ -147,17 +148,17 @@ def main():
     if options["help"]:
         print(help_)
     else:
-        results = {"all": [], "sway": [], "sway2": [], "xpln": [], "top": []}
-        n_evals = {"all": 0, "sway": 0, "sway2": 0, "xpln": 0, "top": 0}
+        results = {"all": [], "sway1": [], "sway2": [], "xpln1": [], "xpln2": [], "top": []}
+        n_evals = {"all": 0, "sway1": 0, "sway2": 0, "xpln1": 0, "xpln2": 0, "top": 0}
 
         
         comparisons = [[["all", "all"],None], 
-                       [["all", "sway"],None], 
+                       [["all", "sway1"],None], 
                        [["all", "sway2"],None],
-                       [["sway", "sway2"],None],  
-                       [["sway", "xpln"],None],   
-                       [["sway2", "xpln"],None], 
-                       [["sway", "top"],None]]
+                       [["sway1", "sway2"],None],  
+                       [["sway1", "xpln1"],None],   
+                       [["sway2", "xpln2"],None], 
+                       [["sway1", "top"],None]]
 
         count = 0
         sway2_options = explore_parameters()
@@ -183,12 +184,16 @@ def main():
 
             # if it was able to find a rule
             if rule != -1:
+                xpln2 = Data.clone(data, 
+                                DtreeOptimizer().run(data, best, rest))
                 # get the best rows of that rule
                 data1 = Data.clone(data, selects(rule, data.rows))
 
                 results['all'].append(data)
-                results['sway'].append(best)
-                results['xpln'].append(data1)
+                results['sway1'].append(best)
+                results['xpln1'].append(data1)
+                results['xpln2'].append(xpln2)
+
 
                 # get the "top" results by running the betters algorithm
                 top2, _ = data.betters(len(best.rows))
@@ -209,12 +214,13 @@ def main():
                 # accumulate the number of evals
                 # for all: 0 evaluations 
                 n_evals["all"] += 0
-                n_evals["sway"] += evals_sway
+                n_evals["sway1"] += evals_sway
                 n_evals["sway2"] += evals_sway2
 
                 # xpln uses the same number of evals since it just uses the data from
                 # sway to generate rules, no extra evals needed
-                n_evals["xpln"] += evals_sway
+                n_evals["xpln1"] += evals_sway
+                n_evals["xpln2"] += evals_sway
                 n_evals["top"] += len(data.rows)
 
                 # update comparisons
@@ -270,13 +276,17 @@ def main():
             fun = max if headers[i][-1] == "+" else min
             # vals is sway's result for y[i] and sway2's result for y[i]
             # used to say if our sway2 algorithm is better than sway
-            vals = [table[h.index("sway")][i+1],table[h.index("sway2")][i+1]]
+            vals = [table[h.index("sway1")][i+1],table[h.index("sway2")][i+1]]
+
+            
+            vals_x = [table[h.index("xpln1")][i+1],table[h.index("xpln2")][i+1]]
             # appends [y column name, 
             #          what algorithm is the best for that y, 
             #          if sway2 better than sway2]
             maxes.append([headers[i],
                           table[header_vals.index(fun(header_vals))][0],
-                           vals.index(fun(vals)) == 1])
+                           vals.index(fun(vals)) == 1,
+                           vals_x.index(fun(vals_x)) == 1])
 
         if options["wColor"]:
             # updates stats table to have the best result per column highlighted
@@ -295,7 +305,7 @@ def main():
         print()
 
             
-        m_headers = ["Best", "Beat Sway?"]
+        m_headers = ["Best", "Beat Sway?", "Beat Xpln?"]
         print(tabulate(maxes, headers=m_headers,numalign="right"))
         print()
         
