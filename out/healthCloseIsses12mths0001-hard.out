@@ -1,17 +1,22 @@
-         MRE-    ACC+    PRED40+    Avg evals
-----  -------  ------  ---------  -----------
-all    74.998  7.1455         25            0
-sway  75.0605  7.1505     25.625            8
-xpln   75.054  7.1675     25.625            8
-top     64.91   11.33         25        10000
+          MRE-    ACC+    PRED40+    Avg evals
+-----  -------  ------  ---------  -----------
+all    75.0475   7.149         25            0
+sway   75.0965  7.1485     25.625            8
+sway2   75.014   7.322     24.375            8
+xpln   75.0805   7.181     25.625            8
+xpln2   75.156   7.211     25.625            8
+top      64.91   11.33         25        10000
 
-              MRE-    ACC+    PRED40+
-------------  ------  ------  ---------
-all to all    =       =       =
-all to sway   ≠       ≠       ≠
-sway to xpln  ≠       ≠       ≠
-sway to top   ≠       ≠       ≠
+               MRE-    ACC+    PRED40+
+-------------  ------  ------  ---------
+all to all     =       =       =
+all to sway    ≠       ≠       ≠
+all to sway2   ≠       ≠       ≠
+sway to sway2  ≠       ≠       ≠
+sway to xpln   =       ≠       ≠
+sway2 to xpln  ≠       ≠       ≠
+sway to top    ≠       ≠       ≠
 
-real	1m21.095s
-user	0m0.015s
-sys	0m0.015s
+real	1m38.062s
+user	1m36.567s
+sys	0m6.807s
