@@ -1,22 +1,22 @@
          CityMPG+    HighwayMPG+    Weight-    Class-    Avg evals
 -----  ----------  -------------  ---------  --------  -----------
 all            21             28       3040      17.7            0
-sway         28.8           33.8       2248      9.73            5
-sway2       30.65           34.8     2187.5     9.415            5
-xpln        28.35             33     2339.5     10.37            5
-xpln2       30.35           34.4    2210.25      9.26            5
-top            33           40.2       2053      8.92           93
+sway        29.75           34.2    2131.75     8.785            5
+sway2          27           32.7     2340.5     10.71            5
+xpln         30.7          34.95     2134.5      9.01            5
+xpln2        27.6          32.55     2435.5     11.26            5
+top            33           39.8       2052      8.88           93
 
                CityMPG+    HighwayMPG+    Weight-    Class-
 -------------  ----------  -------------  ---------  --------
 all to all     =           =              =          =
 all to sway    ≠           ≠              ≠          ≠
-all to sway2   ≠           =              ≠          ≠
+all to sway2   ≠           ≠              ≠          ≠
 sway to sway2  ≠           ≠              ≠          ≠
 sway to xpln   ≠           ≠              ≠          ≠
 sway2 to xpln  ≠           ≠              ≠          ≠
 sway to top    ≠           ≠              ≠          ≠
 
-real	0m16.264s
-user	0m17.173s
-sys	0m4.836s
+real	0m22.672s
+user	0m21.577s
+sys	0m7.159s

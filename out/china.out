@@ -1,10 +1,10 @@
          N_effort-    Avg evals
 -----  -----------  -----------
 all           2098            0
-sway        575.55            6
-sway2       662.55            6
-xpln        1138.4            6
-xpln2       1115.4            6
+sway         536.6            6
+sway2        751.1            6
+xpln         981.5            6
+xpln2      1361.85            6
 top          147.5          499
 
                N_effort-
@@ -17,6 +17,6 @@ sway to xpln   ≠
 sway2 to xpln  ≠
 sway to top    ≠
 
-real	0m19.321s
-user	0m0.000s
-sys	0m0.015s
+real	0m27.693s
+user	0m28.294s
+sys	0m13.117s

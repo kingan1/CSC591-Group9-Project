@@ -1,6 +1,6 @@
 from typing import List, Optional
 
-from sklearn.decomposition import PCA
+from sklearn.decomposition import FactorAnalysis
 
 from data import Data
 from data.col import Col, Num, Sym
@@ -9,11 +9,11 @@ from predicate import ZitzlerPredicate
 from utils import many, any
 
 
-class SwayWithPCAOptimizer:
+class SwayWithFAOptimizer:
     def __init__(self, distance_class: Distance = None, reuse: bool = True, far: float = 0.95, halves: int = 512,
                  rest: int = 10, i_min: float = 0.5):
         self._data: Optional[Data] = None
-        self._pca_rows: List[List[float]] = [[]]
+        self._fa_rows: List[List[float]] = [[]]
 
         self._distance_class = distance_class or PDist(p=2)
 
@@ -25,11 +25,11 @@ class SwayWithPCAOptimizer:
 
     def run(self, data: Data):
         self._data: Data = data
-        self._run_pca(self._data.cols.x)
+        self._run_fa(self._data.cols.x)
 
         return self._sway()
 
-    def _run_pca(self, cols: List[Col]):
+    def _run_fa(self, cols: List[Col]):
         input_ = [
             [
                 col.normalize(row.cells[col.at]) if row.cells[col.at] != "?" else col.normalize(col.mid())
@@ -45,15 +45,15 @@ class SwayWithPCAOptimizer:
 
                     input_[i] += [0.5 if value == "?" else (1 if key == value else 0) for key in col.has.keys()]
 
-        pca = PCA(n_components=2)
-        self._pca_rows = pca.fit_transform(input_)
+        fa = FactorAnalysis(n_components=2)
+        self._fa_rows = fa.fit_transform(input_)
 
     def _project(self, row_index: int, a_index: int, b_index: int, c: float):
         return {
             "row_index": row_index,
             "x": cosine_similarity(
-                a=self._distance_class.raw_dist(self._pca_rows[row_index], self._pca_rows[a_index]),
-                b=self._distance_class.raw_dist(self._pca_rows[row_index], self._pca_rows[b_index]),
+                a=self._distance_class.raw_dist(self._fa_rows[row_index], self._fa_rows[a_index]),
+                b=self._distance_class.raw_dist(self._fa_rows[row_index], self._fa_rows[b_index]),
                 c=c
             )
         }
@@ -68,7 +68,7 @@ class SwayWithPCAOptimizer:
 
         tmp = sorted(
             [
-                {"row_index": i, "d": self._distance_class.raw_dist(self._pca_rows[i], self._pca_rows[a])}
+                {"row_index": i, "d": self._distance_class.raw_dist(self._fa_rows[i], self._fa_rows[a])}
                 for i in some
             ],
             key=lambda x: x["d"]

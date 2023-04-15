@@ -1,11 +1,11 @@
          NUMBERITERATIONS-    TIMETOSOLUTION-    Avg evals
 -----  -------------------  -----------------  -----------
-all                   6.75            134.805            0
-sway                  5.85            113.546           10
-sway2                 5.35            115.144           10
-xpln                   5.6            117.911           10
-xpln2                 5.65            122.954           10
-top                      4             59.998       239360
+all                   6.85            135.368            0
+sway                   5.7            121.133           10
+sway2                34.75            480.764           10
+xpln                  5.25            120.329           10
+xpln2                41.95            582.116           10
+top                      4             59.982       239360
 
                NUMBERITERATIONS-    TIMETOSOLUTION-
 -------------  -------------------  -----------------
@@ -17,6 +17,6 @@ sway to xpln   ≠                    ≠
 sway2 to xpln  ≠                    ≠
 sway to top    ≠                    ≠
 
-real	11m56.214s
-user	11m24.236s
-sys	1m24.358s
+real	23m55.570s
+user	27m28.197s
+sys	23m34.926s

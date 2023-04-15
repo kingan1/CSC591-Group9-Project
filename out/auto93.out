@@ -1,10 +1,10 @@
           Lbs-    Acc+    Mpg+    Avg evals
 -----  -------  ------  ------  -----------
 all       2800    15.5      20            0
-sway    2172.1   16.14      32            6
-sway2   2113.6   15.93      33            6
-xpln   2222.45   15.66      28            6
-xpln2   2166.8   16.02      30            6
+sway   2062.45   16.17      34            6
+sway2   2039.5   16.75      35            6
+xpln   2176.65   16.21      30            6
+xpln2   2058.3    16.5      30            6
 top       1985   18.79      40          398
 
                Lbs-    Acc+    Mpg+
@@ -17,6 +17,6 @@ sway to xpln   ≠       ≠       ≠
 sway2 to xpln  ≠       ≠       ≠
 sway to top    ≠       ≠       ≠
 
-real	0m41.960s
-user	0m41.940s
-sys	0m0.500s
+real	0m48.950s
+user	0m49.988s
+sys	0m9.401s
