@@ -1,19 +1,34 @@
-WARNING: all to all 0 1 false
-all to all comparison failed for Energy-
-        PSNR-    Energy-    Avg evals
-----  -------  ---------  -----------
-all    45.737    1240.66            0
-sway  44.3325    1010.56            9
-xpln  45.6665    1139.99            9
-top   26.7075    466.114        53662
+                        PSNR-    Energy-    Avg evals
+--------------------  -------  ---------  -----------
+all                   45.7025    1257.02            0
+sway                  44.3215    1094.72            9
+sway_pca              44.4125    1115.28            9
+sway_pca_alpha         45.196    2598.33            9
+sway_pca_alpha2        44.754    962.685            9
+sway_xpln              45.717     997.24            9
+sway_pca_xpln         45.2525    1259.75            9
+sway_pca_alpha_xpln     44.85    2273.04            9
+sway_pca_alpha2_xpln   45.218    971.245            9
+top                      26.7     465.94        53662
 
-              PSNR-    Energy-
-------------  -------  ---------
-all to all    =        ≠
-all to sway   ≠        ≠
-sway to xpln  ≠        ≠
-sway to top   ≠        ≠
+                                   PSNR-    Energy-
+---------------------------------  -------  ---------
+all to all                         =        =
+all to sway                        ≠        ≠
+all to sway_pca                    ≠        ≠
+all to sway_pca_alpha              ≠        ≠
+all to sway_pca_alpha2             ≠        ≠
+sway to sway_pca                   ≠        ≠
+sway to sway_pca_alpha             ≠        ≠
+sway to sway_pca_alpha2            ≠        ≠
+sway_pca to sway_pca_alpha         ≠        ≠
+sway_pca to sway_pca_alpha2        ≠        ≠
+sway_pca_alpha to sway_pca_alpha2  ≠        ≠
+sway to top                        ≠        ≠
+sway_pca to top                    ≠        ≠
+sway_pca_alpha to top              ≠        ≠
+sway_pca_alpha2 to top             ≠        ≠
 
-real	5m13.151s
-user	0m0.000s
-sys	0m0.015s
+real	5m30.720s
+user	5m32.627s
+sys	0m38.065s

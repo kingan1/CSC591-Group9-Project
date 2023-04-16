@@ -1,17 +1,34 @@
-        Cost-    Completion+    Idle-    Avg evals
-----  -------  -------------  -------  -----------
-all   325.348          0.897   0.2405            0
-sway  290.829          0.902   0.2105            8
-xpln  328.465         0.9045   0.2535            8
-top    138.75              1        0        10000
+                        Cost-    Completion+    Idle-    Avg evals
+--------------------  -------  -------------  -------  -----------
+all                   323.248          0.899    0.243            0
+sway                  296.803         0.9085   0.2045            8
+sway_pca              229.467          0.893    0.256            8
+sway_pca_alpha        375.025         0.9005   0.2285            8
+sway_pca_alpha2       284.989         0.8935    0.231            8
+sway_xpln             330.564         0.8935    0.242            8
+sway_pca_xpln         306.217         0.8995    0.237            8
+sway_pca_alpha_xpln   335.706          0.895    0.239            8
+sway_pca_alpha2_xpln  264.128         0.8945    0.246            8
+top                    138.51              1        0        10000
 
-              Cost-    Completion+    Idle-
-------------  -------  -------------  -------
-all to all    =        =              =
-all to sway   ≠        ≠              ≠
-sway to xpln  ≠        ≠              ≠
-sway to top   ≠        ≠              ≠
+                                   Cost-    Completion+    Idle-
+---------------------------------  -------  -------------  -------
+all to all                         =        =              =
+all to sway                        ≠        ≠              ≠
+all to sway_pca                    ≠        ≠              ≠
+all to sway_pca_alpha              ≠        ≠              ≠
+all to sway_pca_alpha2             ≠        ≠              ≠
+sway to sway_pca                   ≠        ≠              ≠
+sway to sway_pca_alpha             ≠        ≠              ≠
+sway to sway_pca_alpha2            ≠        ≠              ≠
+sway_pca to sway_pca_alpha         ≠        ≠              ≠
+sway_pca to sway_pca_alpha2        ≠        ≠              ≠
+sway_pca_alpha to sway_pca_alpha2  ≠        ≠              ≠
+sway to top                        ≠        ≠              ≠
+sway_pca to top                    ≠        ≠              ≠
+sway_pca_alpha to top              ≠        ≠              ≠
+sway_pca_alpha2 to top             ≠        ≠              ≠
 
-real	2m2.859s
-user	0m0.000s
-sys	0m0.015s
+real	2m52.155s
+user	2m56.274s
+sys	0m39.087s

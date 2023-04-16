@@ -1,17 +1,34 @@
-         Lbs-    Acc+    Mpg+    Avg evals
-----  -------  ------  ------  -----------
-all      2800    15.5      20            0
-sway  2101.45  16.025    31.5            6
-xpln  2193.05  15.755    30.5            6
-top      1985   18.79      40          398
+                         Lbs-    Acc+    Mpg+    Avg evals
+--------------------  -------  ------  ------  -----------
+all                      2800    15.5      20            0
+sway                  2169.15  15.975      31            6
+sway_pca               2176.4  15.655    33.5            6
+sway_pca_alpha         2174.5  15.715      35            6
+sway_pca_alpha2          2085   16.16      36            6
+sway_xpln              2216.5   16.01      30            6
+sway_pca_xpln         2184.75   16.02    29.5            6
+sway_pca_alpha_xpln    2160.5  16.095      31            6
+sway_pca_alpha2_xpln  2174.85   16.13    30.5            6
+top                      1987    18.8      40          398
 
-              Lbs-    Acc+    Mpg+
-------------  ------  ------  ------
-all to all    =       =       =
-all to sway   ≠       ≠       ≠
-sway to xpln  ≠       ≠       ≠
-sway to top   ≠       ≠       ≠
+                                   Lbs-    Acc+    Mpg+
+---------------------------------  ------  ------  ------
+all to all                         =       =       =
+all to sway                        ≠       ≠       ≠
+all to sway_pca                    ≠       ≠       ≠
+all to sway_pca_alpha              ≠       ≠       ≠
+all to sway_pca_alpha2             ≠       ≠       ≠
+sway to sway_pca                   ≠       ≠       ≠
+sway to sway_pca_alpha             ≠       ≠       ≠
+sway to sway_pca_alpha2            ≠       ≠       ≠
+sway_pca to sway_pca_alpha         ≠       ≠       ≠
+sway_pca to sway_pca_alpha2        ≠       ≠       ≠
+sway_pca_alpha to sway_pca_alpha2  ≠       ≠       ≠
+sway to top                        ≠       ≠       ≠
+sway_pca to top                    ≠       ≠       ≠
+sway_pca_alpha to top              ≠       ≠       ≠
+sway_pca_alpha2 to top             ≠       ≠       ≠
 
-real	0m37.928s
-user	0m0.000s
-sys	0m0.015s
+real	0m51.263s
+user	0m51.170s
+sys	0m0.531s

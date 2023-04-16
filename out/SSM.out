@@ -1,17 +1,36 @@
-        NUMBERITERATIONS-    TIMETOSOLUTION-    Avg evals
-----  -------------------  -----------------  -----------
-all                   6.9            134.487            0
-sway                  5.1            112.643           10
-xpln                 5.05            125.556           10
-top                     4             59.982       239360
+WARNING: all to all 0 1 false
+all to all comparison failed for TIMETOSOLUTION-
+                        NUMBERITERATIONS-    TIMETOSOLUTION-    Avg evals
+--------------------  -------------------  -----------------  -----------
+all                                  6.85            135.889            0
+sway                                  5.5            122.912           10
+sway_pca                              5.4            112.242           10
+sway_pca_alpha                        6.1            134.688           10
+sway_pca_alpha2                       5.7            122.173           10
+sway_xpln                            5.45            118.413           10
+sway_pca_xpln                         5.6            112.305           10
+sway_pca_alpha_xpln                     6            130.684           10
+sway_pca_alpha2_xpln                    6            122.707           10
+top                                     4              59.97       239360
 
-              NUMBERITERATIONS-    TIMETOSOLUTION-
-------------  -------------------  -----------------
-all to all    =                    =
-all to sway   ≠                    ≠
-sway to xpln  ≠                    ≠
-sway to top   ≠                    ≠
+                                   NUMBERITERATIONS-    TIMETOSOLUTION-
+---------------------------------  -------------------  -----------------
+all to all                         =                    ≠
+all to sway                        ≠                    ≠
+all to sway_pca                    ≠                    ≠
+all to sway_pca_alpha              ≠                    ≠
+all to sway_pca_alpha2             ≠                    ≠
+sway to sway_pca                   ≠                    ≠
+sway to sway_pca_alpha             ≠                    ≠
+sway to sway_pca_alpha2            ≠                    ≠
+sway_pca to sway_pca_alpha         ≠                    ≠
+sway_pca to sway_pca_alpha2        ≠                    ≠
+sway_pca_alpha to sway_pca_alpha2  ≠                    ≠
+sway to top                        ≠                    ≠
+sway_pca to top                    ≠                    ≠
+sway_pca_alpha to top              ≠                    ≠
+sway_pca_alpha2 to top             ≠                    ≠
 
-real	13m18.698s
-user	0m0.000s
-sys	0m0.016s
+real	18m2.924s
+user	17m39.553s
+sys	2m46.434s
