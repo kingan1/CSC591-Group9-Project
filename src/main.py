@@ -1,8 +1,12 @@
+from itertools import combinations
+from typing import Dict
+
 from tabulate import tabulate
 
 from data import Data
 from explain import Explain, selects
-from models.optimizers import SwayOptimizer
+from models.optimizers import SwayOptimizer, SwayWithPCAOptimizer
+from models.optimizers.base import BaseOptimizer
 from options import options
 from stats import cliffs_delta, bootstrap
 
@@ -31,6 +35,148 @@ OPTIONS:
   -n  --Niter       number of iterations to run      = 20
   -w  --wColor      output with color                = true
 """
+
+
+class ResultsGenerator:
+    def __init__(self, data_src: str, optimizers: Dict[str, BaseOptimizer], n_iters=20):
+        self._data = None
+        self._data_src = data_src
+        self._n_iters = n_iters
+
+        self._optimizers = optimizers
+
+        self._results = self._get_results()
+        self._n_evals = self._get_n_evals()
+
+        self._comparisons = self._get_comparisons()
+
+    def _get_comparisons(self):
+        comparisons = [[["all", "all"], None], ]
+
+        for optimizer in self._optimizers:
+            comparisons.append([["all", optimizer], None])
+
+        for combination in combinations(list(self._optimizers.keys()), 2):
+            comparisons.append([list(combination), None])
+
+        for optimizer in self._optimizers:
+            comparisons.append([[optimizer, "top"], None])
+
+        return comparisons
+
+    def _get_results(self):
+        optimizers = ["all", ] + \
+                     list(self._optimizers.keys()) + \
+                     [i + "_xpln" for i in list(self._optimizers.keys())] + \
+                     ["top", ]
+
+        return {optimizer: [] for optimizer in optimizers}
+
+    def _get_n_evals(self):
+        optimizers = ["all", ] + \
+                     list(self._optimizers.keys()) + \
+                     [i + "_xpln" for i in list(self._optimizers.keys())] + \
+                     ["top", ]
+
+        return {optimizer: 0 for optimizer in optimizers}
+
+    def run(self):
+        i = 0
+
+        while i < self._n_iters:
+            self._data = Data(self._data_src)
+
+            self._results["all"].append(self._data)
+            self._n_evals["all"] += 0
+
+            for o_name, optimizer in self._optimizers.items():
+                rule = -1
+
+                while rule == -1:
+                    best, rest, evals = optimizer.run(data=self._data)
+
+                    x = Explain(best, rest)
+                    rule, _ = x.xpln(self._data, best, rest)
+
+                    if rule == -1:
+                        continue
+
+                    xpln_data = Data.clone(self._data, selects(rule, self._data.rows))
+
+                    self._results[o_name].append(best)
+                    self._results[o_name + "_xpln"].append(xpln_data)
+
+                    self._n_evals[o_name] += evals
+                    self._n_evals[o_name + "_xpln"] += evals
+
+                    if o_name == "sway":
+                        top2, _ = self._data.betters(len(best.rows))
+                        top = Data.clone(self._data, top2)
+
+                        self._results['top'].append(top)
+                        self._n_evals["top"] += len(self._data.rows)
+
+            self._update_comparisons(i)
+
+            i += 1
+
+    def _update_comparisons(self, iter_: int):
+        for i in range(len(self._comparisons)):
+            [base, diff], result = self._comparisons[i]
+
+            if result is None:
+                self._comparisons[i][1] = ["=" for _ in range(len(self._data.cols.y))]
+
+            for k in range(len(self._data.cols.y)):
+                if self._comparisons[i][1][k] == "=":
+                    base_y, diff_y = self._results[base][iter_].cols.y[k], self._results[diff][iter_].cols.y[k]
+                    equals = bootstrap(base_y.has(), diff_y.has()) and cliffs_delta(base_y.has(), diff_y.has())
+
+                    if not equals:
+                        if i == 0:
+                            print("WARNING: all to all {} {} {}".format(i, k, "false"))
+                            print(f"all to all comparison failed for {self._results[base][iter_].cols.y[k].txt}")
+
+                        self._comparisons[i][1][k] = "≠"
+
+    def print_table(self, color: bool):
+        headers = [y.txt for y in self._data.cols.y]
+        table = []
+
+        for k, v in self._results.items():
+            # set the row equal to the average stats
+            stats = get_stats(v)
+            stats_list = [k] + [stats[y] for y in headers]
+
+            # adds on the average number of evals
+            stats_list += [self._n_evals[k] / self._n_iters]
+
+            table.append(stats_list)
+
+        if color:
+            for i in range(len(headers)):
+                # get the value of the 'y[i]' column for each algorithm
+                header_vals = [v[i + 1] for v in table]
+
+                # if the 'y' value is minimizing, use min else use max
+                fun = max if headers[i][-1] == "+" else min
+
+                # change the table to have green text if it is the "best" for that column
+                table[header_vals.index(fun(header_vals))][i + 1] = '\033[92m' + str(
+                    table[header_vals.index(fun(header_vals))][i + 1]) + '\033[0m'
+
+        print(tabulate(table, headers=headers + ["Avg evals"], numalign="right"))
+        print()
+
+        # generates the =/!= table
+        table = []
+
+        # for each comparison of the algorithms
+        #    append the = / !=
+        for [base, diff], result in self._comparisons:
+            table.append([f"{base} to {diff}"] + result)
+
+        print(tabulate(table, headers=headers, numalign="right"))
 
 
 def get_stats(data_array):
@@ -69,127 +215,27 @@ def main():
     if options["help"]:
         print(help_)
     else:
-        results = {"all": [], "sway": [], "xpln": [], "top": []}
-        n_evals = {"all": 0, "sway": 0, "xpln": 0, "top": 0}
-
-        comparisons = [
-            [["all", "all"], None],
-            [["all", "sway"], None],
-            [["sway", "xpln"], None],
-            [["sway", "top"], None]
-        ]
-
-        count = 0
-        data = None
-
-        # do a while loop because sometimes explain can return -1
-        while count < options["Niter"]:
-            # read in the data
-            data = Data(options["file"])
-
-            # get the "all" and "sway" results
-            best, rest, evals_sway = SwayOptimizer(
+        optimizers = {
+            "sway": SwayOptimizer(
                 reuse=options["reuse"],
                 far=options["Far"],
                 halves=options["Halves"],
                 rest=options["Rest"],
                 i_min=options["IMin"]
-            ).run(data)
+            ),
+            "sway_pca": SwayWithPCAOptimizer(
+                reuse=options["reuse"],
+                far=options["Far"],
+                halves=options["Halves"],
+                rest=options["Rest"],
+                i_min=options["IMin"]
+            ),
+        }
 
-            # get the "xpln" results
-            x = Explain(best, rest)
-            rule, _ = x.xpln(data, best, rest)
+        rg = ResultsGenerator(data_src=options["file"], optimizers=optimizers)
+        rg.run()
 
-            # if it was able to find a rule
-            if rule != -1:
-                # get the best rows of that rule
-                data1 = Data.clone(data, selects(rule, data.rows))
-
-                results['all'].append(data)
-                results['sway'].append(best)
-                results['xpln'].append(data1)
-
-                # get the "top" results by running the betters algorithm
-                top2, _ = data.betters(len(best.rows))
-                top = Data.clone(data, top2)
-                results['top'].append(top)
-
-                # accumulate the number of evals
-                # for all: 0 evaluations 
-                n_evals["all"] += 0
-                n_evals["sway"] += evals_sway
-
-                # xpln uses the same number of evals since it just uses the data from
-                # sway to generate rules, no extra evals needed
-                n_evals["xpln"] += evals_sway
-                n_evals["top"] += len(data.rows)
-
-                # update comparisons
-                for i in range(len(comparisons)):
-                    [base, diff], result = comparisons[i]
-
-                    # if they haven't been initialized, mark with true until we can prove false
-
-                    if result is None:
-                        comparisons[i][1] = ["=" for _ in range(len(data.cols.y))]
-
-                    # for each column
-                    for k in range(len(data.cols.y)):
-                        # if not already marked as false
-                        if comparisons[i][1][k] == "=":
-                            # check if it is false
-                            base_y, diff_y = results[base][count].cols.y[k], results[diff][count].cols.y[k]
-                            equals = bootstrap(base_y.has(), diff_y.has()) and cliffs_delta(base_y.has(), diff_y.has())
-
-                            if not equals:
-                                if i == 0:
-                                    # should never fail for all to all, unless sample size is large
-                                    print("WARNING: all to all {} {} {}".format(i, k, "false"))
-                                    print(f"all to all comparison failed for {results[base][count].cols.y[k].txt}")
-
-                                comparisons[i][1][k] = "≠"
-                count += 1
-
-        # generate the stats table
-        headers = [y.txt for y in data.cols.y]
-        table = []
-
-        # for each algorithm's results
-        for k, v in results.items():
-            # set the row equal to the average stats
-            stats = get_stats(v)
-            stats_list = [k] + [stats[y] for y in headers]
-
-            # adds on the average number of evals
-            stats_list += [n_evals[k] / options["Niter"]]
-
-            table.append(stats_list)
-
-        if options["wColor"]:
-            # updates stats table to have the best result per column highlighted
-            for i in range(len(headers)):
-                # get the value of the 'y[i]' column for each algorithm
-                header_vals = [v[i + 1] for v in table]
-
-                # if the 'y' value is minimizing, use min else use max
-                fun = max if headers[i][-1] == "+" else min
-
-                # change the table to have green text if it is the "best" for that column
-                table[header_vals.index(fun(header_vals))][i + 1] = '\033[92m' + str(
-                    table[header_vals.index(fun(header_vals))][i + 1]) + '\033[0m'
-
-        print(tabulate(table, headers=headers + ["Avg evals"], numalign="right"))
-        print()
-
-        # generates the =/!= table
-        table = []
-
-        # for each comparison of the algorithms
-        #    append the = / !=
-        for [base, diff], result in comparisons:
-            table.append([f"{base} to {diff}"] + result)
-
-        print(tabulate(table, headers=headers, numalign="right"))
+        rg.print_table(color=options["wColor"])
 
 
 main()
