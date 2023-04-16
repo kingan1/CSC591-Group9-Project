@@ -6,13 +6,16 @@ from sklearn.decomposition import PCA
 from data import Data
 from data.col import Col, Num, Sym
 from distance import cosine_similarity, PDist, Distance
+from models.optimizers.base import BaseOptimizer
 from predicate import ZitzlerPredicate
 from utils import many, any
 
 
-class SwayWithPCAOptimizer:
+class SwayWithPCAOptimizer(BaseOptimizer):
     def __init__(self, distance_class: Distance = None, reuse: bool = True, far: float = 0.95, halves: int = 512,
-                 rest: int = 10, i_min: float = 0.5):
+                 rest: int = 10, i_min: float = 0.5, seed=None):
+        super().__init__(seed=seed)
+
         self._data: Optional[Data] = None
         self._pca_rows: List[List[float]] = [[]]
 
@@ -24,7 +27,7 @@ class SwayWithPCAOptimizer:
         self._rest = rest
         self._i_min = i_min
 
-    def run(self, data: Data):
+    def _run(self, data: Data):
         self._data: Data = data
         self._run_pca(self._data.cols.x)
 

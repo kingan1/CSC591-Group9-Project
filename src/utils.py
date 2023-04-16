@@ -12,6 +12,9 @@ class Random:
     def set_seed(self, value: int):
         self.seed = value
 
+    def get_seed(self):
+        return self.seed
+
     def rand(self, lo=0, hi=1):
         """
         Generates a pseudo-random number using seed.
@@ -31,6 +34,7 @@ class Random:
 _inst = Random()
 rand = _inst.rand
 rint = _inst.rint
+get_seed = _inst.get_seed
 set_seed = _inst.set_seed
 
 

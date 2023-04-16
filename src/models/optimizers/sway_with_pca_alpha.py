@@ -12,7 +12,7 @@ from predicate import ZitzlerPredicate
 from utils import many, any
 
 
-class SwayWithPCAAlpha2Optimizer(BaseOptimizer):
+class SwayWithPCAAlphaOptimizer(BaseOptimizer):
     def __init__(self, distance_class: Distance = None, reuse: bool = True, far: float = 0.95, halves: int = 512,
                  rest: int = 10, i_min: float = 0.5, seed=None):
         super().__init__(seed=seed)
@@ -74,16 +74,6 @@ class SwayWithPCAAlpha2Optimizer(BaseOptimizer):
         input_ = {tuple(self._pca_rows[i]): i for i in some}
         boundary = [input_[point] for point in alphashape(list(input_.keys()), alpha=0.).exterior.coords]
         a = above if above is not None and self._reuse else any(boundary)
-
-        alpha_tmp = sorted(
-            [
-                {"row_index": i, "d": self._distance_class.raw_dist(self._pca_rows[i], self._pca_rows[a])}
-                for i in boundary
-            ],
-            key=lambda x: x["d"]
-        )
-
-        a = alpha_tmp[-1]["row_index"]
 
         tmp = sorted(
             [
