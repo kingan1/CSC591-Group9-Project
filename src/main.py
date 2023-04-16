@@ -5,7 +5,7 @@ from tabulate import tabulate
 
 from data import Data
 from explain import Explain, selects
-from models.optimizers import SwayOptimizer, SwayWithPCAOptimizer
+from models.optimizers import SwayOptimizer, SwayWithPCAAlpha2Optimizer
 from models.optimizers.base import BaseOptimizer
 from options import options
 from stats import cliffs_delta, bootstrap
@@ -223,7 +223,21 @@ def main():
                 rest=options["Rest"],
                 i_min=options["IMin"]
             ),
-            "sway_pca": SwayWithPCAOptimizer(
+            # "sway_pca": SwayWithPCAOptimizer(
+            #     reuse=options["reuse"],
+            #     far=options["Far"],
+            #     halves=options["Halves"],
+            #     rest=options["Rest"],
+            #     i_min=options["IMin"]
+            # ),
+            # "sway_pca_alpha": SwayWithPCAAlphaOptimizer(
+            #     reuse=options["reuse"],
+            #     far=options["Far"],
+            #     halves=options["Halves"],
+            #     rest=options["Rest"],
+            #     i_min=options["IMin"]
+            # ),
+            "sway_pca_alpha2": SwayWithPCAAlpha2Optimizer(
                 reuse=options["reuse"],
                 far=options["Far"],
                 halves=options["Halves"],

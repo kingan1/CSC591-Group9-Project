@@ -1,6 +1,7 @@
 import math
 from typing import List, Optional
 
+from alphashape import alphashape
 from sklearn.decomposition import PCA
 
 from data import Data
@@ -10,7 +11,7 @@ from predicate import ZitzlerPredicate
 from utils import many, any
 
 
-class SwayWithPCAAlphaOptimizer:
+class SwayWithPCAAlpha2Optimizer:
     def __init__(self, distance_class: Distance = None, reuse: bool = True, far: float = 0.95, halves: int = 512,
                  rest: int = 10, i_min: float = 0.5):
         self._data: Optional[Data] = None
@@ -46,7 +47,7 @@ class SwayWithPCAAlphaOptimizer:
 
                     input_[i] += [0.5 if value == "?" else (1 if key == value else 0) for key in col.has.keys()]
 
-        pca_columns = max(1, int(math.log2(len(input_[0]))))
+        pca_columns = min(max(1, int(math.log2(len(input_[0])))), 3)
 
         pca = PCA(n_components=pca_columns)
         self._pca_rows = pca.fit_transform(input_)
@@ -67,7 +68,19 @@ class SwayWithPCAAlphaOptimizer:
         """
         some = many(row_indexes, self._halves)
 
-        a = above if above is not None and self._reuse else any(some)
+        input_ = {tuple(self._pca_rows[i]): i for i in some}
+        boundary = [input_[point] for point in alphashape(list(input_.keys()), alpha=0.).exterior.coords]
+        a = above if above is not None and self._reuse else any(boundary)
+
+        alpha_tmp = sorted(
+            [
+                {"row_index": i, "d": self._distance_class.raw_dist(self._pca_rows[i], self._pca_rows[a])}
+                for i in boundary
+            ],
+            key=lambda x: x["d"]
+        )
+
+        a = alpha_tmp[-1]["row_index"]
 
         tmp = sorted(
             [
