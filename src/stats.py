@@ -1,10 +1,6 @@
-import random
-
 from data.col import Num
 from options import options
 from utils import many
-
-random.seed(0)
 
 
 def div(t):
@@ -19,13 +15,7 @@ def delta(i, other):
 
 
 def samples(t, n=0):
-    u = []
-    n = n or len(t)
-
-    for i in range(n):
-        u.append(t[random.randrange(len(t))])
-
-    return u
+    return many(t, n)
 
 
 def bootstrap(y0, z0):
