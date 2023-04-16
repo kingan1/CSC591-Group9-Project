@@ -1,6 +1,7 @@
 import math
 from typing import List, Optional
 
+from alphashape import alphashape
 from sklearn.decomposition import PCA
 
 from data import Data
@@ -46,7 +47,7 @@ class SwayWithPCAOptimizer:
 
                     input_[i] += [0.5 if value == "?" else (1 if key == value else 0) for key in col.has.keys()]
 
-        pca_columns = max(1, int(math.log2(len(input_[0]))))
+        pca_columns = min(max(1, int(math.log2(len(input_[0])))), 3)
 
         pca = PCA(n_components=pca_columns)
         self._pca_rows = pca.fit_transform(input_)
@@ -67,7 +68,9 @@ class SwayWithPCAOptimizer:
         """
         some = many(row_indexes, self._halves)
 
-        a = above if above is not None and self._reuse else any(some)
+        input_ = {tuple(self._pca_rows[i]): i for i in some}
+        boundary = [input_[point] for point in alphashape(list(input_.keys()), alpha=0.).exterior.coords]
+        a = above if above is not None and self._reuse else any(boundary)
 
         tmp = sorted(
             [
