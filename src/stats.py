@@ -15,7 +15,7 @@ def delta(i, other):
 
 
 def samples(t, n=0):
-    return many(t, n)
+    return many(t, n) if n != 0 else many(t, len(t))
 
 
 def bootstrap(y0, z0):
