@@ -1,24 +1,17 @@
-WARNING: all to all 0 1 false
-all to all comparison failed for Energy-
-         PSNR-    Energy-    Avg evals
------  -------  ---------  -----------
-all     45.754       1269            0
-sway   44.2365    946.258            9
-sway2   45.109    1106.25            9
-xpln    45.766       1059            9
-xpln2   45.176    1087.26            9
-top    26.7025    465.998        53662
+        PSNR-    Energy-    Avg evals
+----  -------  ---------  -----------
+all   45.8435    1249.28            0
+sway   44.812    1216.78            9
+xpln   44.669    1221.03            9
+top    26.715    466.288        53662
 
-               PSNR-    Energy-
--------------  -------  ---------
-all to all     =        ≠
-all to sway    ≠        ≠
-all to sway2   ≠        ≠
-sway to sway2  ≠        ≠
-sway to xpln   ≠        ≠
-sway2 to xpln  ≠        ≠
-sway to top    ≠        ≠
+              PSNR-    Energy-
+------------  -------  ---------
+all to all    =        =
+all to sway   ≠        ≠
+sway to xpln  ≠        ≠
+sway to top   ≠        ≠
 
-real	4m3.232s
-user	4m3.210s
-sys	0m18.066s
+real	3m38.113s
+user	3m35.216s
+sys	0m1.876s
