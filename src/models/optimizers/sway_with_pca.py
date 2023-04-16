@@ -1,3 +1,4 @@
+import math
 from typing import List, Optional
 
 from sklearn.decomposition import PCA
@@ -45,7 +46,9 @@ class SwayWithPCAOptimizer:
 
                     input_[i] += [0.5 if value == "?" else (1 if key == value else 0) for key in col.has.keys()]
 
-        pca = PCA(n_components=2)
+        pca_columns = max(1, int(math.log2(len(input_[0]))))
+
+        pca = PCA(n_components=pca_columns)
         self._pca_rows = pca.fit_transform(input_)
 
     def _project(self, row_index: int, a_index: int, b_index: int, c: float):
