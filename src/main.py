@@ -131,6 +131,9 @@ def get_options(new_options):
     assert len(options2) == 17
     return options2
 
+def mean(lst):
+    return sum(lst) / len(lst)
+
 def main():
     """
     `main` runs each algorithm for 20 iterations, on the given file dataset.
@@ -150,8 +153,6 @@ def main():
     else:
         results = {"all": [], "sway1": [], "sway2": [], "xpln1": [], "xpln2": [], "top": []}
         n_evals = {"all": 0, "sway1": 0, "sway2": 0, "xpln1": 0, "xpln2": 0, "top": 0}
-
-        
         comparisons = [[["all", "all"],None], 
                        [["all", "sway1"],None], 
                        [["all", "sway2"],None],
@@ -159,15 +160,25 @@ def main():
                        [["sway1", "xpln1"],None],   
                        [["sway2", "xpln2"],None], 
                        [["sway1", "top"],None]]
+        ranks = {"all": 0, "sway1": 0, "sway2": 0, "xpln1": 0, "xpln2": 0, "top": 0}
 
         count = 0
         sway2_options = explore_parameters()
         data = None
 
+        # read in the data
+        data = Data(options["file"])
+        
+        # get the "top" results by running the betters algorithm
+        all_ranked, _ = data.betters(len(data.rows))
+        # for each row, rank it normalized from 1-100
+        for idx, row in enumerate(all_ranked):
+            row.rank = 1 + (idx/len(data.rows))*99
+            
+        
+
         # do a while loop because sometimes explain can return -1
         while count < options["Niter"]:
-            # read in the data
-            data = Data(options["file"])
 
             # get the "all" and "sway" results
             best, rest, evals_sway = SwayOptimizer(
@@ -189,27 +200,36 @@ def main():
                 # get the best rows of that rule
                 data1 = Data.clone(data, selects(rule, data.rows))
 
-                results['all'].append(data)
-                results['sway1'].append(best)
-                results['xpln1'].append(data1)
-                results['xpln2'].append(xpln2)
 
-
-                # get the "top" results by running the betters algorithm
-                top2, _ = data.betters(len(best.rows))
-                top = Data.clone(data, top2)
-                best2, rest2, evals_sway2 = SwayOptimizer(
+                best2, _, evals_sway2 = SwayOptimizer(
                     reuse=sway2_options["reuse"],
                     far=sway2_options["Far"],
                     halves=sway2_options["Halves"],
                     rest=sway2_options["Rest"],
                     i_min=sway2_options["IMin"]
                 ).run(data)
-                results['sway2'].append(best2)
+
+                top2, _ = data.betters(len(best.rows))
+                top = Data.clone(data, top2)
+
+                results['all'] += (data)
+                results['sway1'] += (best)
+                results['xpln1'] += (data1)
+                results['xpln2'] += (xpln2)
+                results['top'] += (top)
+                results['sway2'] += (best2)
+
+                
+                ranks['all'] += (mean([r.rank for r in data.rows]))
+                ranks['sway1'] += (mean([r.rank for r in best.rows]))
+                ranks['xpln1'] +=(mean([r.rank for r in data1.rows]))
+                ranks['xpln2']+=(mean([r.rank for r in xpln2.rows]))
+                ranks['sway2']+=(mean([r.rank for r in best2.rows]))
+                ranks['top']+=(mean([r.rank for r in top.rows]))
+
                 
                 
                 
-                results['top'].append(top)
 
                 # accumulate the number of evals
                 # for all: 0 evaluations 
@@ -262,6 +282,9 @@ def main():
             # adds on the average number of evals
             stats_list += [n_evals[k] / options["Niter"]]
 
+            # adds on average rank of rows
+            stats_list += [ranks[k] / options["Niter"]]
+
             table.append(stats_list)
 
         
@@ -301,7 +324,7 @@ def main():
                 table[header_vals.index(fun(header_vals))][i + 1] = '\033[92m' + str(
                     table[header_vals.index(fun(header_vals))][i + 1]) + '\033[0m'
 
-        print(tabulate(table, headers=headers + ["Avg evals"], numalign="right"))
+        print(tabulate(table, headers=headers + ["Avg evals", "Avg rank"], numalign="right"))
         print()
 
             

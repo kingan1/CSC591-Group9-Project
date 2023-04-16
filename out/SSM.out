@@ -1,15 +1,15 @@
-         NUMBERITERATIONS-    TIMETOSOLUTION-    Avg evals
------  -------------------  -----------------  -----------
-all                   6.75            136.098            0
-sway1                 5.15            121.417           10
-sway2                  4.3             82.333         18.3
-xpln1                 5.25            119.692           10
-xpln2                  5.2            119.136           10
-top                      4             59.974       239360
+         NUMBERITERATIONS-    TIMETOSOLUTION-    Avg evals    Avg rank
+-----  -------------------  -----------------  -----------  ----------
+all                      6             133.54            0     50.4994
+sway1                 6.45            118.442           10      35.157
+sway2                 4.05             82.323         18.4     4.67966
+xpln1                  5.9            112.604           10     39.7498
+xpln2                 6.15            111.235           10     35.2414
+top                      4             59.978       239360     1.09618
 
                    Best    Beat Sway?    Beat Xpln?
 -----------------  ------  ------------  ------------
-NUMBERITERATIONS-  top     True          True
+NUMBERITERATIONS-  top     True          False
 TIMETOSOLUTION-    top     True          True
 
                 NUMBERITERATIONS-    TIMETOSOLUTION-
@@ -22,6 +22,6 @@ sway1 to xpln1  ≠                    ≠
 sway2 to xpln2  ≠                    ≠
 sway1 to top    ≠                    ≠
 
-real	24m58.285s
+real	13m24.019s
 user	0m0.000s
-sys	0m0.015s
+sys	0m0.000s

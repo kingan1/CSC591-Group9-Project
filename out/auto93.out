@@ -1,28 +1,29 @@
-          Lbs-    Acc+    Mpg+    Avg evals
------  -------  ------  ------  -----------
-all       2800    15.5      20            0
-sway1   2210.4   16.18      31            6
-sway2  2005.45  17.585    38.5         9.25
-xpln1  2212.35  16.075      30            6
-xpln2  2195.75  16.385    31.5            6
-top       1985   18.78      40          398
+         CityMPG+    HighwayMPG+    Weight-    Class-    Avg evals    Avg rank
+-----  ----------  -------------  ---------  --------  -----------  ----------
+all            21             28       3040      17.7            0     48.8932
+sway1       30.05          34.85    2212.25     9.435            5     11.7404
+sway2       41.65           46.2    1875.25     8.815          7.2     0.81129
+xpln1        30.3          34.65    2231.75      9.62            5     13.8545
+xpln2        29.2          34.25       2230     9.625            5     14.1751
+top            33           39.6     2051.5      8.86           93     2.94274
 
-      Best    Beat Sway?    Beat Xpln?
-----  ------  ------------  ------------
-Lbs-  top     True          True
-Acc+  top     True          True
-Mpg+  top     True          True
+             Best    Beat Sway?    Beat Xpln?
+-----------  ------  ------------  ------------
+CityMPG+     sway2   True          False
+HighwayMPG+  sway2   True          False
+Weight-      sway2   True          True
+Class-       sway2   True          False
 
-                Lbs-    Acc+    Mpg+
---------------  ------  ------  ------
-all to all      =       =       =
-all to sway1    ≠       ≠       ≠
-all to sway2    ≠       ≠       ≠
-sway1 to sway2  ≠       ≠       ≠
-sway1 to xpln1  ≠       ≠       ≠
-sway2 to xpln2  ≠       ≠       ≠
-sway1 to top    ≠       ≠       ≠
+                CityMPG+    HighwayMPG+    Weight-    Class-
+--------------  ----------  -------------  ---------  --------
+all to all      =           =              =          =
+all to sway1    ≠           ≠              ≠          ≠
+all to sway2    ≠           ≠              ≠          ≠
+sway1 to sway2  ≠           ≠              ≠          ≠
+sway1 to xpln1  ≠           ≠              ≠          ≠
+sway2 to xpln2  ≠           ≠              ≠          ≠
+sway1 to top    ≠           ≠              ≠          ≠
 
-real	0m48.043s
+real	0m33.905s
 user	0m0.000s
 sys	0m0.000s

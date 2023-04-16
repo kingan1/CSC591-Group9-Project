@@ -11,3 +11,4 @@ class Row:
 
         self.x = None
         self.y = None
+        self.rank = -1
