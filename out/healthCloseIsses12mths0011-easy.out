@@ -1,17 +1,28 @@
-         MRE-     ACC+    PRED40+    Avg evals
-----  -------  -------  ---------  -----------
-all   119.321   -12.24          0            0
-sway  15.0765  -0.0995     66.664            8
-xpln        0        0      83.33            8
-top         0        0      83.33        10000
+         MRE-     ACC+    PRED40+    Avg evals    Avg rank
+-----  ------  -------  ---------  -----------  ----------
+all    119.28   -12.24          0            0      50.485
+sway1  15.075  -0.1225    62.4975            8     16.9636
+sway2       0     -0.7          0           12     22.3122
+xpln1   5.025  -0.0245    79.1635            8     17.3116
+xpln2  25.128  -0.1255    62.4975            8     19.7096
+top         0        0      83.33        10000      1.3762
 
-              MRE-    ACC+    PRED40+
-------------  ------  ------  ---------
-all to all    =       =       =
-all to sway   ≠       ≠       ≠
-sway to xpln  ≠       ≠       ≠
-sway to top   ≠       ≠       ≠
+         Best    Beat Sway?    Beat Xpln?
+-------  ------  ------------  ------------
+MRE-     sway2   True          False
+ACC+     top     False         False
+PRED40+  top     False         False
 
-real	1m15.940s
-user	1m15.716s
-sys	0m0.144s
+                MRE-    ACC+    PRED40+
+--------------  ------  ------  ---------
+all to all      =       =       =
+all to sway1    ≠       ≠       ≠
+all to sway2    =       ≠       =
+sway1 to sway2  =       =       =
+sway1 to xpln1  ≠       ≠       ≠
+sway2 to xpln2  ≠       ≠       ≠
+sway1 to top    ≠       ≠       ≠
+
+real	1m32.006s
+user	0m0.015s
+sys	0m0.000s

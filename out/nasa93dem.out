@@ -1,17 +1,29 @@
-        Kloc+    Effort-    Defects-    Months-    Avg evals
-----  -------  ---------  ----------  ---------  -----------
-all      47.5        252        2007       21.4            0
-sway   30.745      137.9     1195.85     16.585            5
-xpln   33.415      119.2     1309.55      16.74            5
-top       4.5       14.4       140.5       8.45           93
+         Kloc+    Effort-    Defects-    Months-    Avg evals    Avg rank
+-----  -------  ---------  ----------  ---------  -----------  ----------
+all       47.5        252        2007       21.4            0     48.8932
+sway1   20.005      83.98      750.55      13.26            5     23.7842
+sway2      8.2       25.2         256       10.4            6     6.85484
+xpln1    22.54      82.74       896.1      13.85            5     24.9206
+xpln2    34.96     156.08     1414.65     16.485            5     30.5907
+top        4.6      14.76      143.65      8.515           93     2.88952
 
-              Kloc+    Effort-    Defects-    Months-
-------------  -------  ---------  ----------  ---------
-all to all    =        =          =           =
-all to sway   ≠        ≠          ≠           ≠
-sway to xpln  ≠        ≠          ≠           ≠
-sway to top   ≠        ≠          ≠           ≠
+          Best    Beat Sway?    Beat Xpln?
+--------  ------  ------------  ------------
+Kloc+     all     False         True
+Effort-   top     True          False
+Defects-  top     True          False
+Months-   top     True          False
 
-real	0m14.064s
-user	0m14.043s
-sys	0m0.012s
+                Kloc+    Effort-    Defects-    Months-
+--------------  -------  ---------  ----------  ---------
+all to all      =        =          =           =
+all to sway1    ≠        ≠          ≠           ≠
+all to sway2    ≠        ≠          ≠           ≠
+sway1 to sway2  ≠        ≠          ≠           ≠
+sway1 to xpln1  ≠        ≠          ≠           ≠
+sway2 to xpln2  ≠        ≠          ≠           ≠
+sway1 to top    ≠        ≠          ≠           ≠
+
+real	0m13.794s
+user	0m0.000s
+sys	0m0.015s

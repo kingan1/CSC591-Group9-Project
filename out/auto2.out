@@ -1,28 +1,28 @@
           Lbs-    Acc+    Mpg+    Avg evals    Avg rank
 -----  -------  ------  ------  -----------  ----------
 all       2800    15.5      20            0     50.1225
-sway1     2019    16.6      40            6     13.1884
-sway2     2905    14.3      20            9     66.1709
-xpln1     2155    16.4      30            6     26.5608
-xpln2  1971.15  17.025      40            6     13.0222
-top       1985    18.8      40          398     2.24372
+sway1  2169.15  15.975      31            6     23.2913
+sway2     2335    23.7      40            8     18.2429
+xpln1   2216.5   16.01      30            6     28.4738
+xpln2  2161.05  16.015    31.5            6     23.4325
+top       1985   18.79      40          398     2.24994
 
       Best    Beat Sway?    Beat Xpln?
 ----  ------  ------------  ------------
-Lbs-  xpln2   False         True
-Acc+  top     False         True
-Mpg+  sway1   False         True
+Lbs-  top     False         True
+Acc+  sway2   True          True
+Mpg+  sway2   True          True
 
                 Lbs-    Acc+    Mpg+
 --------------  ------  ------  ------
 all to all      =       =       =
-all to sway1    ≠       =       ≠
-all to sway2    =       ≠       ≠
+all to sway1    ≠       ≠       ≠
+all to sway2    ≠       ≠       ≠
 sway1 to sway2  ≠       ≠       ≠
 sway1 to xpln1  ≠       ≠       ≠
 sway2 to xpln2  ≠       ≠       ≠
-sway1 to top    =       ≠       ≠
+sway1 to top    ≠       ≠       ≠
 
-real	1m40.217s
+real	0m43.799s
 user	0m0.000s
-sys	0m0.000s
+sys	0m0.031s

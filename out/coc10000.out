@@ -1,17 +1,28 @@
-        Loc+    Risk-    Effort-    Avg evals
-----  ------  -------  ---------  -----------
-all   1000.1     5.15    19447.1            0
-sway  1032.4      3.9    17386.8            8
-xpln  932.85      4.9    20424.6            8
-top     1959        0      17752        10000
+         Loc+    Risk-    Effort-    Avg evals    Avg rank
+-----  ------  -------  ---------  -----------  ----------
+all       931        5      21427            0      50.485
+sway1  979.65      3.2    16207.7            8     45.0556
+sway2    1055        2      44475           12     33.6378
+xpln1  1056.7     5.75    19956.2            8     47.8537
+xpln2  1012.5     4.85    17513.8            8      49.171
+top      1959        0      17752        10000      1.3762
 
-              Loc+    Risk-    Effort-
-------------  ------  -------  ---------
-all to all    =       =        =
-all to sway   ≠       ≠        ≠
-sway to xpln  ≠       ≠        ≠
-sway to top   ≠       ≠        ≠
+         Best    Beat Sway?    Beat Xpln?
+-------  ------  ------------  ------------
+Loc+     top     True          False
+Risk-    top     True          True
+Effort-  sway1   False         True
 
-real	1m54.842s
-user	1m54.318s
-sys	0m0.305s
+                Loc+    Risk-    Effort-
+--------------  ------  -------  ---------
+all to all      =       =        =
+all to sway1    ≠       ≠        ≠
+all to sway2    =       =        =
+sway1 to sway2  =       ≠        ≠
+sway1 to xpln1  ≠       ≠        ≠
+sway2 to xpln2  ≠       ≠        ≠
+sway1 to top    ≠       ≠        ≠
+
+real	2m15.713s
+user	0m0.015s
+sys	0m0.000s

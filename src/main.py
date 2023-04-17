@@ -102,6 +102,13 @@ def main():
                     file=options["file"],
                     sway2=options["sway2"]
                 )
+        sway = SwayOptimizer(
+                reuse=options["reuse"],
+                far=options["Far"],
+                halves=options["Halves"],
+                rest=options["Rest"],
+                i_min=options["IMin"]
+            )
         
         # get the "top" results by running the betters algorithm
         all_ranked, _ = data.betters(len(data.rows))
@@ -115,13 +122,7 @@ def main():
         while count < options["Niter"]:
 
             # get the "all" and "sway" results
-            best, rest, evals_sway = SwayOptimizer(
-                reuse=options["reuse"],
-                far=options["Far"],
-                halves=options["Halves"],
-                rest=options["Rest"],
-                i_min=options["IMin"]
-            ).run(data)
+            best, rest, evals_sway = sway.run(data)
 
             # get the "xpln" results
             x = Explain(best, rest)
@@ -135,7 +136,7 @@ def main():
                 data1 = Data.clone(data, selects(rule, data.rows))
 
 
-                best2, _, evals_sway2 = best, None, evals_sway#swayHyperparameter.run(data)
+                best2, _, evals_sway2 = swayHyperparameter.run(data)
 
                 top2, _ = data.betters(len(best.rows))
                 top = Data.clone(data, top2)

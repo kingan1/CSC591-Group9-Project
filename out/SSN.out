@@ -1,17 +1,16 @@
-<<<<<<< HEAD
          PSNR-    Energy-    Avg evals    Avg rank
 -----  -------  ---------  -----------  ----------
 all      45.67    1237.73            0     50.4972
-sway1  44.6275     1524.4            9     47.6665
-sway2  37.9215    731.184        16.15     19.2935
-xpln1   45.633    1370.22            9     48.8747
-xpln2   45.076    1395.02            9     50.2084
+sway1  44.5755    954.335            9     41.2574
+sway2    32.09     387.73           14     8.16644
+xpln1   45.352    836.882            9     41.2921
+xpln2  45.1335    914.124            9     44.3938
 top    26.7075    466.114        53662     1.19108
 
          Best    Beat Sway?    Beat Xpln?
 -------  ------  ------------  ------------
 PSNR-    top     True          True
-Energy-  top     True          False
+Energy-  sway2   True          False
 
                 PSNR-    Energy-
 --------------  -------  ---------
@@ -23,25 +22,6 @@ sway1 to xpln1  ≠        ≠
 sway2 to xpln2  ≠        ≠
 sway1 to top    ≠        ≠
 
-real	4m1.121s
+real	4m10.910s
 user	0m0.015s
 sys	0m0.000s
-=======
-        PSNR-    Energy-    Avg evals
-----  -------  ---------  -----------
-all   45.8435    1249.28            0
-sway   44.812    1216.78            9
-xpln   44.669    1221.03            9
-top    26.715    466.288        53662
-
-              PSNR-    Energy-
-------------  -------  ---------
-all to all    =        =
-all to sway   ≠        ≠
-sway to xpln  ≠        ≠
-sway to top   ≠        ≠
-
-real	3m38.113s
-user	3m35.216s
-sys	0m1.876s
->>>>>>> be12547027716574812b1afca6ccd95ecd04ac95

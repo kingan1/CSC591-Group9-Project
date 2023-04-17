@@ -1,29 +1,29 @@
          CityMPG+    HighwayMPG+    Weight-    Class-    Avg evals    Avg rank
 -----  ----------  -------------  ---------  --------  -----------  ----------
 all            21             28       3040      17.7            0     48.8932
-sway1          29             33       2295       9.8            5     14.8387
-sway2          31             33       1845       7.4            7     6.32258
-xpln1          29             33       2325       9.8            5     11.5783
-xpln2        27.2             33       2345        10            5     19.1583
-top            33             41       2055         9           93     3.12903
+sway1       29.55          34.65    2175.75     9.265            5      10.391
+sway2          46             50       1695       8.4            7          -1
+xpln1       29.55           34.2     2258.5     9.635            5     12.4006
+xpln2        28.8          34.45     2295.5     9.595            5     12.9736
+top            33             40     2052.5       8.9           93     2.99597
 
              Best    Beat Sway?    Beat Xpln?
 -----------  ------  ------------  ------------
-CityMPG+     top     True          False
-HighwayMPG+  top     False         False
+CityMPG+     sway2   True          False
+HighwayMPG+  sway2   True          True
 Weight-      sway2   True          False
-Class-       sway2   True          False
+Class-       sway2   True          True
 
                 CityMPG+    HighwayMPG+    Weight-    Class-
 --------------  ----------  -------------  ---------  --------
 all to all      =           =              =          =
 all to sway1    ≠           ≠              ≠          ≠
 all to sway2    ≠           ≠              ≠          ≠
-sway1 to sway2  ≠           =              ≠          ≠
-sway1 to xpln1  ≠           ≠              =          =
-sway2 to xpln2  ≠           =              ≠          ≠
+sway1 to sway2  ≠           ≠              ≠          ≠
+sway1 to xpln1  ≠           ≠              ≠          ≠
+sway2 to xpln2  ≠           ≠              ≠          ≠
 sway1 to top    ≠           ≠              ≠          ≠
 
-real	0m40.819s
+real	0m15.185s
 user	0m0.000s
 sys	0m0.015s
