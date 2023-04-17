@@ -5,8 +5,10 @@ from tabulate import tabulate
 
 from data import Data
 from explain import Explain, selects
-from models.optimizers import SwayOptimizer, SwayWithPCAAlpha2Optimizer, SwayWithPCAOptimizer, SwayWithPCAAlphaOptimizer
+from models.optimizers import SwayOptimizer, SwayWithPCAAlpha2Optimizer, SwayWithPCAOptimizer, \
+    SwayWithPCAAlphaOptimizer, SwayWithFAOptimizer, SwayWithFAAlphaOptimizer
 from models.optimizers.base import BaseOptimizer
+from models.optimizers.sway_with_fa_alpha2 import SwayWithFAAlpha2Optimizer
 from options import options
 from stats import cliffs_delta, bootstrap
 
@@ -238,6 +240,27 @@ def main():
                 i_min=options["IMin"]
             ),
             "sway_pca_alpha2": SwayWithPCAAlpha2Optimizer(
+                reuse=options["reuse"],
+                far=options["Far"],
+                halves=options["Halves"],
+                rest=options["Rest"],
+                i_min=options["IMin"]
+            ),
+            "sway_fa": SwayWithFAOptimizer(
+                reuse=options["reuse"],
+                far=options["Far"],
+                halves=options["Halves"],
+                rest=options["Rest"],
+                i_min=options["IMin"]
+            ),
+            "sway_fa_alpha": SwayWithFAAlphaOptimizer(
+                reuse=options["reuse"],
+                far=options["Far"],
+                halves=options["Halves"],
+                rest=options["Rest"],
+                i_min=options["IMin"]
+            ),
+            "sway_fa_alpha2": SwayWithFAAlpha2Optimizer(
                 reuse=options["reuse"],
                 far=options["Far"],
                 halves=options["Halves"],
