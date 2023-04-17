@@ -29,10 +29,7 @@ class SwayHyperparameterOptimizer(BaseOptimizer):
         self._sway2 = sway2
         self._options = None
 
-        
-        
-
-    def run(self, data):
+    def _run(self, data):
         if not self._options:
             self._explore_parameters()
         return SwayOptimizer(

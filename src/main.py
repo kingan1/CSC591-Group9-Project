@@ -129,8 +129,8 @@ def main():
 
             # if it was able to find a rule
             if rule != -1:
-                xpln2 = Data.clone(data, 
-                                DtreeOptimizer().run(data, best, rest))
+                best_xpln2, _, _ = DtreeOptimizer(best=best, rest=rest).run(data)
+                xpln2 = Data.clone(data, best_xpln2)
                 # get the best rows of that rule
                 data1 = Data.clone(data, selects(rule, data.rows))
 

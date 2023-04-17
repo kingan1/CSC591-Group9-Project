@@ -7,16 +7,15 @@ from sklearn import preprocessing, tree
 
 
 class DtreeOptimizer(BaseOptimizer):
-    def __init__(self):
+    def __init__(self, best=None, rest=None, seed=None):
+        super().__init__(seed)
         self._data: Optional[Data] = None
 
-        self._best: Optional[Data] = None
-        self._rest: Optional[Data] = None
+        self._best= best
+        self._rest = rest
 
-    def run(self, data: Data, best: Data, rest: Data):
+    def _run(self, data: Data):
         self._data: Data = data
-        self._best: Data = best
-        self._rest: Data = rest
 
         self._clf = self._dtree()
 
@@ -61,13 +60,17 @@ class DtreeOptimizer(BaseOptimizer):
                 new_cols = le.fit_transform([x[i] for x in X])
                 for v, x in zip(new_cols, X):
                     x[i] = v
-        preds = []
+        best = []
+        rest = []
         for i, x in enumerate(X):
             if self._remove_missing(x):
                 res = self._clf.predict([x])
                 if res == "best":
-                    preds.append(self._data.rows[i])
+                    best.append(self._data.rows[i])
+                else:
+                    rest.append(self._data.rows[i])
 
-        return preds
+
+        return best, rest, 0
 
     
