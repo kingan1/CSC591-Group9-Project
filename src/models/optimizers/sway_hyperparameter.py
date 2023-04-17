@@ -8,11 +8,12 @@ from predicate import HyperparameterPredicate
 from utils import many, any
 from .base import BaseOptimizer
 from .sway import SwayOptimizer
+from itertools import product
 
 
 class SwayHyperparameterOptimizer(BaseOptimizer):
     def __init__(self, distance_class: Distance = None, reuse: bool = True, far: float = 0.95, halves: int = 512,
-                 rest: int = 10, i_min: float = 0.5, file: str = None):
+                 rest: int = 10, i_min: float = 0.5, file: str = None, sway2: bool = False):
         self._data: Optional[Data] = None
 
         self._distance_class = distance_class or PDist(p=2)
@@ -23,11 +24,21 @@ class SwayHyperparameterOptimizer(BaseOptimizer):
         self._rest = rest
         self._i_min = i_min
         self._file = file
+        self._sway2 = sway2
+        self._options = None
+        
+        
 
-    def run(self, data: Data):
-        self._data: Data = data
-
-        return self._sway(self._data.cols.x)
+    def run(self, data):
+        if not self._options:
+            self._explore_parameters()
+        return SwayOptimizer(
+                reuse=self._options["reuse"],
+                far=self._options["Far"],
+                halves=self._options["Halves"],
+                rest=self._options["Rest"],
+                i_min=self._options["IMin"]
+            ).run(data)
 
     def _project(self, cols: List[Col], row: Row, a: Row, b: Row, c: float):
         return {
@@ -86,3 +97,71 @@ class SwayHyperparameterOptimizer(BaseOptimizer):
         best, rest, evals = worker(self._data.rows, [], 0)
 
         return Data.clone(self._data, best), Data.clone(self._data, rest), evals
+    
+
+
+    def _explore_parameters(self):
+        if self._sway2 and not self._options:
+            print("refreshing sway")
+            # use steps to specify steps for each range of values
+            steps = {"1000": 100,"100":10, '10': 1}
+            # list of parameters used by sway, as well as example values to sample
+            params = { 
+                "Far":  [i/100 for i in range(70,100,steps["10"]*5)],
+                "Halves":  [i for i in range(100, 600, steps["1000"])],
+                "IMin":  [i/10 for i in range(0,8,steps['10']*2)],
+                "Max": [i for i in range(1, 150, 25)],
+                "P":  [1+(i/10) for i in range(10)],
+                "Rest":  [i for i in range(1,5)],
+                "reuse":  [True,False], 
+            }
+            # types of each parameter
+            types = { 
+                "Far":  float,
+                "Halves":  int,
+                "IMin":  float,
+                "Max": int,
+                "P":  int,
+                "Rest":  int,
+                "reuse":  bool
+            }
+
+            # get each combination of parameters
+            permutations_dicts = [dict(zip(params.keys(), v)) for v in product(*params.values())]
+            
+            # this is used to create a sample CSV for our parameters
+            test_params = {}
+            for k,v in params.items():
+                test_params[k] = v[0]
+
+            with open("gridsearch_params.csv", "w") as fp:
+                fp.write(",".join(test_params.keys()) + "\n")
+                fp.write(",".join([str(c) for c in test_params.values()]))
+            
+            # create a data object of all combinations of hyperparameters
+            test_data = Data("gridsearch_params.csv")
+            data=Data(src=test_data,rows=[list(v.values()) for v in permutations_dicts])
+
+            # get the best combination of hyperparameters
+            # self._sway()
+            self._data = data
+            best, _, _ = self._sway(data.cols.x)
+            
+
+            # set the hyperparameters as the "average" of the hyperparameters in best
+            res = best.stats(best.cols.x)
+            res.pop("N")
+            res = {k: types[k](v) for k,v in res.items()}
+            print("new: ", res)
+            print()
+            self._options = res
+            
+            return 
+        
+        # these are optimized for auto2.csv
+        # for auto93 {'Far': 0.85, 'Halves': 300, 'IMin': 0.6, 'Max': 51, 'P': 1, 'Rest': 3, 'reuse': True}
+        # for auto2 {'Far': 0.85, 'Halves': 500, 'Max': 1, 'IMin': 0.0, 'P': 1, 'Rest': 2, 'reuse': True}
+        self._options = {'Far': 0.85, 'Halves': 500, 'Max': 1, 'IMin': 0.0, 'P': 1, 'Rest': 2, 'reuse': True}
+        # self._options = {'Far': 0.85, 'Halves': 300, 'IMin': 0.6, 'Max': 51, 'P': 1, 'Rest': 3, 'reuse': True}
+        return 
+
