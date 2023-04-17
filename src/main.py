@@ -34,74 +34,6 @@ OPTIONS:
   -s  --sway2       refresh the sway2 parameters     = false
 """
 
-from itertools import product
-
-def explore_parameters():
-    if options['sway2']:
-        print("refreshing sway")
-        # use steps to specify steps for each range of values
-        steps = {"1000": 100,"100":10, '10': 1}
-        # list of parameters used by sway, as well as example values to sample
-        params = { 
-            "Far":  [i/100 for i in range(70,100,steps["10"]*5)],
-            "Halves":  [i for i in range(100, 600, steps["1000"])],
-            "IMin":  [i/10 for i in range(0,8,steps['10']*2)],
-            "Max": [i for i in range(1, 150, 25)],
-            "P":  [1+(i/10) for i in range(10)],
-            "Rest":  [i for i in range(1,5)],
-            "reuse":  [True,False], 
-        }
-        # types of each parameter
-        types = { 
-            "Far":  float,
-            "Halves":  int,
-            "IMin":  float,
-            "Max": int,
-            "P":  int,
-            "Rest":  int,
-            "reuse":  bool
-        }
-
-        # get each combination of parameters
-        permutations_dicts = [dict(zip(params.keys(), v)) for v in product(*params.values())]
-        
-        # this is used to create a sample CSV for our parameters
-        test_params = {}
-        for k,v in params.items():
-            test_params[k] = v[0]
-
-        with open("gridsearch_params.csv", "w") as fp:
-            fp.write(",".join(test_params.keys()) + "\n")
-            fp.write(",".join([str(c) for c in test_params.values()]))
-        
-        # create a data object of all combinations of hyperparameters
-        test_data = Data("gridsearch_params.csv")
-        data=Data(src=test_data,rows=[list(v.values()) for v in permutations_dicts])
-
-        # get the best combination of hyperparameters
-        # best,_,evals = data.sway(method="gs")
-        best, rest, evals = SwayHyperparameterOptimizer(
-                reuse=options["reuse"],
-                far=options["Far"],
-                halves=options["Halves"],
-                rest=options["Rest"],
-                i_min=options["IMin"],
-                file=options["file"]
-            ).run(data)
-        
-
-        # set the hyperparameters as the "average" of the hyperparameters in best
-        res = best.stats(best.cols.x)
-        res.pop("N")
-        res = {k: types[k](v) for k,v in res.items()}
-        print("new: ", res)
-        print()
-        
-        return get_options(res)
-    
-    # these are optimized for auto2.csv
-    finalized = {'Far': 0.85, 'Halves': 500, 'Max': 1, 'IMin': 0.0, 'P': 1, 'Rest': 2, 'reuse': True}
-    return get_options(finalized)
 
 def get_stats(data_array):
     # gets the average stats, given the data array objects
@@ -121,15 +53,6 @@ def get_stats(data_array):
 
     return res
 
-def get_options(new_options):
-    global options
-    options2 = options.t.copy()
-    
-    for k,v in new_options.items():
-        options2[k] = v
-
-    assert len(options2) == 17
-    return options2
 
 def mean(lst):
     return sum(lst) / len(lst)
@@ -163,11 +86,22 @@ def main():
         ranks = {"all": 0, "sway1": 0, "sway2": 0, "xpln1": 0, "xpln2": 0, "top": 0}
 
         count = 0
-        sway2_options = explore_parameters()
+        # sway2_options = explore_parameters()
         data = None
 
         # read in the data
         data = Data(options["file"])
+
+        # initialize the sway hyperparameter optimizer
+        swayHyperparameter = SwayHyperparameterOptimizer(
+                    reuse=options["reuse"],
+                    far=options["Far"],
+                    halves=options["Halves"],
+                    rest=options["Rest"],
+                    i_min=options["IMin"],
+                    file=options["file"],
+                    sway2=options["sway2"]
+                )
         
         # get the "top" results by running the betters algorithm
         all_ranked, _ = data.betters(len(data.rows))
@@ -201,13 +135,7 @@ def main():
                 data1 = Data.clone(data, selects(rule, data.rows))
 
 
-                best2, _, evals_sway2 = SwayOptimizer(
-                    reuse=sway2_options["reuse"],
-                    far=sway2_options["Far"],
-                    halves=sway2_options["Halves"],
-                    rest=sway2_options["Rest"],
-                    i_min=sway2_options["IMin"]
-                ).run(data)
+                best2, _, evals_sway2 = swayHyperparameter.run(data)
 
                 top2, _ = data.betters(len(best.rows))
                 top = Data.clone(data, top2)
@@ -255,7 +183,7 @@ def main():
                     # for each column
                     for k in range(len(data.cols.y)):
                         # if not already marked as false
-                        if comparisons[i][1][k] == "=":
+                        if True: #comparisons[i][1][k] == "=":
                             # check if it is false
                             base_y, diff_y = results[base][count].cols.y[k], results[diff][count].cols.y[k]
                             equals = bootstrap(base_y.has(), diff_y.has()) and cliffs_delta(base_y.has(), diff_y.has())
