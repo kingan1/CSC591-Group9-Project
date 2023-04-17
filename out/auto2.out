@@ -1,27 +1,17 @@
-refreshing sway
-new:  {'Far': 0.85, 'Halves': 300, 'IMin': 0.6, 'Max': 51, 'P': 1, 'Rest': 3, 'reuse': True}
+        CityMPG+    HighwayMPG+    Weight-    Class-    Avg evals
+----  ----------  -------------  ---------  --------  -----------
+all           21             28       3040      17.7            0
+sway       30.15          34.85       2129     8.875            5
+xpln       30.35          34.45     2182.5     9.215            5
+top           33           39.8       2052      8.88           93
 
-          Lbs-    Acc+    Mpg+    Avg evals    Avg rank
------  -------  ------  ------  -----------  ----------
-all       2800    15.5      20            0     50.1225
-sway1  2161.45  16.585    32.5            6     24.6534
-sway2   2153.1   16.27    30.5            5     24.7289
-xpln1  2203.55   15.97    30.5            6     27.6116
-xpln2   2187.2  16.595      33            6     25.4883
-top       [92m1985[0m    [92m18.8[0m      [92m40[0m          398     2.24372
+              CityMPG+    HighwayMPG+    Weight-    Class-
+------------  ----------  -------------  ---------  --------
+all to all    =           =              =          =
+all to sway   ≠           ≠              ≠          ≠
+sway to xpln  ≠           ≠              ≠          ≠
+sway to top   ≠           ≠              ≠          ≠
 
-      Best    Beat Sway?    Beat Xpln?
-----  ------  ------------  ------------
-Lbs-  top     True          True
-Acc+  top     False         True
-Mpg+  top     False         True
-
-                Lbs-    Acc+    Mpg+
---------------  ------  ------  ------
-all to all      =       =       =
-all to sway1    ≠       ≠       ≠
-all to sway2    ≠       ≠       ≠
-sway1 to sway2  ≠       ≠       ≠
-sway1 to xpln1  ≠       ≠       ≠
-sway2 to xpln2  ≠       ≠       ≠
-sway1 to top    ≠       ≠       ≠
+real	0m15.039s
+user	0m14.554s
+sys	0m0.080s

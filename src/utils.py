@@ -12,10 +12,12 @@ class Random:
     def set_seed(self, value: int):
         self.seed = value
 
+    def get_seed(self):
+        return self.seed
+
     def rand(self, lo=0, hi=1):
         """
         Generates a pseudo-random number using seed.
-
         :param lo: Lower limit of generated number
         :param hi: Higher limit of generated number
         :return: Pseudo-random number
@@ -31,13 +33,13 @@ class Random:
 _inst = Random()
 rand = _inst.rand
 rint = _inst.rint
+get_seed = _inst.get_seed
 set_seed = _inst.set_seed
 
 
 def rnd(n: float, n_places: int = 2) -> float:
     """
     Rounds number n to n places.
-
     :param n: Number
     :param n_places: Number of decimal places to round
     :return: Rounded number
@@ -49,7 +51,6 @@ def rnd(n: float, n_places: int = 2) -> float:
 def coerce(v):
     """
     Attempts to convert v to an int, float, bool, or keep as string
-
     :param v: String to convert
     :return: v converted to its type
     """
@@ -71,7 +72,6 @@ def coerce(v):
 def csv(sFilename, fun):
     """
     call `fun` on rows (after coercing cell text)
-
     :param sFilename: String of the file to read
     :param fun: function to call per each row
     """
@@ -126,5 +126,3 @@ def kap(t, fun, u={}):
         else:
             u[k] = v
     return u
-
-

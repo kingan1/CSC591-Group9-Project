@@ -13,7 +13,9 @@ from itertools import product
 
 class SwayHyperparameterOptimizer(BaseOptimizer):
     def __init__(self, distance_class: Distance = None, reuse: bool = True, far: float = 0.95, halves: int = 512,
-                 rest: int = 10, i_min: float = 0.5, file: str = None, sway2: bool = False):
+                 rest: int = 10, i_min: float = 0.5, file: str = None, sway2: bool = False, seed=None):
+        super().__init__(seed)
+        
         self._data: Optional[Data] = None
 
         self._distance_class = distance_class or PDist(p=2)
@@ -26,6 +28,7 @@ class SwayHyperparameterOptimizer(BaseOptimizer):
         self._file = file
         self._sway2 = sway2
         self._options = None
+
         
         
 

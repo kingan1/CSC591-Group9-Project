@@ -11,7 +11,9 @@ from .base import BaseOptimizer
 
 class SwayOptimizer(BaseOptimizer):
     def __init__(self, distance_class: Distance = None, reuse: bool = True, far: float = 0.95, halves: int = 512,
-                 rest: int = 10, i_min: float = 0.5):
+                 rest: int = 10, i_min: float = 0.5, seed=None):
+        super().__init__(seed)
+
         self._data: Optional[Data] = None
 
         self._distance_class = distance_class or PDist(p=2)
@@ -22,7 +24,7 @@ class SwayOptimizer(BaseOptimizer):
         self._rest = rest
         self._i_min = i_min
 
-    def run(self, data: Data):
+    def _run(self, data: Data):
         self._data: Data = data
 
         return self._sway(self._data.cols.x)

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
          PSNR-    Energy-    Avg evals    Avg rank
 -----  -------  ---------  -----------  ----------
 all      45.67    1237.73            0     50.4972
@@ -25,3 +26,22 @@ sway1 to top    ≠        ≠
 real	4m1.121s
 user	0m0.015s
 sys	0m0.000s
+=======
+        PSNR-    Energy-    Avg evals
+----  -------  ---------  -----------
+all   45.8435    1249.28            0
+sway   44.812    1216.78            9
+xpln   44.669    1221.03            9
+top    26.715    466.288        53662
+
+              PSNR-    Energy-
+------------  -------  ---------
+all to all    =        =
+all to sway   ≠        ≠
+sway to xpln  ≠        ≠
+sway to top   ≠        ≠
+
+real	3m38.113s
+user	3m35.216s
+sys	0m1.876s
+>>>>>>> be12547027716574812b1afca6ccd95ecd04ac95

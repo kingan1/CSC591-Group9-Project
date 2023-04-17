@@ -1,27 +1,17 @@
-         NUMBERITERATIONS-    TIMETOSOLUTION-    Avg evals    Avg rank
------  -------------------  -----------------  -----------  ----------
-all                      6             133.54            0     50.4994
-sway1                 6.45            118.442           10      35.157
-sway2                 4.05             82.323         18.4     4.67966
-xpln1                  5.9            112.604           10     39.7498
-xpln2                 6.15            111.235           10     35.2414
-top                      4             59.978       239360     1.09618
+        PSNR-    Energy-    Avg evals
+----  -------  ---------  -----------
+all   45.8435    1249.28            0
+sway   44.812    1216.78            9
+xpln   44.669    1221.03            9
+top    26.715    466.288        53662
 
-                   Best    Beat Sway?    Beat Xpln?
------------------  ------  ------------  ------------
-NUMBERITERATIONS-  top     True          False
-TIMETOSOLUTION-    top     True          True
+              PSNR-    Energy-
+------------  -------  ---------
+all to all    =        =
+all to sway   ≠        ≠
+sway to xpln  ≠        ≠
+sway to top   ≠        ≠
 
-                NUMBERITERATIONS-    TIMETOSOLUTION-
---------------  -------------------  -----------------
-all to all      =                    =
-all to sway1    ≠                    ≠
-all to sway2    ≠                    ≠
-sway1 to sway2  ≠                    ≠
-sway1 to xpln1  ≠                    ≠
-sway2 to xpln2  ≠                    ≠
-sway1 to top    ≠                    ≠
-
-real	13m24.019s
-user	0m0.000s
-sys	0m0.000s
+real	3m38.113s
+user	3m35.216s
+sys	0m1.876s

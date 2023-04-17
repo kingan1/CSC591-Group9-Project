@@ -30,7 +30,7 @@ OPTIONS:
   -o  --Conf        confidence interval              = 0.05
   -f  --file        file to generate table of        = ../data/auto2.csv
   -n  --Niter       number of iterations to run      = 20
-  -w  --wColor      output with color                = true
+  -w  --wColor      output with color                = false
   -s  --sway2       refresh the sway2 parameters     = false
 """
 
