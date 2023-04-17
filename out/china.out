@@ -5,10 +5,16 @@ sway                       763.85            6
 sway_pca                    558.1            6
 sway_pca_alpha              431.3            6
 sway_pca_alpha2             309.7            6
+sway_fa                     471.3            6
+sway_fa_alpha               677.8            6
+sway_fa_alpha2              327.4            6
 sway_xpln                  985.35            6
 sway_pca_xpln             1000.25            6
 sway_pca_alpha_xpln        908.55            6
 sway_pca_alpha2_xpln       668.75            6
+sway_fa_xpln               1005.4            6
+sway_fa_alpha_xpln         755.85            6
+sway_fa_alpha2_xpln         712.1            6
 top                           145          499
 
                                    N_effort-
@@ -18,17 +24,38 @@ all to sway                        ≠
 all to sway_pca                    ≠
 all to sway_pca_alpha              ≠
 all to sway_pca_alpha2             ≠
+all to sway_fa                     ≠
+all to sway_fa_alpha               ≠
+all to sway_fa_alpha2              ≠
 sway to sway_pca                   ≠
 sway to sway_pca_alpha             ≠
 sway to sway_pca_alpha2            ≠
+sway to sway_fa                    ≠
+sway to sway_fa_alpha              ≠
+sway to sway_fa_alpha2             ≠
 sway_pca to sway_pca_alpha         ≠
 sway_pca to sway_pca_alpha2        ≠
+sway_pca to sway_fa                ≠
+sway_pca to sway_fa_alpha          ≠
+sway_pca to sway_fa_alpha2         ≠
 sway_pca_alpha to sway_pca_alpha2  ≠
+sway_pca_alpha to sway_fa          ≠
+sway_pca_alpha to sway_fa_alpha    ≠
+sway_pca_alpha to sway_fa_alpha2   ≠
+sway_pca_alpha2 to sway_fa         ≠
+sway_pca_alpha2 to sway_fa_alpha   ≠
+sway_pca_alpha2 to sway_fa_alpha2  ≠
+sway_fa to sway_fa_alpha           ≠
+sway_fa to sway_fa_alpha2          ≠
+sway_fa_alpha to sway_fa_alpha2    ≠
 sway to top                        ≠
 sway_pca to top                    ≠
 sway_pca_alpha to top              ≠
 sway_pca_alpha2 to top             ≠
+sway_fa to top                     ≠
+sway_fa_alpha to top               ≠
+sway_fa_alpha2 to top              ≠
 
-real	0m24.897s
-user	0m24.479s
-sys	0m0.704s
+real	0m28.507s
+user	0m28.331s
+sys	0m0.605s
