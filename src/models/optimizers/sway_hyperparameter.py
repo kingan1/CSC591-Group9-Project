@@ -161,7 +161,8 @@ class SwayHyperparameterOptimizer(BaseOptimizer):
         # these are optimized for auto2.csv
         # for auto93 {'Far': 0.85, 'Halves': 300, 'IMin': 0.6, 'Max': 51, 'P': 1, 'Rest': 3, 'reuse': True}
         # for auto2 {'Far': 0.85, 'Halves': 500, 'Max': 1, 'IMin': 0.0, 'P': 1, 'Rest': 2, 'reuse': True}
-        self._options = {'Far': 0.85, 'Halves': 500, 'Max': 1, 'IMin': 0.0, 'P': 1, 'Rest': 2, 'reuse': True}
+        self._options = {'Far': 0.75, 'Halves': 500, 'IMin': 0.2, 'Max': 26, 'P': 1, 'Rest': 3, 'reuse': True}
         # self._options = {'Far': 0.85, 'Halves': 300, 'IMin': 0.6, 'Max': 51, 'P': 1, 'Rest': 3, 'reuse': True}
+        # NEW: for default: {'Far': 0.75, 'Halves': 500, 'IMin': 0.2, 'Max': 26, 'P': 1, 'Rest': 3, 'reuse': True}
         return 
 

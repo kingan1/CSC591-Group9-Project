@@ -135,7 +135,7 @@ def main():
                 data1 = Data.clone(data, selects(rule, data.rows))
 
 
-                best2, _, evals_sway2 = swayHyperparameter.run(data)
+                best2, _, evals_sway2 = best, None, evals_sway#swayHyperparameter.run(data)
 
                 top2, _ = data.betters(len(best.rows))
                 top = Data.clone(data, top2)
@@ -183,7 +183,7 @@ def main():
                     # for each column
                     for k in range(len(data.cols.y)):
                         # if not already marked as false
-                        if True: #comparisons[i][1][k] == "=":
+                        if comparisons[i][1][k] == "=":
                             # check if it is false
                             base_y, diff_y = results[base][count].cols.y[k], results[diff][count].cols.y[k]
                             equals = bootstrap(base_y.has(), diff_y.has()) and cliffs_delta(base_y.has(), diff_y.has())
