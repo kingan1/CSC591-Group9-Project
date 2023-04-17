@@ -111,7 +111,7 @@ def main():
             )
         
         # get the "top" results by running the betters algorithm
-        all_ranked, _ = data.betters(len(data.rows))
+        all_ranked = data.betters()
         # for each row, rank it normalized from 1-100
         for idx, row in enumerate(all_ranked):
             row.rank = 1 + (idx/len(data.rows))*99
