@@ -212,12 +212,12 @@ def main():
                 top2, _ = data.betters(len(best.rows))
                 top = Data.clone(data, top2)
 
-                results['all'] += (data)
-                results['sway1'] += (best)
-                results['xpln1'] += (data1)
-                results['xpln2'] += (xpln2)
-                results['top'] += (top)
-                results['sway2'] += (best2)
+                results['all'].append(data)
+                results['sway1'].append(best)
+                results['xpln1'].append(data1)
+                results['xpln2'].append(xpln2)
+                results['top'].append(top)
+                results['sway2'].append(best2)
 
                 
                 ranks['all'] += (mean([r.rank for r in data.rows]))
