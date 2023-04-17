@@ -1,17 +1,20 @@
+refreshing sway
+new:  {'Far': 0.85, 'Halves': 300, 'IMin': 0.6, 'Max': 51, 'P': 1, 'Rest': 3, 'reuse': True}
+
           Lbs-    Acc+    Mpg+    Avg evals    Avg rank
 -----  -------  ------  ------  -----------  ----------
 all       2800    15.5      20            0     50.1225
-sway1   2210.4   16.18      31            6     25.1702
-sway2  2005.45  17.585    38.5         9.25     6.11168
-xpln1  2212.35  16.075      30            6     27.8859
-xpln2  2196.25  16.385    31.5            6     24.1413
-top       1985   18.78      40          398     2.25616
+sway1  2161.45  16.585    32.5            6     24.6534
+sway2   2153.1   16.27    30.5            5     24.7289
+xpln1  2203.55   15.97    30.5            6     27.6116
+xpln2   2187.2  16.595      33            6     25.4883
+top       [92m1985[0m    [92m18.8[0m      [92m40[0m          398     2.24372
 
       Best    Beat Sway?    Beat Xpln?
 ----  ------  ------------  ------------
 Lbs-  top     True          True
-Acc+  top     True          True
-Mpg+  top     True          True
+Acc+  top     False         True
+Mpg+  top     False         True
 
                 Lbs-    Acc+    Mpg+
 --------------  ------  ------  ------
@@ -22,7 +25,3 @@ sway1 to sway2  ≠       ≠       ≠
 sway1 to xpln1  ≠       ≠       ≠
 sway2 to xpln2  ≠       ≠       ≠
 sway1 to top    ≠       ≠       ≠
-
-real	1m45.868s
-user	0m0.000s
-sys	0m0.000s
