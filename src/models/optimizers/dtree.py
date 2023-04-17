@@ -45,7 +45,7 @@ class DtreeOptimizer(BaseOptimizer):
         X_data = [x[:-1] for x in X]
         y = [x[-1] for x in X]
         
-        clf = tree.DecisionTreeClassifier().fit(X_data, y)
+        clf = tree.DecisionTreeClassifier(random_state=0).fit(X_data, y)
         return clf
     
     def _remove_missing(self, X):
