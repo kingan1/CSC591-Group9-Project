@@ -11,7 +11,7 @@ from utils import many, any
 from .base import BaseOptimizer
 from sklearn.cluster import AgglomerativeClustering
 
-class SwayWithFAOptimizer:
+class SwayWithAggloOptimizer:
     def __init__(self, distance_class: Distance = None, reuse: bool = True, far: float = 0.95, halves: int = 512,
                  rest: int = 10, i_min: float = 0.5):
         self._data: Optional[Data] = None

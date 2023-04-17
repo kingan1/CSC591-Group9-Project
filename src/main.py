@@ -2,7 +2,7 @@ from tabulate import tabulate
 
 from data import Data
 from explain import Explain, selects
-from models.optimizers import SwayOptimizer, SwayWithFAOptimizer
+from models.optimizers import SwayOptimizer, SwayWithAggloOptimizer
 from options import options
 from stats import cliffs_delta, bootstrap
 
@@ -100,7 +100,7 @@ def main():
             ).run(data)
 
             # get "sway2" results
-            best2, rest2, evals_sway2 = SwayWithFAOptimizer(
+            best2, rest2, evals_sway2 = SwayWithAggloOptimizer(
                 reuse=options["reuse"],
                 far=options["Far"],
                 halves=options["Halves"],
