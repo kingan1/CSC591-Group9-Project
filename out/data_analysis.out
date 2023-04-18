@@ -1,0 +1,17 @@
+\begin{tabular}{lrrr}
+\hline
+ Dataset                         &   Number of rows &   Number of x &   Number of y \\
+\hline
+ auto2                           &              398 &             4 &             3 \\
+ auto93                          &               93 &            19 &             4 \\
+ china                           &              499 &            16 &             1 \\
+ coc1000                         &             1000 &            17 &             5 \\
+ coc10000                        &            10000 &            22 &             3 \\
+ healthCloseIsses12mths0001-hard &            10000 &             5 &             3 \\
+ healthCloseIsses12mths0011-easy &            10000 &             5 &             3 \\
+ nasa93dem                       &               93 &            22 &             4 \\
+ pom                             &            10000 &            10 &             3 \\
+ SSM                             &           239360 &            13 &             2 \\
+ SSN                             &            53662 &            17 &             2 \\
+\hline
+\end{tabular}
