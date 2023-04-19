@@ -1,27 +1,35 @@
-         NUMBERITERATIONS-    TIMETOSOLUTION-    Avg evals    Avg rank
------  -------------------  -----------------  -----------  ----------
-all                      6             133.54            0     50.4998
-sway1                  5.4            111.742           10     28.2327
-sway2                    4              110.1           16     5.28416
-xpln1                  5.2            113.935           10     34.3003
-xpln2                 5.35             111.95           10     30.8065
-top                      4             59.978       239360      1.0966
+\begin{tabular}{lrrrr}
+\hline
+       &   NUMBERITERATIONS- &   TIMETOSOLUTION- &   Avg evals &   Avg rank \\
+\hline
+ all   &                   6 &            133.54 &           0 &    50.4998 \\
+ sway1 &                 5.4 &           111.742 &          10 &    28.2327 \\
+ sway2 &                   4 &             110.1 &          16 &    5.28416 \\
+ xpln1 &                 5.2 &           113.935 &          10 &    34.3003 \\
+ xpln2 &                5.35 &            111.95 &          10 &    30.8065 \\
+ top   &                   4 &            59.978 &      239360 &     1.0966 \\
+\hline
+\end{tabular}
 
                    Best    Beat Sway?    Beat Xpln?
 -----------------  ------  ------------  ------------
 NUMBERITERATIONS-  sway2   True          False
 TIMETOSOLUTION-    top     True          True
 
-                NUMBERITERATIONS-    TIMETOSOLUTION-
---------------  -------------------  -----------------
-all to all      =                    =
-all to sway1    ≠                    ≠
-all to sway2    ≠                    ≠
-sway1 to sway2  ≠                    ≠
-sway1 to xpln1  ≠                    ≠
-sway2 to xpln2  ≠                    ≠
-sway1 to top    ≠                    ≠
+\begin{tabular}{lll}
+\hline
+                & NUMBERITERATIONS-   & TIMETOSOLUTION-   \\
+\hline
+ all to all     & =                   & =                 \\
+ all to sway1   & ≠                   & ≠                 \\
+ all to sway2   & ≠                   & ≠                 \\
+ sway1 to sway2 & ≠                   & ≠                 \\
+ sway1 to xpln1 & ≠                   & ≠                 \\
+ sway2 to xpln2 & ≠                   & ≠                 \\
+ sway1 to top   & ≠                   & ≠                 \\
+\hline
+\end{tabular}
 
-real	27m13.158s
+real	40m27.431s
 user	0m0.000s
-sys	0m0.015s
+sys	0m0.000s

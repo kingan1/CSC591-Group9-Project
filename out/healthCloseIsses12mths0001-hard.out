@@ -1,11 +1,15 @@
-          MRE-    ACC+    PRED40+    Avg evals    Avg rank
------  -------  ------  ---------  -----------  ----------
-all      75.34    7.16         25            0     50.4951
-sway1  76.3755  6.8175      26.25            8     43.8699
-sway2    70.76   16.79         25           12          21
-xpln1  76.4095   6.786      26.25            8     43.8791
-xpln2  76.5525   6.756      26.25            8     44.4063
-top      64.91   11.33         25        10000      1.3861
+\begin{tabular}{lrrrrr}
+\hline
+       &    MRE- &   ACC+ &   PRED40+ &   Avg evals &   Avg rank \\
+\hline
+ all   &   75.34 &   7.16 &        25 &           0 &    50.4951 \\
+ sway1 & 76.3755 & 6.8175 &     26.25 &           8 &    43.8699 \\
+ sway2 &   70.76 &  16.79 &        25 &          12 &         21 \\
+ xpln1 & 76.4095 &  6.786 &     26.25 &           8 &    43.8791 \\
+ xpln2 & 76.5525 &  6.756 &     26.25 &           8 &    44.4063 \\
+ top   &   64.91 &  11.33 &        25 &       10000 &     1.3861 \\
+\hline
+\end{tabular}
 
          Best    Beat Sway?    Beat Xpln?
 -------  ------  ------------  ------------
@@ -13,16 +17,20 @@ MRE-     top     True          False
 ACC+     sway2   True          False
 PRED40+  sway1   False         False
 
-                MRE-    ACC+    PRED40+
---------------  ------  ------  ---------
-all to all      =       =       =
-all to sway1    ≠       ≠       ≠
-all to sway2    =       =       =
-sway1 to sway2  ≠       =       =
-sway1 to xpln1  ≠       ≠       ≠
-sway2 to xpln2  ≠       ≠       ≠
-sway1 to top    ≠       ≠       ≠
+\begin{tabular}{llll}
+\hline
+                & MRE-   & ACC+   & PRED40+   \\
+\hline
+ all to all     & =      & =      & =         \\
+ all to sway1   & ≠      & ≠      & ≠         \\
+ all to sway2   & =      & =      & =         \\
+ sway1 to sway2 & ≠      & =      & =         \\
+ sway1 to xpln1 & ≠      & ≠      & ≠         \\
+ sway2 to xpln2 & ≠      & ≠      & ≠         \\
+ sway1 to top   & ≠      & ≠      & ≠         \\
+\hline
+\end{tabular}
 
-real	4m11.205s
+real	2m54.133s
 user	0m0.000s
 sys	0m0.015s

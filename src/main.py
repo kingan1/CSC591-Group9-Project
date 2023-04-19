@@ -253,7 +253,7 @@ def main():
                 table[header_vals.index(fun(header_vals))][i + 1] = '\033[92m' + str(
                     table[header_vals.index(fun(header_vals))][i + 1]) + '\033[0m'
 
-        print(tabulate(table, headers=headers + ["Avg evals", "Avg rank"], numalign="right"))
+        print(tabulate(table, headers=headers + ["Avg evals", "Avg rank"], numalign="right", tablefmt="latex"))
         print()
 
             
@@ -268,7 +268,7 @@ def main():
         for [base, diff], result in comparisons:
             table.append([f"{base} to {diff}"] + result)
 
-        print(tabulate(table, headers=headers, numalign="right"))
+        print(tabulate(table, headers=headers, numalign="right", tablefmt="latex"))
 
 
 main()

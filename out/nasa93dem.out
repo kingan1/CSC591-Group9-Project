@@ -1,11 +1,15 @@
-         Kloc+    Effort-    Defects-    Months-    Avg evals    Avg rank
------  -------  ---------  ----------  ---------  -----------  ----------
-all       47.5        252        2007       21.4            0     49.9677
-sway1   20.005      83.98      750.55      13.26            5     24.8487
-sway2      8.2       25.2         256       10.4            6     7.91935
-xpln1    22.54      82.74       896.1      13.85            5     26.0298
-xpln2    34.96     156.08     1414.65     16.485            5       31.68
-top        4.6      14.76      143.65      8.515           93     3.95403
+\begin{tabular}{lrrrrrr}
+\hline
+       &   Kloc+ &   Effort- &   Defects- &   Months- &   Avg evals &   Avg rank \\
+\hline
+ all   &    47.5 &       252 &       2007 &      21.4 &           0 &    49.9677 \\
+ sway1 &  20.005 &     83.98 &     750.55 &     13.26 &           5 &    24.8487 \\
+ sway2 &     8.2 &      25.2 &        256 &      10.4 &           6 &    7.91935 \\
+ xpln1 &   22.54 &     82.74 &      896.1 &     13.85 &           5 &    26.0298 \\
+ xpln2 &   34.96 &    156.08 &    1414.65 &    16.485 &           5 &      31.68 \\
+ top   &     4.6 &     14.76 &     143.65 &     8.515 &          93 &    3.95403 \\
+\hline
+\end{tabular}
 
           Best    Beat Sway?    Beat Xpln?
 --------  ------  ------------  ------------
@@ -14,16 +18,20 @@ Effort-   top     True          False
 Defects-  top     True          False
 Months-   top     True          False
 
-                Kloc+    Effort-    Defects-    Months-
---------------  -------  ---------  ----------  ---------
-all to all      =        =          =           =
-all to sway1    ≠        ≠          ≠           ≠
-all to sway2    ≠        ≠          ≠           ≠
-sway1 to sway2  ≠        ≠          ≠           ≠
-sway1 to xpln1  ≠        ≠          ≠           ≠
-sway2 to xpln2  ≠        ≠          ≠           ≠
-sway1 to top    ≠        ≠          ≠           ≠
+\begin{tabular}{lllll}
+\hline
+                & Kloc+   & Effort-   & Defects-   & Months-   \\
+\hline
+ all to all     & =       & =         & =          & =         \\
+ all to sway1   & ≠       & ≠         & ≠          & ≠         \\
+ all to sway2   & ≠       & ≠         & ≠          & ≠         \\
+ sway1 to sway2 & ≠       & ≠         & ≠          & ≠         \\
+ sway1 to xpln1 & ≠       & ≠         & ≠          & ≠         \\
+ sway2 to xpln2 & ≠       & ≠         & ≠          & ≠         \\
+ sway1 to top   & ≠       & ≠         & ≠          & ≠         \\
+\hline
+\end{tabular}
 
-real	0m23.969s
+real	0m22.727s
 user	0m0.000s
-sys	0m0.000s
+sys	0m0.015s
