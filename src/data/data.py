@@ -9,14 +9,14 @@ from .row import Row
 
 
 class Data:
-    def __init__(self, src: Union[str, List] = None, rows: Union[List, Row] = None):
+    def __init__(self, src: Union[str, List, 'Data'] = None, rows: Union[List, Row] = None):
         self.rows: List[Row] = []
         self.cols: Optional[Cols] = None
 
         if src or rows:
             self.read(src, rows)
 
-    def read(self, src: Union[str, List], rows: Union[List, Row] = None):
+    def read(self, src: Union[str, List, 'Data'], rows: Union[List, Row] = None):
         def f(t):
             self.add(t)
 
