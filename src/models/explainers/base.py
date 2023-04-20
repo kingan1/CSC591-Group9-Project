@@ -10,4 +10,3 @@ class BaseExplainer:
 
     def xpln(self, data: Data, best: Data, rest: Data) -> Union[Dict[str, list], int]:
         raise NotImplementedError("Cannot create object of BaseExplainer")
-
