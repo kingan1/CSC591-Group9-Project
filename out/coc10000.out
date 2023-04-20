@@ -2,12 +2,12 @@
 \hline
        &   Loc+ &   Risk- &   Effort- &   Avg evals &   Avg rank \\
 \hline
- all   &    931 &       5 &     21427 &           0 &    50.4951 \\
- sway1 & 979.65 &     3.2 &   16207.7 &           8 &    45.0655 \\
- sway2 &   1055 &       2 &     44475 &          12 &    33.6477 \\
- xpln1 & 1056.7 &    5.75 &   19956.2 &           8 &    47.8637 \\
- xpln2 & 1012.5 &    4.85 &   17513.8 &           8 &    49.1812 \\
- top   &   1959 &       0 &     17752 &       10000 &     1.3861 \\
+ all   &    931 &       5 &     21427 &           0 &       50.5 \\
+ sway1 &  979.6 &     3.2 &   16207.7 &           8 &       45.1 \\
+ sway2 &   1055 &       2 &     44475 &          12 &       33.6 \\
+ xpln1 & 1056.7 &     5.8 &   19956.2 &           8 &       47.9 \\
+ xpln2 & 1012.5 &     4.8 &   17513.8 &           8 &       49.2 \\
+ top   &   1959 &       0 &     17733 &       10000 &        1.4 \\
 \hline
 \end{tabular}
 
@@ -26,11 +26,12 @@ Effort-  sway1   False         True
  all to sway2   & =      & =       & =         \\
  sway1 to sway2 & =      & ≠       & ≠         \\
  sway1 to xpln1 & ≠      & ≠       & ≠         \\
- sway2 to xpln2 & ≠      & ≠       & ≠         \\
+ sway1 to xpln2 & ≠      & ≠       & ≠         \\
+ xpln1 to xpln2 & ≠      & ≠       & ≠         \\
  sway1 to top   & ≠      & ≠       & ≠         \\
 \hline
 \end{tabular}
 
-real	4m41.933s
+real	2m45.888s
 user	0m0.000s
-sys	0m0.015s
+sys	0m0.000s

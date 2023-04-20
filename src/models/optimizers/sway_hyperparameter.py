@@ -111,11 +111,11 @@ class SwayHyperparameterOptimizer(BaseOptimizer):
             print("refreshing sway")
             # list of parameters used by sway, as well as example values to sample
             params = { 
-                "Far":  [i/100 for i in range(70,100,5)],
-                "Halves":  [i for i in range(100, 700,100)],
+                "Far":  [i/100 for i in range(70,105,5)],
+                "Halves":  [i for i in range(100, 800, 100)],
                 "IMin":  [i/10 for i in range(0,8,2)],
-                "Max": [i for i in range(1, 150, 25)], # not used
-                "P":  [1+(i/10) for i in range(10)],
+                "Max": [i for i in range(1, 50, 5)],
+                "P":  [1+(i/10) for i in range(0,14, 2)],
                 "Rest":  [i for i in range(1,5)],
                 "reuse":  [True,False], 
             }
@@ -125,11 +125,13 @@ class SwayHyperparameterOptimizer(BaseOptimizer):
                 "Halves":  int,
                 "IMin":  float,
                 "Max": int,
-                "P":  int,
+                "P":  float,
                 "Rest":  int,
                 "reuse":  bool
             }
 
+            for k,v in params.items():
+                print(k,v)
             # get each combination of parameters
             permutations_dicts = [dict(zip(params.keys(), v)) for v in product(*params.values())]
             
@@ -162,7 +164,7 @@ class SwayHyperparameterOptimizer(BaseOptimizer):
             
             return n_evals
         
-        # these are optimized for auto2.csv
-        self._options = {'Far': 0.95, 'Halves': 500, 'IMin': 0.0, 'P': 1, 'Rest': 2, 'reuse': False}
+        # these are optimized for auto2.csv - do not change
+        self._options = {'Far': 0.75, 'Halves': 500, 'IMin': 0.2, 'P': 2,   'Rest': 3, 'reuse': True}
         return 0
 

@@ -1,13 +1,13 @@
 \begin{tabular}{lrrrrr}
 \hline
-       &    Lbs- &   Acc+ &   Mpg+ &   Avg evals &   Avg rank \\
+       &   Lbs- &   Acc+ &   Mpg+ &   Avg evals &   Avg rank \\
 \hline
- all   &    2800 &   15.5 &     20 &           0 &    50.3756 \\
- sway1 & 2169.15 & 15.975 &     31 &           6 &    23.5619 \\
- sway2 &    2335 &   23.7 &     40 &           8 &    19.0754 \\
- xpln1 &  2216.5 &  16.01 &     30 &           6 &    28.7381 \\
- xpln2 & 2161.05 & 16.015 &   31.5 &           6 &    23.6972 \\
- top   &    1985 &  18.79 &     40 &         398 &    2.49868 \\
+ all   &   2800 &   15.5 &     20 &           0 &       50.4 \\
+ sway1 & 2169.2 &     16 &     31 &           6 &       23.6 \\
+ sway2 &   2335 &   23.7 &     40 &           8 &       19.1 \\
+ xpln1 & 2216.5 &     16 &     30 &           6 &       28.7 \\
+ xpln2 & 2161.1 &     16 &   31.5 &           6 &       23.7 \\
+ top   &   1987 &   18.8 &     40 &         398 &        2.4 \\
 \hline
 \end{tabular}
 
@@ -26,11 +26,12 @@ Mpg+  sway2   True          True
  all to sway2   & ≠      & ≠      & ≠      \\
  sway1 to sway2 & ≠      & ≠      & ≠      \\
  sway1 to xpln1 & ≠      & ≠      & ≠      \\
- sway2 to xpln2 & ≠      & ≠      & ≠      \\
+ sway1 to xpln2 & ≠      & ≠      & ≠      \\
+ xpln1 to xpln2 & ≠      & ≠      & ≠      \\
  sway1 to top   & ≠      & ≠      & ≠      \\
 \hline
 \end{tabular}
 
-real	0m57.842s
+real	0m46.306s
 user	0m0.000s
-sys	0m0.015s
+sys	0m0.000s

@@ -7,7 +7,7 @@ do
     echo "processing " $file
     # run main.py to generate tables, with the csv name.
     # saves to out/csv_name.out
-    (time python main.py -f $file --wColor false)  > "../out/$(basename $file .csv).out" 2>&1
+    (time python main.py -f $file)  > "../out/$(basename $file .csv).out" 2>&1
 done
 
 

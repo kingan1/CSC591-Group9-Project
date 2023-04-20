@@ -2,12 +2,12 @@
 \hline
        &   N\_effort- &   Avg evals &   Avg rank \\
 \hline
- all   &        2098 &           0 &    50.4008 \\
- sway1 &      763.85 &           6 &    19.4342 \\
- sway2 &         560 &           8 &    17.7315 \\
- xpln1 &      985.35 &           6 &    30.1791 \\
- xpln2 &         912 &           6 &    24.1999 \\
- top   &       147.5 &         499 &    2.51278 \\
+ all   &        2098 &           0 &       50.4 \\
+ sway1 &       763.9 &           6 &       19.4 \\
+ sway2 &         560 &           8 &       17.7 \\
+ xpln1 &       985.4 &           6 &       30.2 \\
+ xpln2 &         912 &           6 &       24.2 \\
+ top   &         145 &         499 &        2.4 \\
 \hline
 \end{tabular}
 
@@ -24,11 +24,12 @@ N_effort-  top     True          True
  all to sway2   & ≠           \\
  sway1 to sway2 & ≠           \\
  sway1 to xpln1 & ≠           \\
- sway2 to xpln2 & ≠           \\
+ sway1 to xpln2 & ≠           \\
+ xpln1 to xpln2 & ≠           \\
  sway1 to top   & ≠           \\
 \hline
 \end{tabular}
 
-real	0m49.561s
+real	0m30.192s
 user	0m0.000s
-sys	0m0.030s
+sys	0m0.000s

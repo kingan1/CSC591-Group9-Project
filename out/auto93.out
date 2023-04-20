@@ -2,12 +2,12 @@
 \hline
        &   CityMPG+ &   HighwayMPG+ &   Weight- &   Class- &   Avg evals &   Avg rank \\
 \hline
- all   &         21 &            28 &      3040 &     17.7 &           0 &    49.9677 \\
- sway1 &      29.55 &         34.65 &   2175.75 &    9.265 &           5 &    11.5724 \\
+ all   &         21 &            28 &      3040 &     17.7 &           0 &         50 \\
+ sway1 &       29.6 &          34.6 &    2175.8 &      9.3 &           5 &       11.6 \\
  sway2 &         46 &            50 &      1695 &      8.4 &           7 &          1 \\
- xpln1 &      29.55 &          34.2 &    2258.5 &    9.635 &           5 &    13.5504 \\
- xpln2 &       28.8 &         34.45 &    2295.5 &    9.595 &           5 &    14.1157 \\
- top   &         33 &            40 &    2052.5 &      8.9 &          93 &    4.06048 \\
+ xpln1 &       29.6 &          34.2 &    2258.5 &      9.6 &           5 &       13.6 \\
+ xpln2 &       28.8 &          34.5 &    2295.5 &      9.6 &           5 &       14.1 \\
+ top   &       34.5 &          41.5 &      2045 &      8.6 &          93 &        3.5 \\
 \hline
 \end{tabular}
 
@@ -15,7 +15,7 @@
 -----------  ------  ------------  ------------
 CityMPG+     sway2   True          False
 HighwayMPG+  sway2   True          True
-Weight-      sway2   True          False
+Weight-      sway2   True          True
 Class-       sway2   True          True
 
 \begin{tabular}{lllll}
@@ -27,11 +27,12 @@ Class-       sway2   True          True
  all to sway2   & ≠          & ≠             & ≠         & ≠        \\
  sway1 to sway2 & ≠          & ≠             & ≠         & ≠        \\
  sway1 to xpln1 & ≠          & ≠             & ≠         & ≠        \\
- sway2 to xpln2 & ≠          & ≠             & ≠         & ≠        \\
+ sway1 to xpln2 & ≠          & ≠             & ≠         & ≠        \\
+ xpln1 to xpln2 & ≠          & ≠             & ≠         & ≠        \\
  sway1 to top   & ≠          & ≠             & ≠         & ≠        \\
 \hline
 \end{tabular}
 
-real	0m26.762s
+real	0m16.777s
 user	0m0.000s
 sys	0m0.015s
