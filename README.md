@@ -98,6 +98,6 @@ To produce the bottom table:
 
 
 ### sway2
-TODO
+See [PCA-alpha](PCA-alpha.md)
 ### xpln2
 TODO
