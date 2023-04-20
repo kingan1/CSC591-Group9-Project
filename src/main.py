@@ -4,6 +4,7 @@ from tabulate import tabulate
 
 from data import Data
 from distance import PDist
+from models.explainers import DTreeExplainer
 from models.explainers.base import BaseExplainer
 from models.explainers.range import RangeExplainer
 from models.hyperparameters import Hyperparameter
@@ -124,7 +125,7 @@ class ResultsGenerator:
                     continue
 
                 rules_result_dict[self._base_explainer[0]] = \
-                    Data.clone(self._data, RangeExplainer.selects(rule_0, self._data.rows))
+                    Data.clone(self._data, RangeExplainer.selects(rule_0, self._data))
 
                 for e_name, explainer in self._explainers.items():
                     rule_i = explainer.xpln(self._data, best, rest)
@@ -133,7 +134,7 @@ class ResultsGenerator:
                         rules_satisfied = False
                         break
 
-                    rules_result_dict[e_name] = Data.clone(self._data, RangeExplainer.selects(rule_i, self._data.rows))
+                    rules_result_dict[e_name] = Data.clone(self._data, explainer.selects(rule_i, self._data))
 
                 self._results[self._base_optimizer[0]].append(best)
                 self._n_evals[self._base_optimizer[0]] += evals
@@ -298,7 +299,7 @@ def main():
             "sway3": SwayWithPCAAlpha2Optimizer(**Hyperparameter.DEFAULT),
         }
 
-        rg = ResultsGenerator(data_src=options["file"], optimizers=optimizers)
+        rg = ResultsGenerator(data_src=options["file"], optimizers=optimizers, explainers={"xpln2": DTreeExplainer()})
         rg.run()
 
         rg.print_table(color=options["wColor"])
