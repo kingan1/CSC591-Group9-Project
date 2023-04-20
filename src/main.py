@@ -79,9 +79,11 @@ def main():
         comparisons = [[["all", "all"],None], 
                        [["all", "sway1"],None], 
                        [["all", "sway2"],None],
+                    #    TODO: sway3
                        [["sway1", "sway2"],None],  
                        [["sway1", "xpln1"],None],   
-                       [["sway2", "xpln2"],None], 
+                       [["sway1", "xpln2"],None],   
+                       [["xpln1", "xpln2"],None], 
                        [["sway1", "top"],None]]
         ranks = {"all": 0, "sway1": 0, "sway2": 0, "xpln1": 0, "xpln2": 0, "top": 0}
 
@@ -100,14 +102,16 @@ def main():
                     rest=options["Rest"],
                     i_min=options["IMin"],
                     file=options["file"],
-                    sway2=options["sway2"]
+                    sway2=options["sway2"],
+                    p=options["P"]
                 )
         sway = SwayOptimizer(
                 reuse=options["reuse"],
                 far=options["Far"],
                 halves=options["Halves"],
                 rest=options["Rest"],
-                i_min=options["IMin"]
+                i_min=options["IMin"],
+                p=options["P"]
             )
         
         # get the "top" results by running the betters algorithm
@@ -206,7 +210,7 @@ def main():
         for k, v in results.items():
             # set the row equal to the average stats
             stats = get_stats(v)
-            stats_list = [k] + [stats[y] for y in headers]
+            stats_list = [stats[y] for y in headers]
 
             # adds on the average number of evals
             stats_list += [n_evals[k] / options["Niter"]]
@@ -214,7 +218,8 @@ def main():
             # adds on average rank of rows
             stats_list += [ranks[k] / options["Niter"]]
 
-            table.append(stats_list)
+            stats_list = [round(n, 1) for n in stats_list]
+            table.append([k] + stats_list)
 
         
         # generates the best algorithm/beat sway table
