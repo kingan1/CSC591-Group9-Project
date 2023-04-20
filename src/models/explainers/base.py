@@ -1,5 +1,3 @@
-from typing import Dict, Union
-
 from data import Data
 
 
@@ -8,5 +6,9 @@ class BaseExplainer:
         self.best = None
         self.rest = None
 
-    def xpln(self, data: Data, best: Data, rest: Data) -> Union[Dict[str, list], int]:
+    def xpln(self, data: Data, best: Data, rest: Data):
+        raise NotImplementedError("Cannot create object of BaseExplainer")
+
+    @staticmethod
+    def selects(rule, data: Data):
         raise NotImplementedError("Cannot create object of BaseExplainer")

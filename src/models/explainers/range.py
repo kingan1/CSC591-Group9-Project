@@ -38,8 +38,8 @@ class RangeExplainer(BaseExplainer):
         rule = RangeExplainer._rule(ranges, self.max_sizes)
 
         if rule:
-            bestr = RangeExplainer.selects(rule, self.best.rows)
-            restr = RangeExplainer.selects(rule, self.rest.rows)
+            bestr = RangeExplainer.selects(rule, self.best)
+            restr = RangeExplainer.selects(rule, self.rest)
 
             if len(bestr) + len(restr) > 0:
                 return value(
@@ -104,7 +104,7 @@ class RangeExplainer(BaseExplainer):
         return None
 
     @staticmethod
-    def selects(rule, rows):
+    def selects(rule, data):
         def disjunction(ranges, row):
             for rang in ranges:
                 at = rang['at']
@@ -128,7 +128,7 @@ class RangeExplainer(BaseExplainer):
 
         r = []
 
-        for item in list(map(function, rows)):
+        for item in list(map(function, data.rows)):
             if item:
                 r.append(item)
 
