@@ -7,14 +7,15 @@
 - Install requirements: `pip install -r requirements.txt`
 - Run `cd src`
 - Run `python main.py` to generate tables for the `auto2.csv` file
+- Run `python main.py -T -a <algo_name> -f <file_name>` to run a praticular algorithm with an input file.
 - Run `python main.py --help` to view possible configuration values
 
 ```
 project: multi-goal semi-supervised algorithms
 (c) Group 9
-
+  
 USAGE: python3 main.py [OPTIONS] [-g ACTIONS]
-
+  
 OPTIONS:
   -b  --bins        initial number of bins           = 16
   -c  --cliff       cliff's delta threshold          = .147
@@ -27,11 +28,13 @@ OPTIONS:
   -p  --P           dist coefficient                 = 2
   -R  --Rest        how many of rest to sample       = 10
   -r  --reuse       child splits reuse a parent pole = true
-  -x  --Bootstrap   number of samples to bootstrap   = 512
+  -x  --Bootstrap   number of samples to bootstrap   = 512    
   -o  --Conf        confidence interval              = 0.05
   -f  --file        file to generate table of        = ../data/auto2.csv
   -n  --Niter       number of iterations to run      = 20
   -w  --wColor      output with color                = true
+  -T  --test        test particular algorithm        = false
+  -a  --algo        name of the algorithm            = sway
 ```
 
 ## Structure
