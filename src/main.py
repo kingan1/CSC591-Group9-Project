@@ -120,7 +120,7 @@ class ResultsGenerator:
 
                 rule_0 = self._base_explainer[1].xpln(self._data, best, rest)
 
-                if rule_0 == 1:
+                if rule_0 == -1:
                     rules_satisfied = False
                     continue
 
