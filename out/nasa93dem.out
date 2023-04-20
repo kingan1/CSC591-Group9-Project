@@ -1,60 +1,27 @@
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:123: ConvergenceWarning: FastICA did not converge. Consider increasing tolerance or the maximum number of iterations.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-Traceback (most recent call last):
-  File "/home/pradyumna/PycharmProjects/CSC591-Group9-Project/src/main.py", line 278, in <module>
-    main()
-  File "/home/pradyumna/PycharmProjects/CSC591-Group9-Project/src/main.py", line 273, in main
-    rg.run()
-  File "/home/pradyumna/PycharmProjects/CSC591-Group9-Project/src/main.py", line 98, in run
-    best, rest, evals = optimizer.run(data=self._data)
-  File "/home/pradyumna/PycharmProjects/CSC591-Group9-Project/src/models/optimizers/base.py", line 14, in run
-    best, rest, evals = self._run(data=data)
-  File "/home/pradyumna/PycharmProjects/CSC591-Group9-Project/src/models/optimizers/sway_with_fa_alpha2.py", line 35, in _run
-    return self._sway()
-  File "/home/pradyumna/PycharmProjects/CSC591-Group9-Project/src/models/optimizers/sway_with_fa_alpha2.py", line 131, in _sway
-    best, rest, evals = worker(list(range(len(self._data.rows))), [], 0)
-  File "/home/pradyumna/PycharmProjects/CSC591-Group9-Project/src/models/optimizers/sway_with_fa_alpha2.py", line 129, in worker
-    return worker(l, worse, evals_ + evals0, a)
-  File "/home/pradyumna/PycharmProjects/CSC591-Group9-Project/src/models/optimizers/sway_with_fa_alpha2.py", line 129, in worker
-    return worker(l, worse, evals_ + evals0, a)
-  File "/home/pradyumna/PycharmProjects/CSC591-Group9-Project/src/models/optimizers/sway_with_fa_alpha2.py", line 129, in worker
-    return worker(l, worse, evals_ + evals0, a)
-  File "/home/pradyumna/PycharmProjects/CSC591-Group9-Project/src/models/optimizers/sway_with_fa_alpha2.py", line 121, in worker
-    l, r, a, b, c, evals_ = self._half(row_indexes, above)
-  File "/home/pradyumna/PycharmProjects/CSC591-Group9-Project/src/models/optimizers/sway_with_fa_alpha2.py", line 75, in _half
-    boundary = [input_[point] for point in alphashape(list(input_.keys()), alpha=0.).exterior.coords]
-AttributeError: 'LineString' object has no attribute 'exterior'
+         Kloc+    Effort-    Defects-    Months-    Avg evals
+-----  -------  ---------  ----------  ---------  -----------
+all       47.5        252        2007       21.4            0
+sway    20.005      83.98      750.55      13.26            5
+sway2  22.3825     131.95      894.75     13.605         6.55
+sway3    19.79      86.96      804.75       14.9            5
+xpln     22.54      82.74       896.1      13.85            5
+xpln2    34.96     156.08     1414.65     16.485            5
+top        3.5       10.8         109        7.8           93
 
-real	0m9.061s
-user	0m9.708s
-sys	0m3.115s
+               Kloc+    Effort-    Defects-    Months-
+-------------  -------  ---------  ----------  ---------
+all to all     =        =          =           =
+all to sway    ≠        ≠          ≠           ≠
+all to sway2   ≠        ≠          ≠           ≠
+sway to sway2  ≠        ≠          ≠           ≠
+all to sway3   ≠        ≠          ≠           ≠
+sway to sway3  ≠        ≠          ≠           ≠
+sway to xpln   ≠        ≠          ≠           ≠
+sway to xpln2  ≠        ≠          ≠           ≠
+xpln to xpln2  ≠        ≠          ≠           ≠
+sway2 to top   ≠        ≠          ≠           ≠
+sway3 to top   ≠        ≠          ≠           ≠
+
+real	0m15.404s
+user	0m16.344s
+sys	0m4.963s

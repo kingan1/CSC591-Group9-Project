@@ -1,61 +1,27 @@
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:620: RuntimeWarning: invalid value encountered in divide
-  K = (u / d).T[:n_components]  # see (6.33) p.140
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:620: RuntimeWarning: invalid value encountered in divide
-  K = (u / d).T[:n_components]  # see (6.33) p.140
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:620: RuntimeWarning: invalid value encountered in divide
-  K = (u / d).T[:n_components]  # see (6.33) p.140
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:620: RuntimeWarning: invalid value encountered in divide
-  K = (u / d).T[:n_components]  # see (6.33) p.140
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:620: RuntimeWarning: invalid value encountered in divide
-  K = (u / d).T[:n_components]  # see (6.33) p.140
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:620: RuntimeWarning: invalid value encountered in divide
-  K = (u / d).T[:n_components]  # see (6.33) p.140
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:620: RuntimeWarning: invalid value encountered in divide
-  K = (u / d).T[:n_components]  # see (6.33) p.140
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:620: RuntimeWarning: invalid value encountered in divide
-  K = (u / d).T[:n_components]  # see (6.33) p.140
-Traceback (most recent call last):
-  File "/home/pradyumna/PycharmProjects/CSC591-Group9-Project/src/main.py", line 278, in <module>
-    main()
-  File "/home/pradyumna/PycharmProjects/CSC591-Group9-Project/src/main.py", line 273, in main
-    rg.run()
-  File "/home/pradyumna/PycharmProjects/CSC591-Group9-Project/src/main.py", line 98, in run
-    best, rest, evals = optimizer.run(data=self._data)
-  File "/home/pradyumna/PycharmProjects/CSC591-Group9-Project/src/models/optimizers/base.py", line 14, in run
-    best, rest, evals = self._run(data=data)
-  File "/home/pradyumna/PycharmProjects/CSC591-Group9-Project/src/models/optimizers/sway_with_fa_alpha.py", line 35, in _run
-    return self._sway()
-  File "/home/pradyumna/PycharmProjects/CSC591-Group9-Project/src/models/optimizers/sway_with_fa_alpha.py", line 121, in _sway
-    best, rest, evals = worker(list(range(len(self._data.rows))), [], 0)
-  File "/home/pradyumna/PycharmProjects/CSC591-Group9-Project/src/models/optimizers/sway_with_fa_alpha.py", line 119, in worker
-    return worker(l, worse, evals_ + evals0, a)
-  File "/home/pradyumna/PycharmProjects/CSC591-Group9-Project/src/models/optimizers/sway_with_fa_alpha.py", line 119, in worker
-    return worker(l, worse, evals_ + evals0, a)
-  File "/home/pradyumna/PycharmProjects/CSC591-Group9-Project/src/models/optimizers/sway_with_fa_alpha.py", line 119, in worker
-    return worker(l, worse, evals_ + evals0, a)
-  [Previous line repeated 5 more times]
-  File "/home/pradyumna/PycharmProjects/CSC591-Group9-Project/src/models/optimizers/sway_with_fa_alpha.py", line 111, in worker
-    l, r, a, b, c, evals_ = self._half(row_indexes, above)
-  File "/home/pradyumna/PycharmProjects/CSC591-Group9-Project/src/models/optimizers/sway_with_fa_alpha.py", line 75, in _half
-    boundary = [input_[point] for point in alphashape(list(input_.keys()), alpha=0.).exterior.coords]
-AttributeError: 'LineString' object has no attribute 'exterior'
+         NUMBERITERATIONS-    TIMETOSOLUTION-    Avg evals
+-----  -------------------  -----------------  -----------
+all                    6.8            134.167            0
+sway                   5.5            122.912           10
+sway2                 4.55             97.409           16
+sway3                 6.45            131.109           10
+xpln                  5.45            118.413           10
+xpln2                  5.5            122.845           10
+top                      4              59.97       239360
 
-real	4m17.412s
-user	4m22.508s
-sys	0m28.963s
+               NUMBERITERATIONS-    TIMETOSOLUTION-
+-------------  -------------------  -----------------
+all to all     =                    =
+all to sway    ≠                    ≠
+all to sway2   ≠                    ≠
+sway to sway2  ≠                    ≠
+all to sway3   ≠                    ≠
+sway to sway3  ≠                    ≠
+sway to xpln   ≠                    ≠
+sway to xpln2  ≠                    ≠
+xpln to xpln2  ≠                    ≠
+sway2 to top   ≠                    ≠
+sway3 to top   ≠                    ≠
+
+real	43m31.322s
+user	43m17.219s
+sys	1m3.832s
