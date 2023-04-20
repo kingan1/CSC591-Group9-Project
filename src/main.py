@@ -1,14 +1,14 @@
-from itertools import combinations
-from typing import Dict
+from typing import Dict, Tuple
 
 from tabulate import tabulate
 
 from data import Data
-from explain import Explain, selects
-from models.optimizers import SwayOptimizer, SwayWithPCAAlpha2Optimizer, SwayWithPCAOptimizer, \
-    SwayWithPCAAlphaOptimizer, SwayWithFAOptimizer, SwayWithFAAlphaOptimizer
+from distance import PDist
+from models.explainers.base import BaseExplainer
+from models.explainers.range import RangeExplainer
+from models.hyperparameters import Hyperparameter
+from models.optimizers import SwayOptimizer, SwayHyperparameterOptimizer, SwayWithPCAAlpha2Optimizer
 from models.optimizers.base import BaseOptimizer
-from models.optimizers.sway_with_fa_alpha2 import SwayWithFAAlpha2Optimizer
 from options import options
 from stats import cliffs_delta, bootstrap
 
@@ -36,16 +36,27 @@ OPTIONS:
   -f  --file        file to generate table of        = ../data/auto2.csv
   -n  --Niter       number of iterations to run      = 20
   -w  --wColor      output with color                = true
+  -T  --test        test particular algorithm        = false
+  -a  --algo        name of the algorithm            = sway
 """
 
 
 class ResultsGenerator:
-    def __init__(self, data_src: str, optimizers: Dict[str, BaseOptimizer], n_iters=20):
+    def __init__(self,
+                 data_src: str,
+                 base_optimizer: Tuple[str, BaseOptimizer] = None, optimizers: Dict[str, BaseOptimizer] = None,
+                 base_explainer: Tuple[str, BaseExplainer] = None, explainers: [str, BaseExplainer] = None,
+                 n_iters=20):
         self._data = None
         self._data_src = data_src
         self._n_iters = n_iters
 
-        self._optimizers = optimizers
+        self._base_optimizer: Tuple[str, BaseOptimizer] = base_optimizer or \
+                                                          ("sway", SwayOptimizer(**Hyperparameter.DEFAULT))
+        self._optimizers = optimizers or {}
+
+        self._base_explainer: Tuple[str, BaseExplainer] = base_explainer or ("xpln", RangeExplainer())
+        self._explainers = explainers or {}
 
         self._results = self._get_results()
         self._n_evals = self._get_n_evals()
@@ -53,13 +64,17 @@ class ResultsGenerator:
         self._comparisons = self._get_comparisons()
 
     def _get_comparisons(self):
-        comparisons = [[["all", "all"], None], ]
+        comparisons = [[["all", "all"], None], [["all", self._base_optimizer[0]], None], ]
 
         for optimizer in self._optimizers:
             comparisons.append([["all", optimizer], None])
+            comparisons.append([[self._base_optimizer[0], optimizer], None])
 
-        for combination in combinations(list(self._optimizers.keys()), 2):
-            comparisons.append([list(combination), None])
+        comparisons.append([[self._base_optimizer[0], self._base_explainer[0]], None])
+
+        for explainer in self._explainers:
+            comparisons.append([[self._base_optimizer[0], explainer], None])
+            comparisons.append([[self._base_explainer[0], explainer], None])
 
         for optimizer in self._optimizers:
             comparisons.append([[optimizer, "top"], None])
@@ -67,17 +82,19 @@ class ResultsGenerator:
         return comparisons
 
     def _get_results(self):
-        optimizers = ["all", ] + \
+        optimizers = ["all", self._base_optimizer[0], ] + \
                      list(self._optimizers.keys()) + \
-                     [i + "_xpln" for i in list(self._optimizers.keys())] + \
+                     [self._base_explainer[0], ] + \
+                     list(self._explainers.keys()) + \
                      ["top", ]
 
         return {optimizer: [] for optimizer in optimizers}
 
     def _get_n_evals(self):
-        optimizers = ["all", ] + \
+        optimizers = ["all", self._base_optimizer[0], ] + \
                      list(self._optimizers.keys()) + \
-                     [i + "_xpln" for i in list(self._optimizers.keys())] + \
+                     [self._base_explainer[0], ] + \
+                     list(self._explainers.keys()) + \
                      ["top", ]
 
         return {optimizer: 0 for optimizer in optimizers}
@@ -91,32 +108,51 @@ class ResultsGenerator:
             self._results["all"].append(self._data)
             self._n_evals["all"] += 0
 
+            # Base Optimizer
+            rules_satisfied = False
+
+            while not rules_satisfied:
+                rules_result_dict = {}
+                rules_satisfied = True
+
+                best, rest, evals = self._base_optimizer[1].run(data=self._data)
+
+                rule_0 = self._base_explainer[1].xpln(self._data, best, rest)
+
+                if rule_0 == 1:
+                    rules_satisfied = False
+                    continue
+
+                rules_result_dict[self._base_explainer[0]] = \
+                    Data.clone(self._data, RangeExplainer.selects(rule_0, self._data.rows))
+
+                for e_name, explainer in self._explainers.items():
+                    rule_i = explainer.xpln(self._data, best, rest)
+
+                    if rule_i == -1:
+                        rules_satisfied = False
+                        break
+
+                    rules_result_dict[e_name] = Data.clone(self._data, RangeExplainer.selects(rule_i, self._data.rows))
+
+                self._results[self._base_optimizer[0]].append(best)
+                self._n_evals[self._base_optimizer[0]] += evals
+
+                for rule, result in rules_result_dict.items():
+                    self._results[rule].append(result)
+                    self._n_evals[rule] += evals
+
+                top2, _ = self._data.betters(len(best.rows))
+                top = Data.clone(self._data, top2)
+
+                self._results['top'].append(top)
+                self._n_evals["top"] += len(self._data.rows)
+
             for o_name, optimizer in self._optimizers.items():
-                rule = -1
+                best, rest, evals = optimizer.run(data=self._data)
 
-                while rule == -1:
-                    best, rest, evals = optimizer.run(data=self._data)
-
-                    x = Explain(best, rest)
-                    rule, _ = x.xpln(self._data, best, rest)
-
-                    if rule == -1:
-                        continue
-
-                    xpln_data = Data.clone(self._data, selects(rule, self._data.rows))
-
-                    self._results[o_name].append(best)
-                    self._results[o_name + "_xpln"].append(xpln_data)
-
-                    self._n_evals[o_name] += evals
-                    self._n_evals[o_name + "_xpln"] += evals
-
-                    if o_name == "sway":
-                        top2, _ = self._data.betters(len(best.rows))
-                        top = Data.clone(self._data, top2)
-
-                        self._results['top'].append(top)
-                        self._n_evals["top"] += len(self._data.rows)
+                self._results[o_name].append(best)
+                self._n_evals[o_name] += evals
 
             self._update_comparisons(i)
 
@@ -216,57 +252,50 @@ def main():
 
     if options["help"]:
         print(help_)
-    else:
+    elif options["test"]:
+        algorithm = options["algo"]
+
         optimizers = {
             "sway": SwayOptimizer(
                 reuse=options["reuse"],
                 far=options["Far"],
                 halves=options["Halves"],
                 rest=options["Rest"],
-                i_min=options["IMin"]
+                i_min=options["IMin"],
+                distance_class=PDist(options["P"])
             ),
-            "sway_pca": SwayWithPCAOptimizer(
+            "sway_optimized_hp": SwayOptimizer(**Hyperparameter.OPTIMIZED),
+            "sway_pca_as": SwayWithPCAAlpha2Optimizer(
                 reuse=options["reuse"],
                 far=options["Far"],
                 halves=options["Halves"],
                 rest=options["Rest"],
-                i_min=options["IMin"]
+                i_min=options["IMin"],
+                distance_class=PDist(options["P"])
             ),
-            "sway_pca_alpha": SwayWithPCAAlphaOptimizer(
+            "sway_hp_search": SwayHyperparameterOptimizer(
                 reuse=options["reuse"],
                 far=options["Far"],
                 halves=options["Halves"],
                 rest=options["Rest"],
-                i_min=options["IMin"]
+                i_min=options["IMin"],
+                distance_class=PDist(options["P"])
             ),
-            "sway_pca_alpha2": SwayWithPCAAlpha2Optimizer(
-                reuse=options["reuse"],
-                far=options["Far"],
-                halves=options["Halves"],
-                rest=options["Rest"],
-                i_min=options["IMin"]
-            ),
-            "sway_fa": SwayWithFAOptimizer(
-                reuse=options["reuse"],
-                far=options["Far"],
-                halves=options["Halves"],
-                rest=options["Rest"],
-                i_min=options["IMin"]
-            ),
-            "sway_fa_alpha": SwayWithFAAlphaOptimizer(
-                reuse=options["reuse"],
-                far=options["Far"],
-                halves=options["Halves"],
-                rest=options["Rest"],
-                i_min=options["IMin"]
-            ),
-            "sway_fa_alpha2": SwayWithFAAlpha2Optimizer(
-                reuse=options["reuse"],
-                far=options["Far"],
-                halves=options["Halves"],
-                rest=options["Rest"],
-                i_min=options["IMin"]
-            ),
+        }
+
+        if algorithm in optimizers.keys():
+            rg = ResultsGenerator(
+                base_optimizer=("base_sway", SwayOptimizer(**Hyperparameter.DEFAULT)),
+                data_src=options["file"],
+                optimizers={algorithm: optimizers[algorithm]}
+            )
+            rg.run()
+
+            rg.print_table(color=options["wColor"])
+    else:
+        optimizers = {
+            "sway2": SwayOptimizer(**Hyperparameter.OPTIMIZED),
+            "sway3": SwayWithPCAAlpha2Optimizer(**Hyperparameter.DEFAULT),
         }
 
         rg = ResultsGenerator(data_src=options["file"], optimizers=optimizers)
