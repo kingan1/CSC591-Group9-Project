@@ -284,15 +284,34 @@ def main():
             ),
         }
 
+        explainers = {
+            "xpln": RangeExplainer(),
+            "xpln_dtree": DTreeExplainer(),
+        }
+
         if algorithm in optimizers.keys():
             rg = ResultsGenerator(
                 base_optimizer=("base_sway", SwayOptimizer(**Hyperparameter.DEFAULT)),
+                base_explainer=("base_xpln", RangeExplainer()),
                 data_src=options["file"],
-                optimizers={algorithm: optimizers[algorithm]}
+                optimizers={algorithm: optimizers[algorithm]},
+            )
+        elif algorithm in explainers.keys():
+            rg = ResultsGenerator(
+                base_optimizer=("base_sway", SwayOptimizer(**Hyperparameter.DEFAULT)),
+                base_explainer=("base_xpln", RangeExplainer()),
+                data_src=options["file"],
+                explainers={algorithm: explainers[algorithm]},
             )
             rg.run()
 
             rg.print_table(color=options["wColor"])
+        else:
+            print(
+                f"algo can only accept these Values:\n"
+                f"Optimizers: {list(optimizers.keys())}\n"
+                f"Explainers:{list(explainers.keys())}"
+            )
     else:
         optimizers = {
             "sway2": SwayOptimizer(**Hyperparameter.OPTIMIZED),
