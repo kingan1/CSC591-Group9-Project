@@ -2,12 +2,12 @@
 \hline
        &   PSNR- &   Energy- &   Avg evals &   Avg rank \\
 \hline
- all   &   45.67 &   1237.73 &           0 &    50.4991 \\
- sway1 & 44.5755 &   954.335 &           9 &    41.2593 \\
- sway2 &   32.09 &    387.73 &          14 &    8.16828 \\
- xpln1 &  45.352 &   836.882 &           9 &    41.2939 \\
- xpln2 & 45.1335 &   914.124 &           9 &    44.3957 \\
- top   & 26.7075 &   466.114 &       53662 &    1.19293 \\
+ all   &    45.7 &    1237.7 &           0 &       50.5 \\
+ sway1 &    44.6 &     954.3 &           9 &       41.3 \\
+ sway2 &    32.1 &     387.7 &          14 &        8.2 \\
+ xpln1 &    45.4 &     836.9 &           9 &       41.3 \\
+ xpln2 &    45.1 &     914.1 &           9 &       44.4 \\
+ top   &    26.7 &     465.9 &       53662 &        1.2 \\
 \hline
 \end{tabular}
 
@@ -25,11 +25,12 @@ Energy-  sway2   True          False
  all to sway2   & ≠       & ≠         \\
  sway1 to sway2 & ≠       & ≠         \\
  sway1 to xpln1 & ≠       & ≠         \\
- sway2 to xpln2 & ≠       & ≠         \\
+ sway1 to xpln2 & ≠       & ≠         \\
+ xpln1 to xpln2 & ≠       & ≠         \\
  sway1 to top   & ≠       & ≠         \\
 \hline
 \end{tabular}
 
-real	6m14.275s
+real	4m36.801s
 user	0m0.000s
 sys	0m0.000s

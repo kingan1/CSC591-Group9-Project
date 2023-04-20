@@ -1,21 +1,21 @@
 \begin{tabular}{lrrrrr}
 \hline
-       &    MRE- &   ACC+ &   PRED40+ &   Avg evals &   Avg rank \\
+       &   MRE- &   ACC+ &   PRED40+ &   Avg evals &   Avg rank \\
 \hline
- all   &   75.34 &   7.16 &        25 &           0 &    50.4951 \\
- sway1 & 76.3755 & 6.8175 &     26.25 &           8 &    43.8699 \\
- sway2 &   70.76 &  16.79 &        25 &          12 &         21 \\
- xpln1 & 76.4095 &  6.786 &     26.25 &           8 &    43.8791 \\
- xpln2 & 76.5525 &  6.756 &     26.25 &           8 &    44.4063 \\
- top   &   64.91 &  11.33 &        25 &       10000 &     1.3861 \\
+ all   &   75.3 &    7.2 &        25 &           0 &       50.5 \\
+ sway1 &   76.4 &    6.8 &      26.2 &           8 &       43.9 \\
+ sway2 &   70.8 &   16.8 &        25 &          12 &         21 \\
+ xpln1 &   76.4 &    6.8 &      26.2 &           8 &       43.9 \\
+ xpln2 &   76.6 &    6.8 &      26.2 &           8 &       44.4 \\
+ top   &   64.9 &   11.3 &        25 &       10000 &        1.4 \\
 \hline
 \end{tabular}
 
          Best    Beat Sway?    Beat Xpln?
 -------  ------  ------------  ------------
 MRE-     top     True          False
-ACC+     sway2   True          False
-PRED40+  sway1   False         False
+ACC+     sway2   True          True
+PRED40+  sway1   False         True
 
 \begin{tabular}{llll}
 \hline
@@ -26,11 +26,12 @@ PRED40+  sway1   False         False
  all to sway2   & =      & =      & =         \\
  sway1 to sway2 & ≠      & =      & =         \\
  sway1 to xpln1 & ≠      & ≠      & ≠         \\
- sway2 to xpln2 & ≠      & ≠      & ≠         \\
+ sway1 to xpln2 & ≠      & ≠      & ≠         \\
+ xpln1 to xpln2 & ≠      & ≠      & ≠         \\
  sway1 to top   & ≠      & ≠      & ≠         \\
 \hline
 \end{tabular}
 
-real	2m54.133s
+real	2m21.039s
 user	0m0.000s
 sys	0m0.015s
