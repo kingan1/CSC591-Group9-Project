@@ -3,6 +3,7 @@ import io
 import math
 import re
 import sys
+from time import time
 
 
 class Random:
@@ -130,5 +131,16 @@ def kap(t, fun, u={}):
         else:
             u[k] = v
     return u
+
+
+def timed(func):
+    def wrap_func(*args, **kwargs):
+        t1 = time()
+        result = func(*args, **kwargs)
+        t2 = time()
+
+        return result, rnd(t2 - t1, 2)
+
+    return wrap_func
 
 

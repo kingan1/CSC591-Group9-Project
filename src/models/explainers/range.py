@@ -12,7 +12,7 @@ class RangeExplainer(BaseExplainer):
         self.tmp: List[Tuple[Range, int, float]] = []
         self.max_sizes: Dict[str, int] = {}
 
-    def xpln(self, data: Data, best: Data, rest: Data):
+    def _xpln(self, data: Data, best: Data, rest: Data):
         def v(has):
             return value(has, len(best.rows), len(rest.rows), "best")
 

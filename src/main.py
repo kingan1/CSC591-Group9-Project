@@ -61,6 +61,7 @@ class ResultsGenerator:
 
         self._results = self._get_results()
         self._n_evals = self._get_n_evals()
+        self._time_taken = self._get_time_taken()
 
         self._comparisons = self._get_comparisons()
 
@@ -100,6 +101,15 @@ class ResultsGenerator:
 
         return {optimizer: 0 for optimizer in optimizers}
 
+    def _get_time_taken(self):
+        optimizers = ["all", self._base_optimizer[0], ] + \
+                     list(self._optimizers.keys()) + \
+                     [self._base_explainer[0], ] + \
+                     list(self._explainers.keys()) + \
+                     ["top", ]
+
+        return {optimizer: 0 for optimizer in optimizers}
+
     def run(self):
         i = 0
 
@@ -116,32 +126,35 @@ class ResultsGenerator:
                 rules_result_dict = {}
                 rules_satisfied = True
 
-                best, rest, evals = self._base_optimizer[1].run(data=self._data)
+                (best, rest, evals), time = self._base_optimizer[1].run(data=self._data)
 
-                rule_0 = self._base_explainer[1].xpln(self._data, best, rest)
+                rule_0, xpln_0_time = self._base_explainer[1].xpln(self._data, best, rest)
 
                 if rule_0 == -1:
                     rules_satisfied = False
                     continue
 
                 rules_result_dict[self._base_explainer[0]] = \
-                    Data.clone(self._data, RangeExplainer.selects(rule_0, self._data))
+                    (Data.clone(self._data, RangeExplainer.selects(rule_0, self._data)), xpln_0_time)
 
                 for e_name, explainer in self._explainers.items():
-                    rule_i = explainer.xpln(self._data, best, rest)
+                    rule_i, xpln_i_time = explainer.xpln(self._data, best, rest)
 
                     if rule_i == -1:
                         rules_satisfied = False
                         break
 
-                    rules_result_dict[e_name] = Data.clone(self._data, explainer.selects(rule_i, self._data))
+                    rules_result_dict[e_name] = \
+                        (Data.clone(self._data, explainer.selects(rule_i, self._data)), xpln_i_time)
 
                 self._results[self._base_optimizer[0]].append(best)
                 self._n_evals[self._base_optimizer[0]] += evals
+                self._time_taken[self._base_optimizer[0]] += time
 
-                for rule, result in rules_result_dict.items():
-                    self._results[rule].append(result)
+                for rule in rules_result_dict:
+                    self._results[rule].append(rules_result_dict[rule][0])
                     self._n_evals[rule] += evals
+                    self._time_taken[rule] += rules_result_dict[rule][1]
 
                 top2, _ = self._data.betters(len(best.rows))
                 top = Data.clone(self._data, top2)
@@ -150,10 +163,11 @@ class ResultsGenerator:
                 self._n_evals["top"] += len(self._data.rows)
 
             for o_name, optimizer in self._optimizers.items():
-                best, rest, evals = optimizer.run(data=self._data)
+                (best, rest, evals), time = optimizer.run(data=self._data)
 
                 self._results[o_name].append(best)
                 self._n_evals[o_name] += evals
+                self._time_taken[o_name] += time
 
             self._update_comparisons(i)
 
@@ -189,6 +203,7 @@ class ResultsGenerator:
 
             # adds on the average number of evals
             stats_list += [self._n_evals[k] / self._n_iters]
+            stats_list += [self._time_taken[k] / self._n_iters]
 
             table.append(stats_list)
 
@@ -204,7 +219,7 @@ class ResultsGenerator:
                 table[header_vals.index(fun(header_vals))][i + 1] = '\033[92m' + str(
                     table[header_vals.index(fun(header_vals))][i + 1]) + '\033[0m'
 
-        print(tabulate(table, headers=headers + ["Avg evals"], numalign="right"))
+        print(tabulate(table, headers=headers + ["Avg evals", "Avg Time Taken"], numalign="right"))
         print()
 
         # generates the =/!= table

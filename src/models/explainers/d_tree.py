@@ -19,7 +19,7 @@ class DTreeExplainer(BaseExplainer):
         if seed:
             self._random.set_seed(seed)
 
-    def xpln(self, data: Data, best: Data, rest: Data):
+    def _xpln(self, data: Data, best: Data, rest: Data):
         self._data: Data = data
 
         self.best = best

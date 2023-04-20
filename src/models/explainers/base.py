@@ -1,4 +1,5 @@
 from data import Data
+from utils import timed
 
 
 class BaseExplainer:
@@ -6,8 +7,12 @@ class BaseExplainer:
         self.best = None
         self.rest = None
 
-    def xpln(self, data: Data, best: Data, rest: Data):
+    def _xpln(self, data: Data, best: Data, rest: Data):
         raise NotImplementedError("Cannot create object of BaseExplainer")
+
+    @timed
+    def xpln(self, *args, **kwargs):
+        return self._xpln(*args, **kwargs)
 
     @staticmethod
     def selects(rule, data: Data):
