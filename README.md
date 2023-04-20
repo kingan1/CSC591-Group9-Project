@@ -95,6 +95,6 @@ To produce the bottom table:
 
 
 ### sway2
-TODO
+See [PCA](PCA.md)
 ### xpln2
 TODO
