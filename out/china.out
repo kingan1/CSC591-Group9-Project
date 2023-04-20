@@ -1,17 +1,27 @@
-        N_effort-    Avg evals
-----  -----------  -----------
-all          2098            0
-sway       489.65            6
-xpln          944            6
-top           149          499
+         N_effort-    Avg evals
+-----  -----------  -----------
+all           2098            0
+sway        763.85            6
+sway2       305.55          8.7
+sway3        237.5            6
+xpln        985.35            6
+xpln2          912            6
+top            145          499
 
-              N_effort-
-------------  -----------
-all to all    =
-all to sway   ≠
-sway to xpln  ≠
-sway to top   ≠
+               N_effort-
+-------------  -----------
+all to all     =
+all to sway    ≠
+all to sway2   ≠
+sway to sway2  ≠
+all to sway3   ≠
+sway to sway3  ≠
+sway to xpln   ≠
+sway to xpln2  ≠
+xpln to xpln2  ≠
+sway2 to top   ≠
+sway3 to top   ≠
 
-real	0m20.744s
-user	0m20.361s
-sys	0m0.089s
+real	0m35.023s
+user	0m34.929s
+sys	0m0.500s

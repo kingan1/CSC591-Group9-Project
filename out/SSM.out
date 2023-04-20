@@ -1,19 +1,27 @@
-WARNING: all to all 0 0 false
-all to all comparison failed for NUMBERITERATIONS-
-        NUMBERITERATIONS-    TIMETOSOLUTION-    Avg evals
-----  -------------------  -----------------  -----------
-all                  6.95            134.104            0
-sway                  4.8            117.765           10
-xpln                  5.3            120.096           10
-top                     4             59.978       239360
+         NUMBERITERATIONS-    TIMETOSOLUTION-    Avg evals
+-----  -------------------  -----------------  -----------
+all                    6.8            134.167            0
+sway                   5.5            122.912           10
+sway2                 4.55             97.409           16
+sway3                 6.45            131.109           10
+xpln                  5.45            118.413           10
+xpln2                  5.5            122.845           10
+top                      4              59.97       239360
 
-              NUMBERITERATIONS-    TIMETOSOLUTION-
-------------  -------------------  -----------------
-all to all    ≠                    =
-all to sway   ≠                    ≠
-sway to xpln  ≠                    ≠
-sway to top   ≠                    ≠
+               NUMBERITERATIONS-    TIMETOSOLUTION-
+-------------  -------------------  -----------------
+all to all     =                    =
+all to sway    ≠                    ≠
+all to sway2   ≠                    ≠
+sway to sway2  ≠                    ≠
+all to sway3   ≠                    ≠
+sway to sway3  ≠                    ≠
+sway to xpln   ≠                    ≠
+sway to xpln2  ≠                    ≠
+xpln to xpln2  ≠                    ≠
+sway2 to top   ≠                    ≠
+sway3 to top   ≠                    ≠
 
-real	9m16.821s
-user	9m4.807s
-sys	0m6.652s
+real	43m31.322s
+user	43m17.219s
+sys	1m3.832s

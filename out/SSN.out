@@ -1,17 +1,27 @@
-        PSNR-    Energy-    Avg evals
-----  -------  ---------  -----------
-all   45.8435    1249.28            0
-sway   44.812    1216.78            9
-xpln   44.669    1221.03            9
-top    26.715    466.288        53662
+         PSNR-    Energy-    Avg evals
+-----  -------  ---------  -----------
+all    45.8595     1265.5            0
+sway   44.3215    1094.72            9
+sway2  43.5125    872.749           14
+sway3  44.3875    1180.06            9
+xpln    45.717     997.24            9
+xpln2  44.8535    1092.56            9
+top       26.7     465.94        53662
 
-              PSNR-    Energy-
-------------  -------  ---------
-all to all    =        =
-all to sway   ≠        ≠
-sway to xpln  ≠        ≠
-sway to top   ≠        ≠
+               PSNR-    Energy-
+-------------  -------  ---------
+all to all     =        =
+all to sway    ≠        ≠
+all to sway2   =        ≠
+sway to sway2  =        ≠
+all to sway3   ≠        ≠
+sway to sway3  ≠        ≠
+sway to xpln   ≠        ≠
+sway to xpln2  ≠        ≠
+xpln to xpln2  ≠        ≠
+sway2 to top   ≠        ≠
+sway3 to top   ≠        ≠
 
-real	3m38.113s
-user	3m35.216s
-sys	0m1.876s
+real	28m59.595s
+user	28m56.617s
+sys	0m15.547s

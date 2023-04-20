@@ -1,17 +1,27 @@
-        Cost-    Completion+    Idle-    Avg evals
-----  -------  -------------  -------  -----------
-all   321.851          0.898    0.243            0
-sway   248.37          0.907    0.208            8
-xpln  313.103         0.8985   0.2375            8
-top    138.75              1        0        10000
+         Cost-    Completion+    Idle-    Avg evals
+-----  -------  -------------  -------  -----------
+all     331.43          0.898   0.2425            0
+sway   296.803         0.9085   0.2045            8
+sway2  190.109         0.8695   0.1485           12
+sway3  303.258         0.8925   0.1855            8
+xpln   330.564         0.8935    0.242            8
+xpln2  310.381         0.9065   0.2235            8
+top     138.51              1        0        10000
 
-              Cost-    Completion+    Idle-
-------------  -------  -------------  -------
-all to all    =        =              =
-all to sway   ≠        ≠              ≠
-sway to xpln  ≠        ≠              ≠
-sway to top   ≠        ≠              ≠
+               Cost-    Completion+    Idle-
+-------------  -------  -------------  -------
+all to all     =        =              =
+all to sway    ≠        ≠              ≠
+all to sway2   ≠        ≠              ≠
+sway to sway2  ≠        ≠              ≠
+all to sway3   ≠        ≠              ≠
+sway to sway3  ≠        ≠              ≠
+sway to xpln   ≠        =              ≠
+sway to xpln2  ≠        ≠              ≠
+xpln to xpln2  ≠        ≠              ≠
+sway2 to top   ≠        ≠              ≠
+sway3 to top   ≠        ≠              ≠
 
-real	2m2.234s
-user	2m1.805s
-sys	0m0.296s
+real	5m42.121s
+user	5m42.839s
+sys	0m5.543s
