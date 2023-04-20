@@ -42,7 +42,8 @@ class HyperparameterPredicate:
                 far=options2["Far"],
                 halves=options2["Halves"],
                 rest=options2["Rest"],
-                i_min=options2["IMin"]
+                i_min=options2["IMin"],
+                p=options2["P"]
         ).run(data)
         
         # records the best.stats()
@@ -62,7 +63,8 @@ class HyperparameterPredicate:
                 far=options2["Far"],
                 halves=options2["Halves"],
                 rest=options2["Rest"],
-                i_min=options2["IMin"]
+                i_min=options2["IMin"],
+                p=options2["P"]
         ).run(data)
         row_best2 = [0 for _ in data.cols.names]
         # for each y column

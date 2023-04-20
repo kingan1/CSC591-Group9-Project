@@ -10,13 +10,13 @@ from .base import BaseOptimizer
 
 
 class SwayOptimizer(BaseOptimizer):
-    def __init__(self, distance_class: Distance = None, reuse: bool = True, far: float = 0.95, halves: int = 512,
+    def __init__(self, p: float = 2, reuse: bool = True, far: float = 0.95, halves: int = 512,
                  rest: int = 10, i_min: float = 0.5, seed=None):
         super().__init__(seed)
 
         self._data: Optional[Data] = None
 
-        self._distance_class = distance_class or PDist(p=2)
+        self._distance_class = PDist(p)
 
         self._reuse = reuse
         self._far = far

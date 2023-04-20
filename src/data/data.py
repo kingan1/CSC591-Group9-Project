@@ -87,4 +87,4 @@ class Data:
             return tmp
         
 
-        return tmp[1:n], tmp[n+1:] 
+        return tmp[0:n], tmp[n:] 
