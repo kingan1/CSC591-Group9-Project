@@ -8,7 +8,7 @@ from sklearn import preprocessing, tree
 from utils import Random
 
 
-class DtreeExplainer(BaseExplainer):
+class DTreeExplainer(BaseExplainer):
     def __init__(self, seed: int = None):
         super().__init__()
         self._clf = None
@@ -80,7 +80,7 @@ class DtreeExplainer(BaseExplainer):
         rest = []
 
         for i, x in enumerate(input_):
-            if DtreeExplainer._remove_missing(x):
+            if DTreeExplainer._remove_missing(x):
                 res = rule.predict([x])
 
                 if res == "best":
