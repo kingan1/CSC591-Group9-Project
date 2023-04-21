@@ -71,19 +71,23 @@ class SwayWithPCAAlpha2Optimizer(BaseOptimizer):
         """
         some = many(row_indexes, self._halves)
 
-        input_ = {tuple(self._pca_rows[i]): i for i in some}
-        boundary = [input_[point] for point in alphashape(list(input_.keys()), alpha=0.).exterior.coords]
-        a = above if above is not None and self._reuse else any(boundary)
+        try:
+            input_ = {tuple(self._pca_rows[i]): i for i in some}
+            boundary = [input_[point] for point in alphashape(list(input_.keys()), alpha=0.).exterior.coords]
+            a = above if above is not None and self._reuse else any(boundary)
 
-        alpha_tmp = sorted(
-            [
-                {"row_index": i, "d": self._distance_class.raw_dist(self._pca_rows[i], self._pca_rows[a])}
-                for i in boundary
-            ],
-            key=lambda x: x["d"]
-        )
+            alpha_tmp = sorted(
+                [
+                    {"row_index": i, "d": self._distance_class.raw_dist(self._pca_rows[i], self._pca_rows[a])}
+                    for i in boundary
+                ],
+                key=lambda x: x["d"]
+            )
 
-        a = alpha_tmp[-1]["row_index"]
+            a = alpha_tmp[-1]["row_index"]
+
+        except AttributeError as e:
+            a = above if above is not None and  self._reuse else any(some)
 
         tmp = sorted(
             [
