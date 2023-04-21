@@ -5,7 +5,7 @@
  all   &   2800 &   15.5 &     20 &           0 &       50.4 &                0 \\
  sway  & 2169.2 &     16 &     31 &           6 &       23.6 &                0 \\
  sway2 & 2079.8 &   17.8 &   34.5 &           8 &       18.2 &                0 \\
- sway3 & 2234.6 &   16.7 &   29.5 &           6 &         28 &              0.1 \\
+ sway3 &   2085 &   16.2 &     36 &           6 &       15.7 &                0 \\
  xpln  & 2216.5 &     16 &     30 &           6 &       28.7 &                0 \\
  xpln2 & 2161.1 &     16 &   31.5 &           6 &       23.7 &                0 \\
  top   &   1987 &   18.8 &     40 &         398 &        2.4 &                0 \\
@@ -14,9 +14,9 @@
 
       Best    sway2 beat sway?    sway3 beat sway?    xpln2 beat xpln?
 ----  ------  ------------------  ------------------  ------------------
-Lbs-  sway2   True                False               True
+Lbs-  sway2   True                True                True
 Acc+  sway2   True                True                False
-Mpg+  sway2   True                False               True
+Mpg+  sway3   True                True                True
 
 \begin{tabular}{llll}
 \hline
@@ -36,6 +36,6 @@ Mpg+  sway2   True                False               True
 \hline
 \end{tabular}
 
-real	0m50.371s
-user	0m50.174s
-sys	0m0.589s
+real	0m49.807s
+user	0m49.401s
+sys	0m0.740s

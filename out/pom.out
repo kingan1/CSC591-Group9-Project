@@ -5,7 +5,7 @@
  all   &   313.8 &           0.9 &     0.2 &           0 &       50.5 &                0 \\
  sway  &   296.8 &           0.9 &     0.2 &           8 &       43.3 &              0.4 \\
  sway2 &   190.1 &           0.9 &     0.1 &          12 &       35.2 &              0.4 \\
- sway3 &   303.3 &           0.9 &     0.2 &           8 &       43.7 &                9 \\
+ sway3 &   216.7 &           0.9 &     0.2 &           8 &       37.2 &              0.2 \\
  xpln  &   330.6 &           0.9 &     0.2 &           8 &         51 &              0.1 \\
  xpln2 &   310.4 &           0.9 &     0.2 &           8 &       46.3 &                0 \\
  top   &   138.5 &             1 &       0 &       10000 &        1.4 &                0 \\
@@ -14,7 +14,7 @@
 
              Best    sway2 beat sway?    sway3 beat sway?    xpln2 beat xpln?
 -----------  ------  ------------------  ------------------  ------------------
-Cost-        sway2   True                False               True
+Cost-        sway2   True                True                True
 Completion+  sway    False               False               False
 Idle-        sway2   True                False               False
 
@@ -36,6 +36,6 @@ Idle-        sway2   True                False               False
 \hline
 \end{tabular}
 
-real	5m36.125s
-user	5m34.981s
-sys	0m6.952s
+real	2m28.030s
+user	2m29.172s
+sys	0m5.097s

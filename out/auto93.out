@@ -5,7 +5,7 @@
  all   &         21 &            28 &      3040 &     17.7 &           0 &         50 &                0 \\
  sway  &       29.6 &          34.6 &    2175.8 &      9.3 &           5 &       11.6 &                0 \\
  sway2 &       35.1 &          40.4 &    1941.2 &      9.2 &         6.9 &        6.6 &                0 \\
- sway3 &       30.6 &            33 &      1991 &      8.4 &           5 &        6.9 &                0 \\
+ sway3 &       29.1 &            33 &      2045 &      8.4 &           5 &        9.8 &                0 \\
  xpln  &       29.6 &          34.2 &    2258.5 &      9.6 &           5 &       13.6 &                0 \\
  xpln2 &       28.8 &          34.5 &    2295.5 &      9.6 &           5 &       14.1 &                0 \\
  top   &       34.5 &          41.5 &      2045 &      8.6 &          93 &        3.5 &                0 \\
@@ -14,7 +14,7 @@
 
              Best    sway2 beat sway?    sway3 beat sway?    xpln2 beat xpln?
 -----------  ------  ------------------  ------------------  ------------------
-CityMPG+     sway2   True                True                False
+CityMPG+     sway2   True                False               False
 HighwayMPG+  sway2   True                False               True
 Weight-      sway2   True                True                False
 Class-       sway3   True                True                False
@@ -37,6 +37,6 @@ Class-       sway3   True                True                False
 \hline
 \end{tabular}
 
-real	0m17.498s
-user	0m18.450s
-sys	0m4.435s
+real	0m17.731s
+user	0m18.622s
+sys	0m4.658s

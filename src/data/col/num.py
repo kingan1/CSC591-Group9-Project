@@ -88,6 +88,6 @@ class Num(Col):
 
     def normalize(self, value: float):
         try:
-            return (value - self.mid()) / self.sd
+            return (value - self.lo) / (self.hi - self.lo)
         except ZeroDivisionError as e:
             return 1

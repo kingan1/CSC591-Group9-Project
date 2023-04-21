@@ -5,7 +5,7 @@
  all   &   75.3 &    7.2 &        25 &           0 &       50.5 &                0 \\
  sway  &   76.4 &    6.8 &      26.2 &           8 &       43.9 &              0.2 \\
  sway2 &   72.6 &    7.3 &      21.9 &          12 &       33.9 &              0.2 \\
- sway3 &   74.9 &    7.1 &        25 &           8 &       50.2 &                4 \\
+ sway3 &   76.2 &    6.8 &      26.2 &           8 &       43.2 &              0.2 \\
  xpln  &   76.4 &    6.8 &      26.2 &           8 &       43.9 &                0 \\
  xpln2 &   76.6 &    6.7 &      26.2 &           8 &       44.7 &                0 \\
  top   &   64.9 &   11.3 &        25 &       10000 &        1.4 &                0 \\
@@ -15,7 +15,7 @@
          Best    sway2 beat sway?    sway3 beat sway?    xpln2 beat xpln?
 -------  ------  ------------------  ------------------  ------------------
 MRE-     sway2   True                True                False
-ACC+     sway2   True                True                False
+ACC+     sway2   True                False               False
 PRED40+  sway    False               False               False
 
 \begin{tabular}{llll}
@@ -26,7 +26,7 @@ PRED40+  sway    False               False               False
  all to sway   & ≠      & ≠      & ≠         \\
  all to sway2  & ≠      & ≠      & ≠         \\
  sway to sway2 & ≠      & ≠      & ≠         \\
- all to sway3  & ≠      & =      & ≠         \\
+ all to sway3  & ≠      & ≠      & ≠         \\
  sway to sway3 & ≠      & ≠      & ≠         \\
  sway to xpln  & ≠      & ≠      & ≠         \\
  sway to xpln2 & ≠      & ≠      & ≠         \\
@@ -36,6 +36,6 @@ PRED40+  sway    False               False               False
 \hline
 \end{tabular}
 
-real	3m4.341s
-user	3m4.778s
-sys	0m6.040s
+real	1m35.786s
+user	1m36.227s
+sys	0m5.501s

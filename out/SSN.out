@@ -3,9 +3,9 @@
        &   PSNR- &   Energy- &   Avg evals &   Avg rank &   Avg Time Taken \\
 \hline
  all   &    45.7 &    1237.7 &           0 &       50.5 &                0 \\
- sway  &    44.3 &    1094.7 &           9 &       43.8 &              3.1 \\
- sway2 &    43.5 &     872.7 &          14 &       40.8 &              3.1 \\
- sway3 &    44.3 &    1118.4 &           9 &       45.1 &             67.7 \\
+ sway  &    44.3 &    1094.7 &           9 &       43.8 &                3 \\
+ sway2 &    43.5 &     872.7 &          14 &       40.8 &                3 \\
+ sway3 &    43.8 &     943.7 &           9 &       39.7 &              1.4 \\
  xpln  &    45.7 &     997.2 &           9 &         46 &              0.2 \\
  xpln2 &    44.9 &    1092.6 &           9 &       45.6 &                0 \\
  top   &    26.7 &     465.9 &       53662 &        1.2 &                0 \\
@@ -14,8 +14,8 @@
 
          Best    sway2 beat sway?    sway3 beat sway?    xpln2 beat xpln?
 -------  ------  ------------------  ------------------  ------------------
-PSNR-    sway2   True                False               True
-Energy-  sway2   True                False               False
+PSNR-    sway2   True                True                True
+Energy-  sway2   True                True                False
 
 \begin{tabular}{lll}
 \hline
@@ -23,8 +23,8 @@ Energy-  sway2   True                False               False
 \hline
  all to all    & =       & =         \\
  all to sway   & ≠       & ≠         \\
- all to sway2  & =       & ≠         \\
- sway to sway2 & =       & ≠         \\
+ all to sway2  & ≠       & ≠         \\
+ sway to sway2 & ≠       & ≠         \\
  all to sway3  & ≠       & ≠         \\
  sway to sway3 & ≠       & ≠         \\
  sway to xpln  & ≠       & ≠         \\
@@ -35,6 +35,6 @@ Energy-  sway2   True                False               False
 \hline
 \end{tabular}
 
-real	27m22.216s
-user	27m23.187s
-sys	0m11.890s
+real	5m4.629s
+user	5m6.838s
+sys	0m10.563s

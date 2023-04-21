@@ -5,7 +5,7 @@
  all   &    931 &       5 &     21427 &           0 &       50.5 &                0 \\
  sway  & 1003.5 &     3.1 &   16015.4 &           8 &       44.8 &              0.8 \\
  sway2 &  807.9 &     2.3 &     11097 &          12 &       40.2 &              0.8 \\
- sway3 & 1046.2 &     4.4 &   19044.8 &           8 &       48.2 &             16.9 \\
+ sway3 & 1023.3 &     4.4 &   18169.8 &           8 &       48.5 &              0.3 \\
  xpln  & 1083.5 &     3.9 &   17733.8 &           8 &       41.8 &              0.1 \\
  xpln2 &    999 &     4.8 &   16554.5 &           8 &         49 &                0 \\
  top   &   1959 &       0 &     17734 &       10000 &        1.4 &                0 \\
@@ -24,10 +24,10 @@ Effort-  sway2   True                False               True
 \hline
  all to all    & =      & =       & =         \\
  all to sway   & ≠      & ≠       & ≠         \\
- all to sway2  & =      & ≠       & ≠         \\
+ all to sway2  & ≠      & ≠       & ≠         \\
  sway to sway2 & ≠      & ≠       & ≠         \\
  all to sway3  & ≠      & ≠       & ≠         \\
- sway to sway3 & ≠      & ≠       & ≠         \\
+ sway to sway3 & =      & ≠       & ≠         \\
  sway to xpln  & ≠      & ≠       & ≠         \\
  sway to xpln2 & ≠      & ≠       & ≠         \\
  xpln to xpln2 & ≠      & ≠       & ≠         \\
@@ -36,6 +36,6 @@ Effort-  sway2   True                False               True
 \hline
 \end{tabular}
 
-real	7m48.933s
-user	7m48.657s
-sys	0m6.547s
+real	2m16.369s
+user	2m16.752s
+sys	0m5.960s

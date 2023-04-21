@@ -5,7 +5,7 @@
  all   &        2098 &           0 &       50.4 &                0 \\
  sway  &       763.9 &           6 &       19.4 &              0.1 \\
  sway2 &       305.6 &         8.7 &       10.8 &              0.1 \\
- sway3 &       237.5 &           6 &        6.2 &              0.8 \\
+ sway3 &       316.9 &           6 &        9.8 &                0 \\
  xpln  &       985.4 &           6 &       30.2 &                0 \\
  xpln2 &         912 &           6 &       24.2 &                0 \\
  top   &         145 &         499 &        2.4 &                0 \\
@@ -14,7 +14,7 @@
 
            Best    sway2 beat sway?    sway3 beat sway?    xpln2 beat xpln?
 ---------  ------  ------------------  ------------------  ------------------
-N_effort-  sway3   True                True                True
+N_effort-  sway2   True                True                True
 
 \begin{tabular}{ll}
 \hline
@@ -34,6 +34,6 @@ N_effort-  sway3   True                True                True
 \hline
 \end{tabular}
 
-real	0m37.746s
-user	0m37.372s
-sys	0m0.759s
+real	0m22.574s
+user	0m22.301s
+sys	0m0.676s
