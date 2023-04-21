@@ -1,17 +1,41 @@
-        Cost-    Completion+    Idle-    Avg evals
-----  -------  -------------  -------  -----------
-all   321.851          0.898    0.243            0
-sway   248.37          0.907    0.208            8
-xpln  313.103         0.8985   0.2375            8
-top    138.75              1        0        10000
+\begin{tabular}{lrrrrrr}
+\hline
+       &   Cost- &   Completion+ &   Idle- &   Avg evals &   Avg rank &   Avg Time Taken \\
+\hline
+ all   &   313.8 &           0.9 &     0.2 &           0 &       50.5 &                0 \\
+ sway  &   296.8 &           0.9 &     0.2 &           8 &       43.3 &              0.4 \\
+ sway2 &   190.1 &           0.9 &     0.1 &          12 &       35.2 &              0.4 \\
+ sway3 &   303.3 &           0.9 &     0.2 &           8 &       43.7 &                9 \\
+ xpln  &   330.6 &           0.9 &     0.2 &           8 &         51 &              0.1 \\
+ xpln2 &   310.4 &           0.9 &     0.2 &           8 &       46.3 &                0 \\
+ top   &   138.5 &             1 &       0 &       10000 &        1.4 &                0 \\
+\hline
+\end{tabular}
 
-              Cost-    Completion+    Idle-
-------------  -------  -------------  -------
-all to all    =        =              =
-all to sway   ≠        ≠              ≠
-sway to xpln  ≠        ≠              ≠
-sway to top   ≠        ≠              ≠
+             Best    sway2 beat sway?    sway3 beat sway?    xpln2 beat xpln?
+-----------  ------  ------------------  ------------------  ------------------
+Cost-        sway2   True                False               True
+Completion+  sway    False               False               False
+Idle-        sway2   True                False               False
 
-real	2m2.234s
-user	2m1.805s
-sys	0m0.296s
+\begin{tabular}{llll}
+\hline
+               & Cost-   & Completion+   & Idle-   \\
+\hline
+ all to all    & =       & =             & =       \\
+ all to sway   & ≠       & ≠             & ≠       \\
+ all to sway2  & ≠       & ≠             & ≠       \\
+ sway to sway2 & ≠       & ≠             & ≠       \\
+ all to sway3  & ≠       & ≠             & ≠       \\
+ sway to sway3 & ≠       & ≠             & ≠       \\
+ sway to xpln  & ≠       & =             & ≠       \\
+ sway to xpln2 & ≠       & ≠             & ≠       \\
+ xpln to xpln2 & ≠       & ≠             & ≠       \\
+ sway2 to top  & ≠       & ≠             & ≠       \\
+ sway3 to top  & ≠       & ≠             & ≠       \\
+\hline
+\end{tabular}
+
+real	5m36.125s
+user	5m34.981s
+sys	0m6.952s

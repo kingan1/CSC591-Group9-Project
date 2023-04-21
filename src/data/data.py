@@ -9,14 +9,14 @@ from .row import Row
 
 
 class Data:
-    def __init__(self, src: Union[str, List] = None, rows: Union[List, Row] = None):
+    def __init__(self, src: Union[str, List, 'Data'] = None, rows: Union[List, Row] = None):
         self.rows: List[Row] = []
         self.cols: Optional[Cols] = None
 
         if src or rows:
             self.read(src, rows)
 
-    def read(self, src: Union[str, List], rows: Union[List, Row] = None):
+    def read(self, src: Union[str, List, 'Data'], rows: Union[List, Row] = None):
         def f(t):
             self.add(t)
 
@@ -84,4 +84,7 @@ class Data:
             key=cmp_to_key(lambda row1, row2: -1 if predicate.better(self.cols.y, row1, row2) else 1)
         )
 
-        return tmp[1:n], tmp[n+1:] if n is not None else tmp
+        if n is None:
+            return tmp
+
+        return tmp[:n], tmp[n+1:] 

@@ -1,17 +1,40 @@
-        PSNR-    Energy-    Avg evals
-----  -------  ---------  -----------
-all   45.8435    1249.28            0
-sway   44.812    1216.78            9
-xpln   44.669    1221.03            9
-top    26.715    466.288        53662
+\begin{tabular}{lrrrrr}
+\hline
+       &   PSNR- &   Energy- &   Avg evals &   Avg rank &   Avg Time Taken \\
+\hline
+ all   &    45.7 &    1237.7 &           0 &       50.5 &                0 \\
+ sway  &    44.3 &    1094.7 &           9 &       43.8 &              3.1 \\
+ sway2 &    43.5 &     872.7 &          14 &       40.8 &              3.1 \\
+ sway3 &    44.3 &    1118.4 &           9 &       45.1 &             67.7 \\
+ xpln  &    45.7 &     997.2 &           9 &         46 &              0.2 \\
+ xpln2 &    44.9 &    1092.6 &           9 &       45.6 &                0 \\
+ top   &    26.7 &     465.9 &       53662 &        1.2 &                0 \\
+\hline
+\end{tabular}
 
-              PSNR-    Energy-
-------------  -------  ---------
-all to all    =        =
-all to sway   ≠        ≠
-sway to xpln  ≠        ≠
-sway to top   ≠        ≠
+         Best    sway2 beat sway?    sway3 beat sway?    xpln2 beat xpln?
+-------  ------  ------------------  ------------------  ------------------
+PSNR-    sway2   True                False               True
+Energy-  sway2   True                False               False
 
-real	3m38.113s
-user	3m35.216s
-sys	0m1.876s
+\begin{tabular}{lll}
+\hline
+               & PSNR-   & Energy-   \\
+\hline
+ all to all    & =       & =         \\
+ all to sway   & ≠       & ≠         \\
+ all to sway2  & =       & ≠         \\
+ sway to sway2 & =       & ≠         \\
+ all to sway3  & ≠       & ≠         \\
+ sway to sway3 & ≠       & ≠         \\
+ sway to xpln  & ≠       & ≠         \\
+ sway to xpln2 & ≠       & ≠         \\
+ xpln to xpln2 & ≠       & ≠         \\
+ sway2 to top  & ≠       & ≠         \\
+ sway3 to top  & ≠       & ≠         \\
+\hline
+\end{tabular}
+
+real	27m22.216s
+user	27m23.187s
+sys	0m11.890s

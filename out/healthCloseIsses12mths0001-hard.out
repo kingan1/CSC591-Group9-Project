@@ -1,17 +1,41 @@
-        MRE-    ACC+    PRED40+    Avg evals
-----  ------  ------  ---------  -----------
-all   75.086  7.1235         25            0
-sway  73.792  7.5535         25            8
-xpln  73.762  7.5265         25            8
-top    64.91   11.33         25        10000
+\begin{tabular}{lrrrrrr}
+\hline
+       &   MRE- &   ACC+ &   PRED40+ &   Avg evals &   Avg rank &   Avg Time Taken \\
+\hline
+ all   &   75.3 &    7.2 &        25 &           0 &       50.5 &                0 \\
+ sway  &   76.4 &    6.8 &      26.2 &           8 &       43.9 &              0.2 \\
+ sway2 &   72.6 &    7.3 &      21.9 &          12 &       33.9 &              0.2 \\
+ sway3 &   74.9 &    7.1 &        25 &           8 &       50.2 &                4 \\
+ xpln  &   76.4 &    6.8 &      26.2 &           8 &       43.9 &                0 \\
+ xpln2 &   76.6 &    6.7 &      26.2 &           8 &       44.7 &                0 \\
+ top   &   64.9 &   11.3 &        25 &       10000 &        1.4 &                0 \\
+\hline
+\end{tabular}
 
-              MRE-    ACC+    PRED40+
-------------  ------  ------  ---------
-all to all    =       =       =
-all to sway   ≠       ≠       ≠
-sway to xpln  ≠       ≠       ≠
-sway to top   ≠       ≠       ≠
+         Best    sway2 beat sway?    sway3 beat sway?    xpln2 beat xpln?
+-------  ------  ------------------  ------------------  ------------------
+MRE-     sway2   True                True                False
+ACC+     sway2   True                True                False
+PRED40+  sway    False               False               False
 
-real	1m20.687s
-user	1m20.477s
-sys	0m0.129s
+\begin{tabular}{llll}
+\hline
+               & MRE-   & ACC+   & PRED40+   \\
+\hline
+ all to all    & =      & =      & =         \\
+ all to sway   & ≠      & ≠      & ≠         \\
+ all to sway2  & ≠      & ≠      & ≠         \\
+ sway to sway2 & ≠      & ≠      & ≠         \\
+ all to sway3  & ≠      & =      & ≠         \\
+ sway to sway3 & ≠      & ≠      & ≠         \\
+ sway to xpln  & ≠      & ≠      & ≠         \\
+ sway to xpln2 & ≠      & ≠      & ≠         \\
+ xpln to xpln2 & ≠      & ≠      & ≠         \\
+ sway2 to top  & ≠      & ≠      & ≠         \\
+ sway3 to top  & ≠      & ≠      & ≠         \\
+\hline
+\end{tabular}
+
+real	3m4.341s
+user	3m4.778s
+sys	0m6.040s

@@ -85,3 +85,9 @@ class Num(Col):
             data2 = 1 if data1 < 0.5 else 1
 
         return abs(data1 - data2)
+
+    def normalize(self, value: float):
+        try:
+            return (value - self.mid()) / self.sd
+        except ZeroDivisionError as e:
+            return 1

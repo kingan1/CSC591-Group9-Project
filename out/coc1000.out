@@ -1,17 +1,43 @@
-         LOC+    AEXP-    PLEX-    RISK-    EFFORT-    Avg evals
-----  -------  -------  -------  -------  ---------  -----------
-all    1052.5        3        3        5      19674            0
-sway  1040.75     3.05     2.95     4.15    16954.5            6
-xpln    987.2      2.8     2.95     4.55    17247.4            6
-top      1529        2        1        3      29972         1000
+\begin{tabular}{lrrrrrrrr}
+\hline
+       &   LOC+ &   AEXP- &   PLEX- &   RISK- &   EFFORT- &   Avg evals &   Avg rank &   Avg Time Taken \\
+\hline
+ all   &   1013 &       3 &       3 &       5 &     19548 &           0 &       50.5 &                0 \\
+ sway  & 1053.8 &       3 &       3 &     4.1 &   19291.5 &         6.1 &         47 &              0.1 \\
+ sway2 &   1131 &     2.2 &     2.1 &     3.9 &   26016.2 &         9.4 &       24.2 &              0.1 \\
+ sway3 & 1080.2 &       3 &       3 &     2.9 &   16145.4 &         6.3 &       43.2 &              1.3 \\
+ xpln  & 1102.5 &       3 &     2.9 &     4.6 &   19453.5 &         6.1 &       49.5 &                0 \\
+ xpln2 & 1055.8 &       3 &       3 &     4.3 &   17127.3 &         6.1 &         49 &                0 \\
+ top   & 1542.7 &       2 &       1 &       3 &   30214.1 &        1000 &        2.4 &                0 \\
+\hline
+\end{tabular}
 
-              LOC+    AEXP-    PLEX-    RISK-    EFFORT-
-------------  ------  -------  -------  -------  ---------
-all to all    =       =        =        =        =
-all to sway   ≠       ≠        =        ≠        ≠
-sway to xpln  ≠       ≠        ≠        ≠        ≠
-sway to top   ≠       ≠        ≠        ≠        ≠
+         Best    sway2 beat sway?    sway3 beat sway?    xpln2 beat xpln?
+-------  ------  ------------------  ------------------  ------------------
+LOC+     sway2   True                True                False
+AEXP-    sway2   True                False               False
+PLEX-    sway2   True                False               False
+RISK-    sway3   True                True                True
+EFFORT-  sway3   False               True                True
 
-real	1m55.452s
-user	1m55.239s
-sys	0m0.076s
+\begin{tabular}{llllll}
+\hline
+               & LOC+   & AEXP-   & PLEX-   & RISK-   & EFFORT-   \\
+\hline
+ all to all    & =      & =       & =       & =       & =         \\
+ all to sway   & ≠      & =       & =       & ≠       & ≠         \\
+ all to sway2  & ≠      & ≠       & ≠       & ≠       & ≠         \\
+ sway to sway2 & ≠      & ≠       & ≠       & ≠       & ≠         \\
+ all to sway3  & ≠      & ≠       & =       & ≠       & ≠         \\
+ sway to sway3 & ≠      & ≠       & ≠       & ≠       & ≠         \\
+ sway to xpln  & ≠      & ≠       & ≠       & ≠       & ≠         \\
+ sway to xpln2 & ≠      & ≠       & ≠       & ≠       & ≠         \\
+ xpln to xpln2 & ≠      & =       & =       & ≠       & ≠         \\
+ sway2 to top  & ≠      & ≠       & ≠       & ≠       & ≠         \\
+ sway3 to top  & ≠      & ≠       & ≠       & ≠       & ≠         \\
+\hline
+\end{tabular}
+
+real	2m59.945s
+user	3m0.715s
+sys	0m4.992s

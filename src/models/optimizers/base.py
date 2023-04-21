@@ -1,5 +1,5 @@
 from data import Data
-from utils import set_seed, Random, get_seed
+from utils import set_seed, Random, get_seed, timed
 
 
 class BaseOptimizer:
@@ -9,6 +9,7 @@ class BaseOptimizer:
         if seed:
             self._random.set_seed(seed)
 
+    @timed
     def run(self, data: Data):
         set_seed(self._random.seed)
         best, rest, evals = self._run(data=data)

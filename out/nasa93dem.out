@@ -1,17 +1,42 @@
-        Kloc+    Effort-    Defects-    Months-    Avg evals
-----  -------  ---------  ----------  ---------  -----------
-all      47.5        252        2007       21.4            0
-sway   30.745      137.9     1195.85     16.585            5
-xpln   33.415      119.2     1309.55      16.74            5
-top       4.5       14.4       140.5       8.45           93
+\begin{tabular}{lrrrrrrr}
+\hline
+       &   Kloc+ &   Effort- &   Defects- &   Months- &   Avg evals &   Avg rank &   Avg Time Taken \\
+\hline
+ all   &    47.5 &       252 &       2007 &      21.4 &           0 &         50 &                0 \\
+ sway  &      20 &        84 &      750.5 &      13.3 &           5 &       24.8 &                0 \\
+ sway2 &    22.4 &     131.9 &      894.8 &      13.6 &         6.5 &       27.3 &                0 \\
+ sway3 &    19.8 &        87 &      804.8 &      14.9 &           5 &       31.8 &                0 \\
+ xpln  &    22.5 &      82.7 &      896.1 &      13.8 &           5 &         26 &                0 \\
+ xpln2 &      35 &     156.1 &     1414.7 &      16.5 &           5 &       31.7 &                0 \\
+ top   &     3.5 &      10.8 &        109 &       7.8 &          93 &        3.4 &                0 \\
+\hline
+\end{tabular}
 
-              Kloc+    Effort-    Defects-    Months-
-------------  -------  ---------  ----------  ---------
-all to all    =        =          =           =
-all to sway   ≠        ≠          ≠           ≠
-sway to xpln  ≠        ≠          ≠           ≠
-sway to top   ≠        ≠          ≠           ≠
+          Best    sway2 beat sway?    sway3 beat sway?    xpln2 beat xpln?
+--------  ------  ------------------  ------------------  ------------------
+Kloc+     sway2   True                False               True
+Effort-   sway    False               False               False
+Defects-  sway    False               False               False
+Months-   sway    False               False               False
 
-real	0m14.064s
-user	0m14.043s
-sys	0m0.012s
+\begin{tabular}{lllll}
+\hline
+               & Kloc+   & Effort-   & Defects-   & Months-   \\
+\hline
+ all to all    & =       & =         & =          & =         \\
+ all to sway   & ≠       & ≠         & ≠          & ≠         \\
+ all to sway2  & ≠       & ≠         & ≠          & ≠         \\
+ sway to sway2 & ≠       & ≠         & ≠          & ≠         \\
+ all to sway3  & ≠       & ≠         & ≠          & ≠         \\
+ sway to sway3 & ≠       & ≠         & ≠          & ≠         \\
+ sway to xpln  & ≠       & ≠         & ≠          & ≠         \\
+ sway to xpln2 & ≠       & ≠         & ≠          & ≠         \\
+ xpln to xpln2 & ≠       & ≠         & ≠          & ≠         \\
+ sway2 to top  & ≠       & ≠         & ≠          & ≠         \\
+ sway3 to top  & ≠       & ≠         & ≠          & ≠         \\
+\hline
+\end{tabular}
+
+real	0m16.939s
+user	0m17.971s
+sys	0m4.495s

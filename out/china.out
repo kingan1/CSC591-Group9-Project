@@ -1,17 +1,39 @@
-        N_effort-    Avg evals
-----  -----------  -----------
-all          2098            0
-sway       489.65            6
-xpln          944            6
-top           149          499
+\begin{tabular}{lrrrr}
+\hline
+       &   N\_effort- &   Avg evals &   Avg rank &   Avg Time Taken \\
+\hline
+ all   &        2098 &           0 &       50.4 &                0 \\
+ sway  &       763.9 &           6 &       19.4 &              0.1 \\
+ sway2 &       305.6 &         8.7 &       10.8 &              0.1 \\
+ sway3 &       237.5 &           6 &        6.2 &              0.8 \\
+ xpln  &       985.4 &           6 &       30.2 &                0 \\
+ xpln2 &         912 &           6 &       24.2 &                0 \\
+ top   &         145 &         499 &        2.4 &                0 \\
+\hline
+\end{tabular}
 
-              N_effort-
-------------  -----------
-all to all    =
-all to sway   ≠
-sway to xpln  ≠
-sway to top   ≠
+           Best    sway2 beat sway?    sway3 beat sway?    xpln2 beat xpln?
+---------  ------  ------------------  ------------------  ------------------
+N_effort-  sway3   True                True                True
 
-real	0m20.744s
-user	0m20.361s
-sys	0m0.089s
+\begin{tabular}{ll}
+\hline
+               & N\_effort-   \\
+\hline
+ all to all    & =           \\
+ all to sway   & ≠           \\
+ all to sway2  & ≠           \\
+ sway to sway2 & ≠           \\
+ all to sway3  & ≠           \\
+ sway to sway3 & ≠           \\
+ sway to xpln  & ≠           \\
+ sway to xpln2 & ≠           \\
+ xpln to xpln2 & ≠           \\
+ sway2 to top  & ≠           \\
+ sway3 to top  & ≠           \\
+\hline
+\end{tabular}
+
+real	0m37.746s
+user	0m37.372s
+sys	0m0.759s

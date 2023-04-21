@@ -1,17 +1,42 @@
-         Lbs-    Acc+    Mpg+    Avg evals
-----  -------  ------  ------  -----------
-all      2800    15.5      20            0
-sway  2080.15  16.355    32.5            6
-xpln  2233.35  15.985      30            6
-top      1985   18.78      40          398
+\begin{tabular}{lrrrrrrr}
+\hline
+       &   CityMPG+ &   HighwayMPG+ &   Weight- &   Class- &   Avg evals &   Avg rank &   Avg Time Taken \\
+\hline
+ all   &         21 &            28 &      3040 &     17.7 &           0 &         50 &                0 \\
+ sway  &       29.6 &          34.6 &    2175.8 &      9.3 &           5 &       11.6 &                0 \\
+ sway2 &       35.1 &          40.4 &    1941.2 &      9.2 &         6.9 &        6.6 &                0 \\
+ sway3 &       30.6 &            33 &      1991 &      8.4 &           5 &        6.9 &                0 \\
+ xpln  &       29.6 &          34.2 &    2258.5 &      9.6 &           5 &       13.6 &                0 \\
+ xpln2 &       28.8 &          34.5 &    2295.5 &      9.6 &           5 &       14.1 &                0 \\
+ top   &       34.5 &          41.5 &      2045 &      8.6 &          93 &        3.5 &                0 \\
+\hline
+\end{tabular}
 
-              Lbs-    Acc+    Mpg+
-------------  ------  ------  ------
-all to all    =       =       =
-all to sway   ≠       ≠       ≠
-sway to xpln  ≠       ≠       ≠
-sway to top   ≠       ≠       ≠
+             Best    sway2 beat sway?    sway3 beat sway?    xpln2 beat xpln?
+-----------  ------  ------------------  ------------------  ------------------
+CityMPG+     sway2   True                True                False
+HighwayMPG+  sway2   True                False               True
+Weight-      sway2   True                True                False
+Class-       sway3   True                True                False
 
-real	0m43.240s
-user	0m42.776s
-sys	0m0.132s
+\begin{tabular}{lllll}
+\hline
+               & CityMPG+   & HighwayMPG+   & Weight-   & Class-   \\
+\hline
+ all to all    & =          & =             & =         & =        \\
+ all to sway   & ≠          & ≠             & ≠         & ≠        \\
+ all to sway2  & ≠          & ≠             & ≠         & ≠        \\
+ sway to sway2 & ≠          & ≠             & ≠         & ≠        \\
+ all to sway3  & ≠          & =             & ≠         & ≠        \\
+ sway to sway3 & ≠          & ≠             & ≠         & ≠        \\
+ sway to xpln  & ≠          & ≠             & ≠         & ≠        \\
+ sway to xpln2 & ≠          & ≠             & ≠         & ≠        \\
+ xpln to xpln2 & ≠          & ≠             & ≠         & ≠        \\
+ sway2 to top  & ≠          & ≠             & ≠         & ≠        \\
+ sway3 to top  & ≠          & ≠             & ≠         & ≠        \\
+\hline
+\end{tabular}
+
+real	0m17.498s
+user	0m18.450s
+sys	0m4.435s

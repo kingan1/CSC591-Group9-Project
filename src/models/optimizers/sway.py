@@ -12,7 +12,7 @@ from .base import BaseOptimizer
 class SwayOptimizer(BaseOptimizer):
     def __init__(self, distance_class: Distance = None, reuse: bool = True, far: float = 0.95, halves: int = 512,
                  rest: int = 10, i_min: float = 0.5, seed=None):
-        super().__init__(seed)
+        super().__init__(seed=seed)
 
         self._data: Optional[Data] = None
 
