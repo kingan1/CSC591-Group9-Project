@@ -101,7 +101,7 @@ class ResultsGenerator:
                      ["top", ]
 
         return {optimizer: 0 for optimizer in optimizers}
-    
+
     def _get_ranks(self):
         optimizers = ["all", self._base_optimizer[0], ] + \
                      list(self._optimizers.keys()) + \
@@ -119,7 +119,7 @@ class ResultsGenerator:
                      ["top", ]
 
         return {optimizer: 0 for optimizer in optimizers}
-    
+
     def _mean(self, l):
         return sum(l) / len(l)
 
@@ -131,7 +131,7 @@ class ResultsGenerator:
         all_ranked = self._data.betters()
         # for each row, rank it normalized from 1-100
         for idx, row in enumerate(all_ranked):
-            row.rank = 1 + (idx/len(self._data.rows))*99
+            row.rank = 1 + (idx / len(self._data.rows)) * 99
 
         while i < self._n_iters:
 
@@ -231,32 +231,40 @@ class ResultsGenerator:
             stats_list += [self._ranks[k] / self._n_iters]
             stats_list += [self._time_taken[k] / self._n_iters]
 
-            stats_list = [round(r,1) for r in stats_list]
+            stats_list = [round(r, 1) for r in stats_list]
 
             table.append([k] + stats_list)
 
-        # generates the best algorithm/beat sway table
         maxes = []
-        # each algorithm
-        h = [v[0] for v in table]
-        for i in range(len(headers)):
-            # get the value of the 'y[i]' column for each algorithm
-            header_vals = [v[i+1] for v in table]
-            # if the 'y' value is minimizing, use min else use max
-            fun = max if headers[i][-1] == "+" else min
-            # vals is sway's result for y[i] and sway2's result for y[i]
-            # used to say if our sway2 algorithm is better than sway
-            vals = [table[h.index("sway")][i+1],table[h.index("sway2")][i+1]]
 
-            
-            vals_x = [table[h.index("xpln")][i+1],table[h.index("xpln2")][i+1]]
-            # appends [y column name, 
-            #          what algorithm is the best for that y, 
-            #          if sway2 better than sway2]
-            maxes.append([headers[i],
-                          table[header_vals.index(fun(header_vals))][0],
-                           vals.index(fun(vals)) == 1,
-                           vals_x.index(fun(vals_x)) == 1])
+        for i in range(len(headers)):
+            optimizer_vals = []
+            explainer_vals = []
+
+            for v in table:
+                if v[0] in self._optimizers or v[0] == self._base_optimizer[0]:
+                    optimizer_vals.append({"algo": v[0], "value": v[i + 1]})
+                elif v[0] in self._explainers or v[0] == self._base_explainer[0]:
+                    explainer_vals.append({"algo": v[0], "value": v[i + 1]})
+
+            optimizer_vals = sorted(optimizer_vals, key=lambda x: x["value"], reverse=(headers[i][-1] == "+"))
+            explainer_vals = sorted(explainer_vals, key=lambda x: x["value"], reverse=(headers[i][-1] == "+"))
+
+            optimizer_vals_dict = {d["algo"]: rank for rank, d in enumerate(optimizer_vals)}
+            explainer_vals_dict = {d["algo"]: rank for rank, d in enumerate(explainer_vals)}
+
+            max_ = [
+                headers[i],
+                optimizer_vals[0]["algo"],
+            ]
+
+            for optimizer in self._optimizers:
+                max_.append(optimizer_vals_dict[optimizer] < optimizer_vals_dict[self._base_optimizer[0]])
+
+            for explainer in self._explainers:
+                max_.append(explainer_vals_dict[explainer] < explainer_vals_dict[self._base_explainer[0]])
+
+            maxes.append(max_)
 
         if color:
             for i in range(len(headers)):
@@ -270,11 +278,19 @@ class ResultsGenerator:
                 table[header_vals.index(fun(header_vals))][i + 1] = '\033[92m' + str(
                     table[header_vals.index(fun(header_vals))][i + 1]) + '\033[0m'
 
-        print(tabulate(table, headers=headers + ["Avg evals", "Avg rank", "Avg Time Taken"], numalign="right", tablefmt="latex"))
+        print(tabulate(table, headers=headers + ["Avg evals", "Avg rank", "Avg Time Taken"], numalign="right",
+                       tablefmt="latex"))
         print()
 
-        m_headers = ["Best", "Beat Sway?", "Beat Xpln?"]
-        print(tabulate(maxes, headers=m_headers,numalign="right"))
+        m_headers = ["Best", ]
+
+        for optimizer in self._optimizers:
+            m_headers.append(f"{optimizer} beat {self._base_optimizer[0]}?")
+
+        for explainer in self._explainers:
+            m_headers.append(f"{explainer} beat {self._base_explainer[0]}?")
+
+        print(tabulate(maxes, headers=m_headers, numalign="right"))
         print()
 
         # generates the =/!= table
