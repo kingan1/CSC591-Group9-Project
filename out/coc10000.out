@@ -1,253 +1,41 @@
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-/home/pradyumna/PycharmProjects/CSC591-Group9-Project/venv/lib/python3.10/site-packages/sklearn/decomposition/_fastica.py:542: FutureWarning: Starting in v1.3, whiten='unit-variance' will be used by default.
-  warnings.warn(
-                         Loc+    Risk-    Effort-    Avg evals
---------------------  -------  -------  ---------  -----------
-all                   1008.45     5.05    19756.3            0
-sway                  1003.55     3.15    16015.4            8
-sway_pca              1009.25     5.35    21821.8            8
-sway_pca_alpha        1011.15     5.35    19355.8            8
-sway_pca_alpha2       1031.35     4.85      21217            8
-sway_fa               1008.25      5.3    19960.5            8
-sway_fa_alpha          969.05      5.2    20542.6            8
-sway_fa_alpha2         1006.7      4.8    21478.5            8
-sway_xpln              1083.5     3.85    17733.8            8
-sway_pca_xpln          977.35      5.7      20252            8
-sway_pca_alpha_xpln   1019.45      5.4    18096.8            8
-sway_pca_alpha2_xpln    976.4      4.8    18294.5            8
-sway_fa_xpln           995.75      5.3    19196.8            8
-sway_fa_alpha_xpln     992.25     5.35    20496.6            8
-sway_fa_alpha2_xpln     981.9        5      18203            8
-top                      1959        0      17734        10000
+\begin{tabular}{lrrrrrr}
+\hline
+       &   Loc+ &   Risk- &   Effort- &   Avg evals &   Avg rank &   Avg Time Taken \\
+\hline
+ all   &    931 &       5 &     21427 &           0 &       50.5 &                0 \\
+ sway  &  979.6 &     3.2 &   16207.7 &           8 &       45.1 &                1 \\
+ sway2 &  987.6 &     2.7 &   17632.5 &          12 &       38.2 &                1 \\
+ sway3 &  992.6 &     4.7 &   18366.7 &           8 &       49.2 &             23.6 \\
+ xpln  & 1049.2 &     5.8 &     19832 &           8 &       47.9 &              0.2 \\
+ xpln2 & 1004.6 &     4.8 &   17713.3 &           8 &       49.2 &                0 \\
+ top   &   1959 &       0 &     17733 &       10000 &        1.4 &                0 \\
+\hline
+\end{tabular}
 
-                                   Loc+    Risk-    Effort-
----------------------------------  ------  -------  ---------
-all to all                         =       =        =
-all to sway                        ≠       ≠        ≠
-all to sway_pca                    =       ≠        ≠
-all to sway_pca_alpha              ≠       ≠        ≠
-all to sway_pca_alpha2             =       ≠        ≠
-all to sway_fa                     ≠       ≠        ≠
-all to sway_fa_alpha               ≠       ≠        ≠
-all to sway_fa_alpha2              ≠       ≠        ≠
-sway to sway_pca                   ≠       ≠        ≠
-sway to sway_pca_alpha             ≠       ≠        ≠
-sway to sway_pca_alpha2            ≠       ≠        ≠
-sway to sway_fa                    ≠       ≠        ≠
-sway to sway_fa_alpha              ≠       ≠        ≠
-sway to sway_fa_alpha2             ≠       ≠        ≠
-sway_pca to sway_pca_alpha         ≠       ≠        ≠
-sway_pca to sway_pca_alpha2        ≠       ≠        ≠
-sway_pca to sway_fa                ≠       ≠        ≠
-sway_pca to sway_fa_alpha          ≠       ≠        ≠
-sway_pca to sway_fa_alpha2         ≠       ≠        ≠
-sway_pca_alpha to sway_pca_alpha2  ≠       ≠        ≠
-sway_pca_alpha to sway_fa          ≠       ≠        ≠
-sway_pca_alpha to sway_fa_alpha    ≠       ≠        ≠
-sway_pca_alpha to sway_fa_alpha2   ≠       ≠        ≠
-sway_pca_alpha2 to sway_fa         ≠       ≠        ≠
-sway_pca_alpha2 to sway_fa_alpha   ≠       ≠        ≠
-sway_pca_alpha2 to sway_fa_alpha2  ≠       ≠        ≠
-sway_fa to sway_fa_alpha           ≠       ≠        ≠
-sway_fa to sway_fa_alpha2          ≠       ≠        ≠
-sway_fa_alpha to sway_fa_alpha2    ≠       ≠        ≠
-sway to top                        ≠       ≠        ≠
-sway_pca to top                    ≠       ≠        ≠
-sway_pca_alpha to top              ≠       ≠        ≠
-sway_pca_alpha2 to top             ≠       ≠        ≠
-sway_fa to top                     ≠       ≠        ≠
-sway_fa_alpha to top               ≠       ≠        ≠
-sway_fa_alpha2 to top              ≠       ≠        ≠
+         Best    Beat Sway?    Beat Xpln?
+-------  ------  ------------  ------------
+Loc+     top     True          False
+Risk-    top     True          True
+Effort-  sway    False         True
 
-<<<<<<< HEAD
-real	1m54.842s
-user	1m54.318s
-sys	0m0.305s
-=======
-real	4m40.641s
-user	4m46.320s
-sys	0m47.415s
->>>>>>> 1f9acedace0a509cde087f6e384fde2e39ff36fb
+\begin{tabular}{llll}
+\hline
+               & Loc+   & Risk-   & Effort-   \\
+\hline
+ all to all    & =      & =       & =         \\
+ all to sway   & ≠      & ≠       & ≠         \\
+ all to sway2  & ≠      & ≠       & ≠         \\
+ sway to sway2 & ≠      & ≠       & ≠         \\
+ all to sway3  & ≠      & ≠       & ≠         \\
+ sway to sway3 & ≠      & ≠       & ≠         \\
+ sway to xpln  & ≠      & ≠       & ≠         \\
+ sway to xpln2 & =      & ≠       & ≠         \\
+ xpln to xpln2 & ≠      & ≠       & ≠         \\
+ sway2 to top  & ≠      & ≠       & ≠         \\
+ sway3 to top  & ≠      & ≠       & ≠         \\
+\hline
+\end{tabular}
+
+real	10m41.299s
+user	0m0.000s
+sys	0m0.015s
