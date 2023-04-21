@@ -44,6 +44,7 @@ OPTIONS:
 - Python files are located at [src](src)
 - A [script](generate_out.sh) is used to generate all output. It iterates over all data files, runs them through our program, and concatenates output to the output directory
     - The output and how long the process takes is saved to to `out/data_file.out`
+- PDF report can be seen HERE or through the [overleaf link](https://www.overleaf.com/read/xnhjtfjbmfmy)
 
 
 ## Description of algorithms
@@ -99,5 +100,4 @@ To produce the bottom table:
 
 ### sway2
 See [PCA-alpha](PCA-alpha.md)
-### xpln2
-TODO
+
