@@ -5,16 +5,16 @@
  all   &        2098 &           0 &       50.4 &                0 \\
  sway  &       763.9 &           6 &       19.4 &              0.1 \\
  sway2 &       305.6 &         8.7 &       10.8 &              0.1 \\
- sway3 &       237.5 &           6 &        6.2 &              1.6 \\
+ sway3 &       237.5 &           6 &        6.2 &              0.8 \\
  xpln  &       985.4 &           6 &       30.2 &                0 \\
  xpln2 &         912 &           6 &       24.2 &                0 \\
  top   &         145 &         499 &        2.4 &                0 \\
 \hline
 \end{tabular}
 
-           Best    Beat Sway?    Beat Xpln?
----------  ------  ------------  ------------
-N_effort-  top     True          True
+           Best    sway2 beat sway?    sway3 beat sway?    xpln2 beat xpln?
+---------  ------  ------------------  ------------------  ------------------
+N_effort-  sway3   True                True                True
 
 \begin{tabular}{ll}
 \hline
@@ -34,6 +34,6 @@ N_effort-  top     True          True
 \hline
 \end{tabular}
 
-real	1m11.340s
-user	0m0.000s
-sys	0m0.031s
+real	0m37.746s
+user	0m37.372s
+sys	0m0.759s

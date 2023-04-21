@@ -12,11 +12,11 @@
 \hline
 \end{tabular}
 
-      Best    Beat Sway?    Beat Xpln?
-----  ------  ------------  ------------
-Lbs-  top     True          True
-Acc+  top     True          False
-Mpg+  top     True          True
+      Best    sway2 beat sway?    sway3 beat sway?    xpln2 beat xpln?
+----  ------  ------------------  ------------------  ------------------
+Lbs-  sway2   True                False               True
+Acc+  sway2   True                True                False
+Mpg+  sway2   True                False               True
 
 \begin{tabular}{llll}
 \hline
@@ -36,6 +36,6 @@ Mpg+  top     True          True
 \hline
 \end{tabular}
 
-real	1m4.286s
-user	0m0.015s
-sys	0m0.000s
+real	0m50.371s
+user	0m50.174s
+sys	0m0.589s
