@@ -5,7 +5,7 @@
  all   &                   6 &             133.5 &           0 &       50.5 &                0 \\
  sway  &                 5.5 &             122.9 &          10 &       32.1 &                8 \\
  sway2 &                 4.5 &              97.4 &          16 &       12.9 &              7.8 \\
- sway3 &                 7.2 &             142.5 &          10 &       49.5 &             80.7 \\
+ sway3 &                 5.3 &             117.3 &          10 &       32.4 &              6.5 \\
  xpln  &                 5.5 &             118.4 &          10 &         37 &              0.3 \\
  xpln2 &                 5.5 &             122.8 &          10 &       34.6 &              0.1 \\
  top   &                   4 &                60 &      239360 &        1.1 &                0 \\
@@ -14,8 +14,8 @@
 
                    Best    sway2 beat sway?    sway3 beat sway?    xpln2 beat xpln?
 -----------------  ------  ------------------  ------------------  ------------------
-NUMBERITERATIONS-  sway2   True                False               False
-TIMETOSOLUTION-    sway2   True                False               False
+NUMBERITERATIONS-  sway2   True                True                False
+TIMETOSOLUTION-    sway2   True                True                False
 
 \begin{tabular}{lll}
 \hline
@@ -35,6 +35,6 @@ TIMETOSOLUTION-    sway2   True                False               False
 \hline
 \end{tabular}
 
-real	42m12.419s
-user	42m7.555s
-sys	0m44.572s
+real	17m30.592s
+user	17m21.457s
+sys	0m46.498s
