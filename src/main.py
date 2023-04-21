@@ -61,6 +61,7 @@ class ResultsGenerator:
 
         self._results = self._get_results()
         self._n_evals = self._get_n_evals()
+        self._ranks = self._get_ranks()
         self._time_taken = self._get_time_taken()
 
         self._comparisons = self._get_comparisons()
@@ -100,6 +101,15 @@ class ResultsGenerator:
                      ["top", ]
 
         return {optimizer: 0 for optimizer in optimizers}
+    
+    def _get_ranks(self):
+        optimizers = ["all", self._base_optimizer[0], ] + \
+                     list(self._optimizers.keys()) + \
+                     [self._base_explainer[0], ] + \
+                     list(self._explainers.keys()) + \
+                     ["top", ]
+
+        return {optimizer: 0 for optimizer in optimizers}
 
     def _get_time_taken(self):
         optimizers = ["all", self._base_optimizer[0], ] + \
@@ -109,15 +119,25 @@ class ResultsGenerator:
                      ["top", ]
 
         return {optimizer: 0 for optimizer in optimizers}
+    
+    def _mean(self, l):
+        return sum(l) / len(l)
 
     def run(self):
         i = 0
 
+        self._data = Data(self._data_src)
+        # get the "top" results by running the betters algorithm
+        all_ranked = self._data.betters()
+        # for each row, rank it normalized from 1-100
+        for idx, row in enumerate(all_ranked):
+            row.rank = 1 + (idx/len(self._data.rows))*99
+
         while i < self._n_iters:
-            self._data = Data(self._data_src)
 
             self._results["all"].append(self._data)
             self._n_evals["all"] += 0
+            self._ranks["all"] += self._mean([r.rank for r in self._data.rows])
 
             # Base Optimizer
             rules_satisfied = False
@@ -149,11 +169,13 @@ class ResultsGenerator:
 
                 self._results[self._base_optimizer[0]].append(best)
                 self._n_evals[self._base_optimizer[0]] += evals
+                self._ranks[self._base_optimizer[0]] += self._mean([r.rank for r in best.rows])
                 self._time_taken[self._base_optimizer[0]] += time
 
                 for rule in rules_result_dict:
                     self._results[rule].append(rules_result_dict[rule][0])
                     self._n_evals[rule] += evals
+                    self._ranks[rule] += self._mean([r.rank for r in rules_result_dict[rule][0].rows])
                     self._time_taken[rule] += rules_result_dict[rule][1]
 
                 top2, _ = self._data.betters(len(best.rows))
@@ -161,12 +183,14 @@ class ResultsGenerator:
 
                 self._results['top'].append(top)
                 self._n_evals["top"] += len(self._data.rows)
+                self._ranks["top"] += self._mean([r.rank for r in top.rows])
 
             for o_name, optimizer in self._optimizers.items():
                 (best, rest, evals), time = optimizer.run(data=self._data)
 
                 self._results[o_name].append(best)
                 self._n_evals[o_name] += evals
+                self._ranks[o_name] += self._mean([r.rank for r in best.rows])
                 self._time_taken[o_name] += time
 
             self._update_comparisons(i)
@@ -199,13 +223,40 @@ class ResultsGenerator:
         for k, v in self._results.items():
             # set the row equal to the average stats
             stats = get_stats(v)
-            stats_list = [k] + [stats[y] for y in headers]
+            stats_list = [stats[y] for y in headers]
 
             # adds on the average number of evals
             stats_list += [self._n_evals[k] / self._n_iters]
+            # adds on average rank of rows
+            stats_list += [self._ranks[k] / self._n_iters]
             stats_list += [self._time_taken[k] / self._n_iters]
 
-            table.append(stats_list)
+            stats_list = [round(r,1) for r in stats_list]
+
+            table.append([k] + stats_list)
+
+        # generates the best algorithm/beat sway table
+        maxes = []
+        # each algorithm
+        h = [v[0] for v in table]
+        for i in range(len(headers)):
+            # get the value of the 'y[i]' column for each algorithm
+            header_vals = [v[i+1] for v in table]
+            # if the 'y' value is minimizing, use min else use max
+            fun = max if headers[i][-1] == "+" else min
+            # vals is sway's result for y[i] and sway2's result for y[i]
+            # used to say if our sway2 algorithm is better than sway
+            vals = [table[h.index("sway")][i+1],table[h.index("sway2")][i+1]]
+
+            
+            vals_x = [table[h.index("xpln")][i+1],table[h.index("xpln2")][i+1]]
+            # appends [y column name, 
+            #          what algorithm is the best for that y, 
+            #          if sway2 better than sway2]
+            maxes.append([headers[i],
+                          table[header_vals.index(fun(header_vals))][0],
+                           vals.index(fun(vals)) == 1,
+                           vals_x.index(fun(vals_x)) == 1])
 
         if color:
             for i in range(len(headers)):
@@ -219,7 +270,11 @@ class ResultsGenerator:
                 table[header_vals.index(fun(header_vals))][i + 1] = '\033[92m' + str(
                     table[header_vals.index(fun(header_vals))][i + 1]) + '\033[0m'
 
-        print(tabulate(table, headers=headers + ["Avg evals", "Avg Time Taken"], numalign="right"))
+        print(tabulate(table, headers=headers + ["Avg evals", "Avg rank", "Avg Time Taken"], numalign="right", tablefmt="latex"))
+        print()
+
+        m_headers = ["Best", "Beat Sway?", "Beat Xpln?"]
+        print(tabulate(maxes, headers=m_headers,numalign="right"))
         print()
 
         # generates the =/!= table
@@ -230,7 +285,7 @@ class ResultsGenerator:
         for [base, diff], result in self._comparisons:
             table.append([f"{base} to {diff}"] + result)
 
-        print(tabulate(table, headers=headers, numalign="right"))
+        print(tabulate(table, headers=headers, numalign="right", tablefmt="latex"))
 
 
 def get_stats(data_array):
