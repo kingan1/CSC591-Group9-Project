@@ -1,27 +1,41 @@
-          MRE-      ACC+    PRED40+    Avg evals
------  -------  --------  ---------  -----------
-all    119.295  -12.2135          0            0
-sway     10.05    -0.098     66.664            8
-sway2   10.105    -0.316    54.1645           12
-sway3  119.229  -12.2095          0            8
-xpln     5.025   -0.0245    79.1635            8
-xpln2   20.103    -0.101     66.664            8
-top          0         0      83.33        10000
+\begin{tabular}{lrrrrrr}
+\hline
+       &   MRE- &   ACC+ &   PRED40+ &   Avg evals &   Avg rank &   Avg Time Taken \\
+\hline
+ all   &  119.3 &  -12.2 &         0 &           0 &       50.5 &                0 \\
+ sway  &   10.1 &   -0.1 &      66.7 &           8 &       16.4 &              0.2 \\
+ sway2 &   10.1 &   -0.3 &      54.2 &          12 &       17.1 &              0.2 \\
+ sway3 &  119.2 &  -12.2 &         0 &           8 &       50.2 &              4.1 \\
+ xpln  &      5 &     -0 &      79.2 &           8 &       17.3 &                0 \\
+ xpln2 &   20.1 &   -0.1 &      66.7 &           8 &       19.8 &                0 \\
+ top   &      0 &      0 &      83.3 &       10000 &        1.4 &                0 \\
+\hline
+\end{tabular}
 
-               MRE-    ACC+    PRED40+
--------------  ------  ------  ---------
-all to all     =       =       =
-all to sway    ≠       ≠       ≠
-all to sway2   ≠       ≠       ≠
-sway to sway2  ≠       ≠       ≠
-all to sway3   ≠       ≠       ≠
-sway to sway3  ≠       ≠       ≠
-sway to xpln   ≠       ≠       ≠
-sway to xpln2  ≠       ≠       ≠
-xpln to xpln2  ≠       ≠       ≠
-sway2 to top   ≠       ≠       ≠
-sway3 to top   ≠       ≠       ≠
+         Best    sway2 beat sway?    sway3 beat sway?    xpln2 beat xpln?
+-------  ------  ------------------  ------------------  ------------------
+MRE-     sway    False               False               False
+ACC+     sway    False               False               False
+PRED40+  sway    False               False               False
 
-real	2m59.445s
-user	3m0.516s
-sys	0m4.982s
+\begin{tabular}{llll}
+\hline
+               & MRE-   & ACC+   & PRED40+   \\
+\hline
+ all to all    & =      & =      & =         \\
+ all to sway   & ≠      & ≠      & ≠         \\
+ all to sway2  & ≠      & ≠      & ≠         \\
+ sway to sway2 & ≠      & ≠      & ≠         \\
+ all to sway3  & ≠      & ≠      & ≠         \\
+ sway to sway3 & ≠      & ≠      & ≠         \\
+ sway to xpln  & ≠      & ≠      & ≠         \\
+ sway to xpln2 & ≠      & ≠      & ≠         \\
+ xpln to xpln2 & ≠      & ≠      & ≠         \\
+ sway2 to top  & ≠      & ≠      & ≠         \\
+ sway3 to top  & ≠      & ≠      & ≠         \\
+\hline
+\end{tabular}
+
+real	3m6.396s
+user	3m5.110s
+sys	0m6.969s
